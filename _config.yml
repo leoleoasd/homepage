@@ -115,6 +115,9 @@ author:
   xing             :
   youtube          :
   wikipedia        :
+  gpg:
+    url: http://keyserver.ubuntu.com/pks/lookup?op=vindex&search=0x69f7c86a3d673aea
+    hash: E138 B5E9 6541 EFF7 DCD4  5FC2 69F7 C86A 3D67 3AEA
 
 
 # Reading Files
