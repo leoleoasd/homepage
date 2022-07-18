@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Yuxuan Lu / 卢雨轩"
   avatar           : "profile.png"
-  bio              : "Hi 👋🏻 I'm a junoir undergraduate student at Beijing University of Technology."
+  bio              : "Hi 👋🏻 I'm a senior undergraduate student at Beijing University of Technology."
   location         : "Beijing, China"
   employer         :
   pubmed           : 
@@ -102,7 +102,7 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  linkedin         : "https://www.linkedin.com/in/yuxuan-lu/"
   orcid            : "https://orcid.org/0000-0002-8520-0540"
   pinterest        :
   soundcloud       :
@@ -152,7 +152,7 @@ exclude:
 keep_files:
   - .git
   - .svn
-encoding: "utf-8"
+encoding: "UTF-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 

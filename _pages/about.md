@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "academicpages is a ready-to-fork GitHub Pages template for academic personal websites"
+title: "About me"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -8,43 +8,61 @@ redirect_from:
   - /about.html
 ---
 
-This is the front page of a website that is powered by the [academicpages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the respository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. You can fork [this repository](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and markdown files, add your own PDFs and other content, and have your own site for free, with no ads! An older version of this template powers my own personal website at [stuartgeiger.com](http://stuartgeiger.com), which uses [this Github repository](https://github.com/staeiou/staeiou.github.io).
+Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a senior undergraduate student at Beijing University of Technology. I'm currently working as an AI Intern at a joint program between LinkedIn & Microsoft Research Asia. My research interest includes Machine Reading Comprehension(MRC), Knowledge Graph Embedding (KGE) and general Natural Language Processing. I've worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
 
-A data-driven personal website
-======
-Like many other Jekyll-based GitHub Pages templates, academicpages makes you separate the website's content from its form. The content & metadata of your website are in structured markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+Education
+=====
+I'm currently pursuing my B.E. degree in Computer Science at Faculty of Information, Beijing University of Technology. Before that, I've finished my junior and senior high at Beijing National Day School.
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over -- just be sure to save the markdown files! Finally, you can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+I'm looking for Ph.D. opportunity starting at Fall, 2023.
 
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this repository](https://github.com/academicpages/academicpages.github.io) by clicking the "fork" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+Research Experience
+=====
+I'm currently working as an AI Intern at a joint intern program between LinkedIn & Microsoft Research Asia. My job includes designing, writing & testing AI models. My research area includes the construction and representation of Knowledge Graphs.
 
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+Before that, I've worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by Prof. [Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/). My research area here includes Knowledge Embedding.
 
-Create content & metadata
-------
-For site content, there is one markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+Open source communities
+=====
+I've participated in many open-source communities. I'm the maintainer of the VSCode extension [LaTeX-Utilities](https://github.com/tecosaur/LaTeX-Utilities), and I'm the founder and maintainer of the [EduOJ](https://github.com/eduoj) project. Furthermore, I've contributed to many open-source projects, like [GitLab](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/20603), [UniversalOJ](https://github.com/UniversalOJ/UOJ-System), [OI-Wiki](https://github.com/OI-wiki/OI-wiki/), [nix](https://github.com/nix-rust/nix/) and others.
 
-**Markdown generator**
+I've participated as mentor and community leader in the Open Source Promotion Plan 2021. All my 3 students successfully finished their projects. I've participated as a student in the OSPP 2020 in the UniversalOJ community, and successfully finished my project.
 
-I have also created [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual markdown files that will be properly formatted for the academicpages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the markdown files, then commit and push them to the GitHub repository.
+Introduction for some of my open-source projects:
 
-How to edit your site's GitHub repository
-------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
+EduOJ
+-----
+EduOJ (OJ for education) is an Online Judge (auto grader) system designed for educational needs in the Programming and Data Structure and Algorithm course. EduOJ's tech stack includes Go, Vue and Docker. It handles course scenarios well, and capable of handling 150+ QPS, thanks to its well-designed architecture.
 
-Example: editing a markdown file for a talk
-![Editing a markdown file for a talk](/images/editing-talk.png)
+This project is used in the daily teaching of my school's Data Structure class, and is supported by the Xing Huo (Spark) Foundation and National-level Student Innovation and Entrepreneurship Training Program of Beijing University of Technology.
 
-For more info
-------
-More info about configuring academicpages can be found in [the guide](https://academicpages.github.io/markdown/). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
+LaTeX-Utilities
+----
+LaTeX-Utilities is a VSCode extension with more than 100,000 downloads, aiming to improve the experience of writing LaTeX files using VSCode. It supports pasting image into `.tex` file, pasting tables into `.tex` file, and more.
+
+This project originally started by [@tecosaur](https://github.com/tecosaur), then stopped support in 2020. I'm the new maintainer of this project.
+
+Compiler-Exp
+----
+The Cb compiler is a compiler that compiles a C-like language (Cb, pronounced as C-flat) to LLVM IR. This is the course experiment of my Compiler course.
+
+The Cb compiler itself is written in Rust. It uses ANTLR4 and Inkwell (rust binding of LLVM builder library). Thanks to LLVM, the Cb compiler produces industurial level assembly and binary.
+
+The Cb language implements a sub-set of C's features. Just like C# (C-sharp) which have more features than C, we have fewer features than C, hence the name C-flat.
+
+The main difference between C89 and Cb is listed as follows:
+1. Nested block comment
+   Thanks to ANTLR4's powerful lexer, the following statement is legal in Cb:
+```
+/* /* 123 */ */
+```
+1. No support for float point numbers.
+   Due to high workload, Cb have no support for float point numbers.
+1. No support for `enum` and `bitfields` in `structs`.
+1. No support for `register` and `volatile`.
+1. No support for self-referencing types, like Linked-list nodes.
+   Can be achieved by casting void-pointers.
+1. Inline assembly
+
+The report of this project (in Chinese) can be found at [here](https://github.com/leoleoasd/compiler_exp/blob/master/report/report.pdf).
+
