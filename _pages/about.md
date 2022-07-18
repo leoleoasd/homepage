@@ -50,6 +50,8 @@ The Cb compiler itself is written in Rust. It uses ANTLR4 and Inkwell (rust bind
 
 The Cb language implements a sub-set of C's features. Just like C# (C-sharp) which have more features than C, we have fewer features than C, hence the name C-flat.
 
+Cb has full support for structs, arrays, pointers and their combinations.
+
 The main difference between C89 and Cb is listed as follows:
 1. Nested block comment
    Thanks to ANTLR4's powerful lexer, the following statement is legal in Cb:
