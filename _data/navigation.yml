@@ -1,5 +1,7 @@
 # main links links
 main:
+  - title: "Open Source"
+    url: /open_source
   # - title: "Publications"
   #   url: /publications/
 
@@ -12,7 +14,7 @@ main:
   # - title: "Portfolio"
   #   url: /portfolio/
         
-  - title: "Blog"
+  - title: "Blog (in Chinese)"
     url: https://leoleoasd.me
     
   # - title: "CV"
