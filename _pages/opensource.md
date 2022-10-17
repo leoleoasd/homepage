@@ -15,9 +15,16 @@ I've participated as mentor and community leader in the Open Source Promotion Pl
 
 ### EduOJ
 
-EduOJ (OJ for education) is an Online Judge (auto grader) system designed for educational needs in the Programming and Data Structure and Algorithm course. EduOJ's tech stack includes Go, Vue and Docker. It handles course scenarios well, and capable of handling 150+ QPS, thanks to its well-designed architecture.
+EduOJ (OJ for education) is an Online Judge (auto grader) system designed for educational needs in the Programming and Data Structure and Algorithm course. EduOJ's tech stack includes Go, Vue and Docker. It handles course scenarios well, and capable of handling 500+ QPS, thanks to its well-designed architecture.
 
-This project is used in the daily teaching of my school's Data Structure class, and is supported by the Xing Huo (Spark) Foundation and National-level Student Innovation and Entrepreneurship Training Program of Beijing University of Technology.
+This project is used in the daily teaching of my school's Data Structure class, and is supported by the Xing Huo (Spark) Foundation and National-level Student Innovation and Entrepreneurship Training Program of Beijing University of Technology. We've served 20,000+ code submissions from 550+ users.
+
+Our system is capable of:
+- Handling 500+ QPS while other similar systems can only do 20+ on the same machine
+- A safe and scalable judging sandbox built with seccomp and container
+- Can be easily extended horizontally or vertically. The usage of S3 object storage and unified DBMS interface makes it cloud-native.
+- All APIs are unit-tested. We have a 72% code coverage rate, and we even [found a bug in the go compiler](https://github.com/golang/go/issues/44614).
+
 
 ### LaTeX-Utilities
 LaTeX-Utilities is a VSCode extension with more than 100,000 downloads, aiming to improve the experience of writing LaTeX files using VSCode. It supports pasting image into `.tex` file, pasting tables into `.tex` file, and more.
