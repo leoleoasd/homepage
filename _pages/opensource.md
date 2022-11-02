@@ -84,6 +84,8 @@ I found a bug in its API and helped to fix it.
 ### Other:
 Here is an incomplete list of other open source projects I've contributed to.
 
+- [Pytorch Lightning](https://github.com/Lightning-AI/lightning/pull/15413)
+- [fsspec](https://github.com/fsspec/filesystem_spec/pull/1089)
 - [dashmap](https://github.com/xacrimon/dashmap/pull/186)
 - [gofakes3](https://github.com/johannesboyne/gofakes3/pull/50)
 - [heti](https://github.com/sivan/heti/pull/47)
