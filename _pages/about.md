@@ -18,6 +18,12 @@ I'm currently pursuing my B.E. degree in Computer Science at Faculty of Informat
 
 I'm looking for Ph.D. opportunity starting at Fall, 2023.
 
+Publications
+======
+  <ul>{% for post in site.publications %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
+
 Research Experience
 =====
 I'm currently working as an AI Intern at a joint intern program between LinkedIn & Microsoft Research Asia. My job includes designing, writing & testing AI models. My research area includes the construction and representation of Knowledge Graphs.
