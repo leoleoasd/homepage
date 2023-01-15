@@ -9,6 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
+[PDF version](/files/resume.pdf)
+
 Education
 ======
 * B.S. in Computer Science, Beijing University of Technology, 2023(expected)
