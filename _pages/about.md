@@ -8,8 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-** This site is still under construction, and some information is directly from the site template. **
-
 Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a senior undergraduate student at Beijing University of Technology. I'm currently working as an AI Intern at a joint program between LinkedIn & Microsoft Research Asia. My research interest includes Machine Reading Comprehension(MRC), Knowledge Graph Embedding (KGE) and general Natural Language Processing. I've worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
 
 Education
