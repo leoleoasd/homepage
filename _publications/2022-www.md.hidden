@@ -1,14 +1,13 @@
 ---
-title: "Heterogeneous Knowledge based Person-Job Fit"
+title: "Professional Network Matters: Connections Empower Person-Job Fit"
 collection: publications
-permalink: /publication/2022-www
-excerpt: 'Heterogeneous Knowledge based Person-Job Fit'
+permalink: /publication/2023-pjf
+excerpt: 'Professional Network Matters: Connections Empower Person-Job Fit'
 date: 2023-01-01
-venue: 'International World Wide Web Conference'
+venue: 'Recommending Systems'
 citation_short: 'Hao Chen, Lun Du, <b>Yuxuan Lu</b>, Qiang Fu, Xu Chen, Shi Han, Yanbin Kang, Guangming Lu and Zi Li, Heterogeneous knowledge enhanced Person-Job Fit (WWW 2023)'
 in_review: true
 ---
-Person-Job Fit (PJF), as a core function of online recruitment platforms, aims to automatically link the right talent to the right job positions. Existing works mainly focus on leveraging historical job application information and textual information in member profiles and job descriptions while ignoring the rich and heterogeneous knowledge within this domain (e.g., skills, industries, education, and social relationships). This heterogeneous knowledge plays an essential role in the PJF problem and provides additional information. In this paper, we propose a new Heterogeneous Knowledge-based Person-Job Fit model based on Heterogeneous Graph Neural Networks. To fuse heterogeneous knowledge, we define a Workplace Heterogeneous Information Network (WHIN) with five types of entities and nine types of relationships. Based on WHIN, we introduce a heterogenous graph based pre-training technique to tackle the supervision sparsity challenge in PJF. To further solve the lack of member information, we propose a social-aware deep model that leverages workplace social information to supplement the lacked knowledge of members. Experimental results on three real-world recruiting datasets demonstrate the effectiveness of our method.
-
+Online recruitment platforms typically employ Person-Job Fit models in the core service that automatically matching between suitable job seekers and the appropriate job positions. Existing works mainly focus on leveraging historical job application information or contextual information in job seekers' profiles and job descriptions. However, such methodologies are inadequate as they disregard a crucial information source: job seekers' social relationships in the professional network. In this paper, we underscore the importance of incorporating workplace social relationships into the Person-Job Fit model. Our approach consists of two stages: (1) defining a Heterogeneous Information Network (WHIN) to capture heterogeneous knowledge, including social relations and pre-training representations of various entities using a heterogeneous graph neural network; (2) designing a Contextual Social Attention Graph Neural Network (CSAGNN) that supplements users' missing information with workplace friends' contextual information. To handle noisy workplace social networks, we introduce a job-specific attention mechanism in CSAGNN, leveraging pre-trained entity representations from WHIN. We demonstrate the effectiveness of our approach through experimental evaluations conducted across three real-world recruitment datasets, showing superior performance compared to baseline models.
 
 <!-- [Download paper here](https://arxiv.org/pdf/2206.12866.pdf) -->
