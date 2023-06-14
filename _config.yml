@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Yuxuan Lu / 卢雨轩"
   avatar           : "profile.jpg"
-  bio              : "Hi 👋🏻 I'm a senior undergraduate student at Beijing University of Technology."
+  bio              : "Hi 👋🏻 I'm an incoming Ph.D. student at Northeastern University"
   location         : "Beijing, China"
   employer         :
   pubmed           : 
@@ -185,7 +185,7 @@ collections:
     output: true
     permalink: /:collection/:path/
   portfolio:
-    output: true
+    output: false
     permalink: /:collection/:path/
   talks:
     output: true
