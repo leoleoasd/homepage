@@ -1,0 +1,9 @@
+{
+  "subject": "acct:i@yuxuan.lu",
+  "links": [
+    {
+      "rel": "http://openid.net/specs/connect/1.0/issuer",
+      "href": "https://idm.leoleoasd.me:4443/oauth2/openid/tailscale"
+    }
+  ]
+}
