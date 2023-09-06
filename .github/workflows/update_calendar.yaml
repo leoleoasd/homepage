@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 * * * *" # every hour
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+      - name: Download new calendar
+        run: |
+          wget https://outlook.office365.com/owa/calendar/007ace4bb7244211a4ec19be0b37c731@northeastern.edu/1f8be1839f9f4b2591a455d7bfc522e09412467513763154804/calendar.ics -O files/calendar.ics
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
