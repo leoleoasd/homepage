@@ -24,7 +24,7 @@ jobs:
             echo "No changes found"
             exit 0
           fi
-          echo "{changed}={true}" >> $GITHUB_OUTPUT
+          echo "changed=true" >> $GITHUB_OUTPUT
           rm old.ics new.ics files/calendar.ics
           mv files/calendar_new.ics files/calendar.ics
       - name: Commit & Push changes
