@@ -1,49 +1,28 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title> Calendar </title>
-    <script type='importmap'>
-            {
-                "imports": {
-                    "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.8",
-                    "@fullcalendar/timegrid": "https://cdn.skypack.dev/@fullcalendar/timegrid@6.1.8",
-                    "@fullcalendar/icalendar": "https://cdn.skypack.dev/@fullcalendar/icalendar@6.1.8"
-                }
-            }
-        </script>
-    <script type="module">
+    <meta charset="utf-8" />
+    <title>Calendar</title>
+    <script src="main.js"></script>
+    <style>
+        html,
+        #calendar {
+            height: 100%;
+        }
 
-        import { Calendar } from '@fullcalendar/core'
-        import ICalendar from '@fullcalendar/icalendar'
-        import timeGridPlugin from '@fullcalendar/timegrid'
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new Calendar(calendarEl, {
-                plugins: [ICalendar, timeGridPlugin],
-                initialView: 'timeGridWeek',
-                events: {
-                    url: '/files/calendar.ics',
-                    format: 'ics'
-                },
-                views: {
-                    timeGridWeek: {
-                        nowIndicator: true,
-                        scrollTime: '09:00:00'
-                    }
-                },
-                eventDataTransform: (e) => {
-                    console.log(e);
-                }
-            });
-            calendar.render();
-        });
-
-    </script>
+        body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <div id='calendar'></div>
+    <div id="calendar">
+
+    </div>
 </body>
 
 </html>
