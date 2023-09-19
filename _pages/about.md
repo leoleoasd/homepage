@@ -8,7 +8,16 @@ redirect_from:
   - /about.html
 ---
 
-Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a Ph.D. student at Northeastern University. I'm advised by [Prof. Dakuo Wang](https://www.dakuowang.com/). My research interest includes Human Computer Interaction and Natural Language Processing, especially in training, running and utilizing Large Language Models (LLMs) effiently and effectively. In the past, I've worked as Machine Learning Researcher at a joint program between LinkedIn and Microsoft Research Asia. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
+Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a Ph.D. student at Northeastern University. I'm advised by [Prof. Dakuo Wang](https://www.dakuowang.com/). My research interest includes Human Computer Interaction and Natural Language Processing, especially in training, running and utilizing Large Language Models (LLMs) effiently and effectively. In the past, I've worked as Machine Learning Researcher at a joint program between LinkedIn and Microsoft Research Asia. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Prof. Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
+
+
+<div style="display: flex; justify-content: center; width: 100%; column-gap: 24px;">
+  <img src="/images/holding_shark.jpg" width="250px" />
+  <img src="/images/holding_camera.jpg" width="250px" />
+</div>
+<div style="display: flex; justify-content: center; width: 100%; column-gap: 24px; color: rgba(1,1,1,0.4)">
+  Picture of me, taken in The Sayram Lake (赛里木湖)
+</div>
 
 Education
 =====
@@ -18,7 +27,8 @@ I got my B.E. degree in Computer Science at Faculty of Information, Beijing Univ
 
 Publications
 ======
-  <ul>{% for post in site.publications %}
+  {% assign pubs = site.publications | sort: 'date' | reverse %}
+  <ul>{% for post in pubs %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
 
