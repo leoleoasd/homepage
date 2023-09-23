@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a Ph.D. student at Northeastern University. I'm advised by [Prof. Dakuo Wang](https://www.dakuowang.com/). My research interest includes Human Computer Interaction and Natural Language Processing, especially in training, running and utilizing Large Language Models (LLMs) effiently and effectively. In the past, I've worked as Machine Learning Researcher at a joint program between LinkedIn and Microsoft Research Asia. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Prof. Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
+Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a Ph.D. student at Northeastern University. Before that, I got my B.E. in Computer Science and Technology and <b> Graduated with honor </b> at Beijing University of Technology. I'm advised by [Prof. Dakuo Wang](https://www.dakuowang.com/). My research interest includes <b> Human Computer Interaction </b> and <b> Natural Language Processing </b>, especially in training, running and utilizing Large Language Models (LLMs) effiently and effectively. In the past, I've worked as Machine Learning Researcher at a joint program between **LinkedIn** and **Microsoft Research Asia**. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Prof. Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
 
 
 <div style="display: flex; justify-content: center; width: 100%; column-gap: 24px;">
@@ -23,7 +23,7 @@ Education
 =====
 I'm currently persuing my Ph.D. in Computer Science at Khoury College of Computer Sciences, Northeastern University, advised by [Prof. Dakuo Wang](https://www.dakuowang.com/).
 
-I got my B.E. degree in Computer Science at Faculty of Information, Beijing University of Technology. Before that, I've finished my junior and senior high at Beijing National Day School.
+I got my B.E. in Computer Science and Technology and <b> Graduated with honor </b> at Beijing University of Technology. Before that, I've finished my junior and senior high at Beijing National Day School （北京市十一学校）.
 
 Publications
 ======
