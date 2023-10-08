@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/2023-beyond-labels
 excerpt: 'Beyond Labels: Empowering Human with Natural Language Explanations through a Novel Active-Learning Architecture'
 date: 2023-05-22
-venue: 'Arxiv'
+venue: 'EMNLP Findings 2023'
 paperurl: '/files/2305.12710.pdf'
 citation: 'Yao, B., Jindal, I., Popa, L., Katsis, Y., Ghosh, S., He, L., Lu, Y., Srivastava, S., Hendler, J.A., & Wang, D. (2023). Beyond Labels: Empowering Human with Natural Language Explanations through a Novel Active-Learning Architecture. ArXiv, abs/2305.12710.'
 citation_short: 'Yao, Bingsheng, Ishan Jindal, Lucian Popa, Yannis Katsis, Sayan Ghosh, Lihong He, <b> Yuxuan Lu </b>, Shashank Srivastava, James A. Hendler and Dakuo Wang.  Beyond Labels: Empowering Human with Natural Language Explanations through a Novel Active-Learning Architecture. ArXiv, abs/2305.12710.'
