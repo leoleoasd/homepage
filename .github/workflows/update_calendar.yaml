@@ -9,6 +9,8 @@ name: Update calendar
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.download.outputs.changed }}
     steps:
       - uses: actions/checkout@master
         with:
@@ -34,7 +36,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
           message: "Update calendar ${{ github.event.repository.updated_at}}"
-      - name: re-build github pages
-        if: steps.download.outputs.changed == 'true'
-        uses: ./.github/workflows/wf1.yml
-        secrets: inherit
+  publish:
+    uses: ./.github/workflows/jekyll.yml
+    needs: build
+    if: ${{ needs.build.outputs.changed == 'true'}}
+    secrets: inherit
