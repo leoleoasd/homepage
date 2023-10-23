@@ -34,3 +34,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
           message: "Update calendar ${{ github.event.repository.updated_at}}"
+      - name: re-build github pages
+        if: steps.download.outputs.changed == 'true'
+        uses: ./.github/workflows/wf1.yml
+        secrets: inherit
