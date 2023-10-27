@@ -1,0 +1,149 @@
+%!LW recipe=XeLaTeXmk
+
+\documentclass[scheme=plain]{ctexbeamer}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{outlines}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{tabularray}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{academicons}
+\usepackage{pgfplots}
+\usepackage{pgfgantt}
+\usepackage{qrcode}
+
+\usetheme[
+    progressbar=frametitle,
+    numbering=fraction,
+    subsectionpage=progressbar,
+    titleformat title=smallcaps,
+    titleformat subtitle=smallcaps,
+    titleformat section=smallcaps,
+    titleformat frame=smallcaps]{metropolis}
+
+\setbeamercolor{palette primary}{bg=orange}
+\setbeamercolor{frametitle}{bg=black,fg=white}
+\setbeamercolor{progress bar}{fg=black}
+
+\usetikzlibrary{calc}
+\setcounter{tocdepth}{1}
+
+\makeatletter
+\newlength{\frametitle@padding}
+\setlength{\frametitle@padding}{2.2ex}
+\newcommand{\frametitlestrut@start}{
+  \rule{0pt}{\frametitle@padding +%
+    \totalheightof{%
+      \ifcsdef{frametitleformat}{\frametitleformat X}{X}%
+    }%
+  }%
+}
+\newcommand{\frametitlestrut@end}{
+  \rule[-\frametitle@padding]{0pt}{\frametitle@padding}
+}
+
+\setbeamertemplate{frametitle}{
+    \nointerlineskip%
+    \begin{beamercolorbox}[%
+        wd=\paperwidth,%
+        sep=0pt,%
+        leftskip=\frametitle@padding,%
+        rightskip=\frametitle@padding,%
+      ]{frametitle}%
+    \frametitlestrut@start%
+    \insertframetitle%
+    \hfill%
+    \nolinebreak%
+    \frametitlestrut@end%
+    \end{beamercolorbox}%
+    \begin{tikzpicture}[remember picture,overlay]
+        \coordinate (logo) at ([xshift=-1.8cm,yshift=-0.6cm]current page.north east);
+        \node at (logo) {\includegraphics[height=.1\textheight]{northeastern.eps}};
+    \end{tikzpicture}
+}
+\makeatother
+
+\setbeamertemplate{footline}{
+    \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.5ex,leftskip=2ex,rightskip=2ex]{page footer}%
+        \usebeamerfont{title in head/foot}%
+        \hfill
+        \begin{tblr}{
+            width=.8\linewidth,
+            colspec={X[l]X[c]X[r]}
+        }
+            \insertsection{}
+            &
+            \ifx\insertsubsection\empty
+            \else
+            \insertsubsection{} 
+            \fi
+            &
+            \insertframenumber{} / \inserttotalframenumber
+        \end{tblr}
+        \hfill{}
+    \end{beamercolorbox}}%
+}
+% \logo{
+% \begin{tikzpicture}[remember picture,overlay]
+%     \node[anchor=south east,inner sep=0pt, align=right] at ($(current page.south east) + (-1cm, 1cm)$) {
+%         \includegraphics[width=3cm]{bjut_logo.pdf}
+%     };
+% \end{tikzpicture}
+% }
+
+\UseTblrLibrary{booktabs}
+\graphicspath{ {./images/} }
+
+\title{Compression for AGI}
+\author{Yuxuan Lu}
+\institute{Northeastern Human-Centered AI Lab}
+\date{Nov. 3 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Takeaways}
+    \begin{outline}
+        \1 Generative models are \emph{Lossless} compressors
+            \2 ``ChatGPT Is a Blurry JPEG of the Web''? No!
+        \1 LLMs are \emph{State-of-the-Art} text compressors
+            \2 comparing to deflate(gzip), Zstd, etc.
+        \1 Re-think about the training objective of foundation models
+    \end{outline}
+\end{frame}
+
+\begin{frame}{Table of Contents}
+    \tableofcontents
+\end{frame}
+
+\section{Revisit the Training Crocess of LLMs}
+\begin{frame}{Transformer: A Black Box}
+    
+\end{frame}
+
+% \section{背景}
+% \begin{frame}{人职匹配}
+%     \begin{outline}
+%         \1 目标
+%             \2 给工作推荐合适（能胜任、不浪费能力）的候选者
+%             \2 给候选者推荐合适（录用概率大、能力要求高）的工作
+%         \1 人职匹配是人力资源市场中的核心问题
+%             \2 低效的人职匹配会造成人力资源的浪费
+%         \1 随着在线职场社交和招聘平台的兴起，平台面临匹配巨量候选者和职位的问题
+%             \2 高效的人职匹配能节省求职者和HR的精力，达到更高的社会运转效率
+%     \end{outline}
+% \end{frame}
+
+\end{document}
