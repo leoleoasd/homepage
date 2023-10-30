@@ -21,6 +21,7 @@
 \usepackage{pgfplots}
 \usepackage{pgfgantt}
 \usepackage{qrcode}
+\usepackage{ninecolors}
 
 \usetheme[
     progressbar=frametitle,
@@ -31,7 +32,7 @@
     titleformat section=smallcaps,
     titleformat frame=smallcaps]{metropolis}
 
-\setbeamercolor{palette primary}{bg=orange}
+\setbeamercolor{palette primary}{bg=gray1}
 \setbeamercolor{frametitle}{bg=black,fg=white}
 \setbeamercolor{progress bar}{fg=black}
 
@@ -178,6 +179,10 @@
   \end{outline}
 \end{frame}
 
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
 \section[LLMs as compressors]{Why are LLMs \emph{Lossless} compressors}
 
 \begin{frame}{LLMs as compressors}
@@ -229,7 +234,6 @@
       \2 Let's call it $z_1$
       \pause
     \1 $\dots$ and update the model to minimize the loss, and repeat these steps for every data
-    \pause
   \end{outline}
 \end{frame}
 
@@ -240,11 +244,15 @@
     \1 And he can initialize the exact same model (with random seed defined in the code)
     \pause
     \1 So he will have the \emph{exact same distribution} $p$ for the first token
-      \2 He then can decode the token with $p$ and $z_1$ with arithmetic decoding
+      \2 He then can decode the token with $p$ and $z_1$ with arithmetic decoding, get $x_1$
       \pause
     \1 And he will run the training loop to update the model with $x_1$
     \1 Note that the model parameters isn't transmitted through the phone wire
   \end{outline}
+\end{frame}
+
+\begin{frame}{LLMs as compressors -- Conclusion}
+  TODO
 \end{frame}
 
 \begin{frame}{LLMs as compressors -- Conclusion}
@@ -258,6 +266,10 @@
   \end{outline}
 \end{frame}
 
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
 \section[LLM, compression and AGI]{Rethink the goal for foundation models}
 
 \begin{frame}{Classic Chinese Room thought experiment}
@@ -266,8 +278,9 @@
       \2 Does it have understanding of translation?
     \pause
       \2 It has the \emph{least} understanding of translation
+    \pause
     \1 What if it do it by a set of rules?
-      \2 it have \emph{some} understanding of translation.
+      \2 Tt have \emph{some} understanding of translation.
     \pause
     \1 If we can make the rule set smaller, it will generalise better.
   \end{outline}
@@ -276,9 +289,9 @@
 \begin{frame}{Lossy V.S. Lossless}
   \begin{outline}
     \1 ``Lossy'' compression means the model ``remembers'' everything in the training dataset
-      \2 BAD generalize ability
-    \1 ``Lossless'' compression means the model can better predict unseen 
-      \2 Better compression means GOOD generalize ability
+      \2 BAD generalization
+    \1 ``Lossless'' compression means the model can better predict unseen data samples
+      \2 Better compression means GOOD generalization
         \3 Because \emph{EVERY} example is unseen
   \end{outline}
 \end{frame}
@@ -294,7 +307,7 @@
   \end{outline}
 \end{frame}
 
-\begin{frame}{``A recipe for prrception''}
+\begin{frame}{``A recipe for perception''}
   \begin{outline}
     \0 A recipe for perception
       \1 Collet all useful perceptual information
@@ -305,6 +318,20 @@
         \2 ...
   \end{outline}
 \end{frame}
+
+
+\begin{frame}{Recap}
+  \begin{outline}
+    \1 How LLM works
+    \1 How LLM works as a compressor
+    \1 How compressor generates intelligence
+  \end{outline}
+\end{frame}
+
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
 
 \end{document}
 
