@@ -48,6 +48,7 @@
     }%
   }%
 }
+
 \newcommand{\frametitlestrut@end}{
   \rule[-\frametitle@padding]{0pt}{\frametitle@padding}
 }
@@ -73,6 +74,7 @@
 }
 \makeatother
 
+
 \setbeamertemplate{footline}{
     \hbox{%
     \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.5ex,leftskip=2ex,rightskip=2ex]{page footer}%
@@ -82,7 +84,7 @@
             width=.8\linewidth,
             colspec={X[l]X[c]X[r]}
         }
-            \insertsection{}
+            \insertsectionhead{}
             &
             \ifx\insertsubsection\empty
             \else
@@ -94,13 +96,26 @@
         \hfill{}
     \end{beamercolorbox}}%
 }
-% \logo{
-% \begin{tikzpicture}[remember picture,overlay]
-%     \node[anchor=south east,inner sep=0pt, align=right] at ($(current page.south east) + (-1cm, 1cm)$) {
-%         \includegraphics[width=3cm]{bjut_logo.pdf}
-%     };
-% \end{tikzpicture}
-% }
+
+\defbeamertemplate{section page}{my progressbar}{
+  \centering
+  \begin{minipage}{22em}
+    \raggedright
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsection\\[-1ex]
+    \usebeamertemplate*{progress bar in section page}
+    \par
+    \ifx\insertsubsectionhead\@empty\else%
+      \usebeamercolor[fg]{subsection title}%
+      \usebeamerfont{subsection title}%
+      \insertsubsectionhead
+    \fi
+  \end{minipage}
+  \par
+  \vspace{\baselineskip}
+}
+\setbeamertemplate{section page}[my progressbar]
 
 \UseTblrLibrary{booktabs}
 \graphicspath{ {./images/} }
@@ -128,22 +143,169 @@
     \tableofcontents
 \end{frame}
 
-\section{Revisit the Training Crocess of LLMs}
+\section[Training process of LLMs]{Revisit the Training Process of LLMs}
 \begin{frame}{Transformer: A Black Box}
-    
+  \begin{figure}
+      \includegraphics[width=.6\linewidth]{transformer_black_box.drawio.png}
+      \caption[]{Transformer: A Black Box -- step 1}
+  \end{figure}
+\end{frame}
+\begin{frame}{Transformer: A Black Box}
+  \begin{figure}
+      \includegraphics[width=.6\linewidth]{transformer_black_box_step_2.drawio.png}
+      \caption[]{Transformer: A Black Box -- step 2}
+  \end{figure}
+\end{frame}
+\begin{frame}{Transformer: A Black Box}
+  \begin{figure}
+      \includegraphics[width=.6\linewidth]{transformer_black_box_step_2.drawio.png}
+      \caption[]{Transformer: A Black Box -- step 2}
+  \end{figure}
+\end{frame}
+\begin{frame}{Transformer: A Black Box}
+  \begin{figure}
+      \includegraphics[width=.6\linewidth]{transformer_black_box_step_3.drawio.png}
+      \caption[]{Transformer: A Black Box -- training}
+  \end{figure}
+\end{frame}
+\begin{frame}{Transformer: A Black Box}
+  \begin{outline}
+    \1 We have a sequence: $ X = [x_1, x_2, \dots, x_n ] $
+    \1 We put this sequence into LLM and get a sequence of probabilities:
+      \2 $p_i = P(x_i | x_{<i})$
+    \1 We want $p_i$ approachs $1$, so we minimize the following loss during pre-training:
+      \2 $L = \sum_{i=1}^{n} - \log P(x_i | x_{<i})$
+  \end{outline}
 \end{frame}
 
-% \section{背景}
-% \begin{frame}{人职匹配}
-%     \begin{outline}
-%         \1 目标
-%             \2 给工作推荐合适（能胜任、不浪费能力）的候选者
-%             \2 给候选者推荐合适（录用概率大、能力要求高）的工作
-%         \1 人职匹配是人力资源市场中的核心问题
-%             \2 低效的人职匹配会造成人力资源的浪费
-%         \1 随着在线职场社交和招聘平台的兴起，平台面临匹配巨量候选者和职位的问题
-%             \2 高效的人职匹配能节省求职者和HR的精力，达到更高的社会运转效率
-%     \end{outline}
-% \end{frame}
+\section[LLMs as compressors]{Why are LLMs \emph{Lossless} compressors}
+
+\begin{frame}{LLMs as compressors}
+  \begin{outline}
+    \1 Naturally, you would assume an LLM is a \emph{lossy} compressor
+      \2 That turns trainig corpus to model parameters
+      \2 For LLaMa, the training dataset is 5.6TB
+      \2 And the 65 billion parameters takes about 130GB of storage
+        \3 So 43x compression rate?
+        \3 Lossy!
+    \pause
+    \1 Actually, LLaMa can compress the entire 5.6TB of training corpus to 397.3 GB losslessly
+      \2 14x compression
+      \2 Best text compressor: 8.7x compression
+  \end{outline}
+\end{frame}
+
+
+
+\begin{frame}{LLMs as compressors}
+  \begin{outline}
+    \1 To compress the \emph{entire training corpus $\mathcal{C}$ losslessly}, we only need \emph{the CODE to train the models} and $\sum_{i \in \mathcal{C}} - \log P(x_i | x_{<i}) $ bits of imformation.
+      \2 The result size (after compression) \emph{ISN'T} related the number of parameters!
+      \pause
+    \1 But, HOW?
+  \end{outline}
+\end{frame}
+
+\begin{frame}{LLMs as compressors -- How}
+  \begin{outline}
+    \1 Imagine Alice is trying to send some text to Bob through a telephone wire
+    \1 Alice needs to encode the data to ``something''
+    \1 Bob needs to decode the ``something'' back to data
+    \1 So we need an ``encoding'' algorithm and a ``decoding'' algorithm
+  \end{outline}
+\end{frame}
+
+\begin{frame}{LLMs as compressors -- Encoding}
+  \begin{outline}
+    \1 Let's say we have a vocabulary of \(\mathcal{V}\) (which should be defined in the training code), and we want to encode the first token \(x_1\).
+    \pause
+    \1 First, we initialize the model and fed it the training data
+      \2 and we can get the probability distribution of the first token $p$ and an index $x_1 \in \mathcal{V}$
+      \pause
+    \1 With arithmetic encoding, we can encode the index $x_1$ with $-\log_2 p_{x_1}$ bits
+      \2 Rather than $-\log_2 \frac{1}{|\mathcal{V}|}$ bits
+      \pause
+    \1 We send those $-\log_2 p_{x_1}$ bits to Bob
+      \2 Let's call it $z_1$
+      \pause
+    \1 $\dots$ and update the model to minimize the loss, and repeat these steps for every data
+    \pause
+  \end{outline}
+\end{frame}
+
+\begin{frame}{LLMs as compressors -- Decoding}
+  \begin{outline}
+    \1 Bob retrives the code for training the model
+    \pause
+    \1 And he can initialize the exact same model (with random seed defined in the code)
+    \pause
+    \1 So he will have the \emph{exact same distribution} $p$ for the first token
+      \2 He then can decode the token with $p$ and $z_1$ with arithmetic decoding
+      \pause
+    \1 And he will run the training loop to update the model with $x_1$
+    \1 Note that the model parameters isn't transmitted through the phone wire
+  \end{outline}
+\end{frame}
+
+\begin{frame}{LLMs as compressors -- Conclusion}
+  \begin{outline}
+    \1 In the above process, the model parameter is always synced between bob and alice
+    \1 With arithmetic encoding, we can use fewer bits to encode something have a higher probability in a distribution.
+      \2 If the distribution is uniform, $-\log_2 p_{x_i} = -\log_2 \frac{1}{|\mathcal{V}|}$, which is same as naive storage
+      \2 And as the model is continually training, it can predict the next token with higher and higher probability.
+    \1 Bob can re-construct the entire training corpus $\mathcal{C}$ with $\sum_{i \in \mathcal{C}} - \log P(x_i | x_{<i}) $ bits of information
+      \2 Which is exactly the same with the sum of training loss on all tokens!
+  \end{outline}
+\end{frame}
+
+\section[LLM, compression and AGI]{Rethink the goal for foundation models}
+
+\begin{frame}{Classic Chinese Room thought experiment}
+  \begin{outline}
+    \1 If a computer program translates English and Chinese using an oracle comprising all possible combinations of Chinese and English combinations.
+      \2 Does it have understanding of translation?
+    \pause
+      \2 It has the \emph{least} understanding of translation
+    \1 What if it do it by a set of rules?
+      \2 it have \emph{some} understanding of translation.
+    \pause
+    \1 If we can make the rule set smaller, it will generalise better.
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Lossy V.S. Lossless}
+  \begin{outline}
+    \1 ``Lossy'' compression means the model ``remembers'' everything in the training dataset
+      \2 BAD generalize ability
+    \1 ``Lossless'' compression means the model can better predict unseen 
+      \2 Better compression means GOOD generalize ability
+        \3 Because \emph{EVERY} example is unseen
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Target for Foundation Models}
+  \begin{figure}
+    \includegraphics[width=.6\linewidth]{target_for_foundation_models.drawio.png}
+    \caption{All data V.S. Training Data}
+  \end{figure}
+  \begin{outline}
+    \1 For foundation models, what we want is good generalization ability
+      \2 i.e. ability to generate or write \emph{UNSEEN} samples.
+  \end{outline}
+\end{frame}
+
+\begin{frame}{``A recipe for prrception''}
+  \begin{outline}
+    \0 A recipe for perception
+      \1 Collet all useful perceptual information
+      \1 Learn to compress it as best as possible with a powerful fundation model
+        \2 Better architecture
+        \2 Scale
+        \2 Tool use
+        \2 ...
+  \end{outline}
+\end{frame}
 
 \end{document}
+
+
