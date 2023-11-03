@@ -183,6 +183,14 @@
   Questions?
 \end{frame}
 
+\section[Compressors]{What are compressors}
+\begin{frame}{Compressor}
+  \begin{outline}
+    \1 Compressors aims to find a better (smaller) way to express the same thing
+    \1 
+  \end{outline}
+\end{frame}
+
 \section[LLMs as compressors]{Why are LLMs \emph{Lossless} compressors}
 
 \begin{frame}{LLMs as compressors}
@@ -214,6 +222,9 @@
 \begin{frame}{LLMs as compressors -- How}
   \begin{outline}
     \1 Imagine Alice is trying to send some text to Bob through a telephone wire
+    \1 Sending the raw text is very expensive
+      \2 too large
+    \1 So Alice need to find a way to compress the data losslessly
     \1 Alice needs to encode the data to ``something''
     \1 Bob needs to decode the ``something'' back to data
     \1 So we need an ``encoding'' algorithm and a ``decoding'' algorithm
@@ -252,12 +263,16 @@
 \end{frame}
 
 \begin{frame}{LLMs as compressors -- Conclusion}
-  TODO
+  \begin{outline}
+    \1 By sharing the same code, Bob can initialize the same model as Alice's
+    \1 With arithmetic encoding and decoding, bob can decode the token with the same probability distribution produced by the model and the encode transmitted from Alice
+    \1 And by training at the same time, the model is always synced between Alice and Bob
+  \end{outline}
 \end{frame}
 
 \begin{frame}{LLMs as compressors -- Conclusion}
   \begin{outline}
-    \1 In the above process, the model parameter is always synced between bob and alice
+    % \1 In the above process, the model parameter is always synced between bob and alice
     \1 With arithmetic encoding, we can use fewer bits to encode something have a higher probability in a distribution.
       \2 If the distribution is uniform, $-\log_2 p_{x_i} = -\log_2 \frac{1}{|\mathcal{V}|}$, which is same as naive storage
       \2 And as the model is continually training, it can predict the next token with higher and higher probability.
@@ -320,10 +335,12 @@
 \end{frame}
 
 
-\begin{frame}{Recap}
+\begin{frame}{Conclusion}
   \begin{outline}
     \1 How LLM works
     \1 How LLM works as a compressor
+      \2 And how should we use LLM
+      \2 LLM isn't a search engine
     \1 How compressor generates intelligence
   \end{outline}
 \end{frame}
