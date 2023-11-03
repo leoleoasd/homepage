@@ -159,12 +159,6 @@
 \end{frame}
 \begin{frame}{Transformer: A Black Box}
   \begin{figure}
-      \includegraphics[width=.6\linewidth]{transformer_black_box_step_2.drawio.png}
-      \caption[]{Transformer: A Black Box -- step 2}
-  \end{figure}
-\end{frame}
-\begin{frame}{Transformer: A Black Box}
-  \begin{figure}
       \includegraphics[width=.6\linewidth]{transformer_black_box_step_3.drawio.png}
       \caption[]{Transformer: A Black Box -- training}
   \end{figure}
@@ -183,12 +177,59 @@
   Questions?
 \end{frame}
 
-\section[Compressors]{What are compressors}
-\begin{frame}{Compressor}
+\section[Compressors and Arithmetic Encoding]{Compressors and Arithmedic Encoding}
+\begin{frame}{Compressors}
   \begin{outline}
     \1 Compressors aims to find a better (smaller) way to express the same thing
-    \1 
+    \1 ZIP, JPEG, MP4 (H.264, HEVC), MP3
+    \1 Lossy compressor:
+      \2 Task-specific
+      \2 CAN NOT be ``decompress'' back to the original data
+      \2 Better compression rate while lossing unimportant data
+        \3 Image goes ``blurry''
+        \3 Video / Audio
   \end{outline}
+\end{frame}
+
+\begin{frame}{Compressors}
+  \begin{outline}
+    \1 Lossless compressor
+      \2 General
+      \2 Can be ``decompress'' back to the original data
+      \2 Find ``common part'' of the data
+        \3 11111111 -> 8x1
+  \end{outline}
+\end{frame}
+
+
+\begin{frame}{Arithmetic Encoding}
+  \begin{outline}
+    \1 Use less bits for most frequent items
+    \1 For example, if we want to compress the result of an uneven distribution
+      \2 Respectively 50\%, 30\%, 10\%, 10\% probability
+    \1 We can use \texttt{1, 01, 001, 000} to represent:
+      \2 Take an average of 1.4 bits
+      \2 Naive encoding takes 2 bits
+    \pause
+    \1 Arithmetic encoding:
+      \2 If something have a probability $p$
+      \2 Represent it with $- \log p$ bits
+      \2 Average of $\frac{1}{n} \sum_{i=1}^{n} - \log p_i$ bits
+        \3 This is also the theoritical upper bound proved by Shannon's Information Theory (the ``Entropy'' of a distribution)
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Conclusion}
+  \begin{outline}
+    \1 Lossy compression take advantage of ``knowing'' the data
+      \2 Loss unimportant part to provide better compression rate
+    \1 Lossless compression aim to be general
+    \1 Frequent items can be represented with fewer bits with Arithmetic Encoding
+  \end{outline}
+\end{frame}
+
+\begin{frame}[standout]
+  Questions?
 \end{frame}
 
 \section[LLMs as compressors]{Why are LLMs \emph{Lossless} compressors}
@@ -265,7 +306,7 @@
 \begin{frame}{LLMs as compressors -- Conclusion}
   \begin{outline}
     \1 By sharing the same code, Bob can initialize the same model as Alice's
-    \1 With arithmetic encoding and decoding, bob can decode the token with the same probability distribution produced by the model and the encode transmitted from Alice
+    \1 With arithmetic encoding and decoding, Bob can decode the token with the same probability distribution produced by the model and the encoding transmitted from Alice
     \1 And by training at the same time, the model is always synced between Alice and Bob
   \end{outline}
 \end{frame}
@@ -295,7 +336,7 @@
       \2 It has the \emph{least} understanding of translation
     \pause
     \1 What if it do it by a set of rules?
-      \2 Tt have \emph{some} understanding of translation.
+      \2 It have \emph{some} understanding of translation.
     \pause
     \1 If we can make the rule set smaller, it will generalise better.
   \end{outline}
