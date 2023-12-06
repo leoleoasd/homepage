@@ -85,7 +85,8 @@ author:
   employer:
   pubmed:
   googlescholar: "https://scholar.google.com/citations?user=t_KJvIYAAAAJ"
-  email: "i@yuxuan.lu"
+  email: "replace_anything_before_at_to_i@yuxuan.lu"
+  fake_email: "honeypot@yuxuan.lu"
   researchgate: # example: "https://www.researchgate.net/profile/yourprofile"
   uri: "https://leoleoasd.me"
   bitbucket:
@@ -303,4 +304,4 @@ compress_html:
   ignore:
     envs: development
 gems:
-- jekyll-email-protect
+  - jekyll-email-protect
