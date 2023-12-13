@@ -25,6 +25,7 @@ group :jekyll_plugins do
   gem 'jekyll-email-protect'
   gem 'hawkins'
   gem 'jekyll-scholar'
+  gem 'kramdown-parser-gfm'
   # gem "github-pages"
 end
 
