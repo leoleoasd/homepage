@@ -23,10 +23,11 @@ group :jekyll_plugins do
   gem "jekyll-feed"
   gem 'jekyll-sitemap'
   gem 'jekyll-email-protect'
-  gem 'hawkins'
   gem 'jekyll-scholar'
   gem 'kramdown-parser-gfm'
-  gem 'liquid', '~> 4.0', '>= 4.0.4'
+  gem 'jekyll-paginate'
+  gem 'jekyll-gist'
+  gem 'jekyll-redirect-from'
   # gem "github-pages"
 end
 
