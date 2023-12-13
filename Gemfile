@@ -26,6 +26,7 @@ group :jekyll_plugins do
   gem 'hawkins'
   gem 'jekyll-scholar'
   gem 'kramdown-parser-gfm'
+  gem 'liquid', '~> 4.0', '>= 4.0.4'
   # gem "github-pages"
 end
 
