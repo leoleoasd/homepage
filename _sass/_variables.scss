@@ -151,3 +151,9 @@ $box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.125);
 $navicon-width              : 28px;
 $navicon-height             : 4px;
 $global-transition          : all 0.2s ease-in-out;
+
+:root {
+   --global-theme-color: #9e79a4;
+   --global-divider-color: #424246;
+   --global-text-color: $text-color;
+}

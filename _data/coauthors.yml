@@ -1,0 +1,56 @@
+"Yao":
+  - firstname: ["Bingsheng"]
+    url: https://www.bingshengyao.com/
+"Wang":
+  - firstname: ["Dakuo"]
+    url: https://www.dakuowang.com/
+
+"Hendler":
+  - firstname: ["James", "Jim", "James A."]
+    url: https://en.wikipedia.org/wiki/James_Hendler
+
+"Xu":
+  - firstname: ["Xuhai", "Orson"]
+    url: https://orsonxu.com/
+
+"Jindal":
+  - firstname: ["Ishan"]
+    url: https://ijindal.github.io/
+
+"Popa":
+  - firstname: ["Lucian"]
+    url: https://research.ibm.com/people/lucian-popa
+
+"Katsis":
+  - firstname: ["Yannis"]
+    url: https://research.ibm.com/people/yannis-katsis
+
+"Sen":
+  - firstname: ["Prithviraj"]
+    url: https://scholar.google.com/citations?user=Ah5WCLwAAAAJ
+
+"Yu":
+  - firstname: ["Mo"]
+    url: https://sites.google.com/site/moyunlp/
+
+"Mou":
+  - firstname: ["Xiangyang"]
+    url: https://scholar.google.com/citations?user=goHiK4IAAAAJ
+
+"Chen":
+  - firstname: ["Hao"]
+    url: https://guangchen811.github.io/
+
+"Du":
+  - firstname: ["Lun"]
+    url: https://scholar.google.com/citations?user=3XUANDAAAAAJ
+
+"Li":
+  - firstname: ["Jiachen"]
+    url: https://www.jiachen-li.com/
+  - firstname: ["Toby", "Jia-Jun", "Toby Jia-Jun"]
+    url: https://toby.li/
+
+"Zhang":
+  - firstname: ["Shao"]
+    url: https://shaozhang.info/

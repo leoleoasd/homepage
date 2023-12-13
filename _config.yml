@@ -261,6 +261,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-redirect-from
+  - "jekyll/scholar"
 # mimic GitHub Pages with --safe
 whitelist:
   - jekyll-paginate
@@ -305,3 +306,29 @@ compress_html:
     envs: development
 gems:
   - jekyll-email-protect
+
+enable_publication_thumbnails: true
+scholar:
+  last_name: ["Lu"]
+  first_name: ["Yuxuan"]
+  style: apa
+  locale: en
+
+  source: /_bibliography/
+  bibliography: references.bib
+  bibliography_template: bib
+  # Note: if you have latex math in your bibtex, the latex filter
+  # preprocessing may conflict with MathJAX if the latter is enabled.
+  # See https://github.com/alshedivat/al-folio/issues/357.
+  bibtex_filters: [latex, smallcaps, superscript]
+
+  replace_strings: true
+  join_strings: true
+
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: Details
+
+  query: "@*"
+  group_by: year
+  group_order: descending

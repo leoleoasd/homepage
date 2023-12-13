@@ -1,0 +1,153 @@
+@article{yao2023samples,
+  title    = {More Samples or More Prompt Inputs? Exploring Effective In-Context Sampling for LLM Few-Shot Prompt Engineering},
+  author   = {Bingsheng Yao and Guiming Chen and Ruishi Zou and Yuxuan Lu and Li, Jiachen and Shao Zhang and Sijia Liu and James Hendler and Dakuo Wang},
+  year     = {2023},
+  journal  = {arXiv preprint arXiv:2311.09782},
+  abstract = {While most existing works on LLM prompt-engineering focus only on how to select a better set of data samples inside one single prompt input (In-Context Learning or ICL), why can't we design and leverage multiple prompt inputs together to further improve the LLM performance? In this work, we propose In-Context Sampling (ICS), a low-resource LLM prompt-engineering technique to produce the most confident prediction results by optimizing the construction of multiple ICL prompt inputs. Extensive experiments with two SOTA LLMs (FlanT5-XL and Mistral-7B) on three NLI datasets (e-SNLI, Multi-NLI, and ANLI) illustrate that ICS can consistently enhance LLM's prediction performance and confidence. An ablation study suggests that a diversity-based ICS strategy may further improve LLM's performance, which sheds light on a new yet promising future research direction.},
+  pdf      = {https://arxiv.org/abs/2311.09782},
+  abbr     = {arXiv},
+  arxiv={2311.09782}
+}
+
+@article{lu2023human,
+  title    = {Human Still Wins over LLM: An Empirical Study of Active Learning on Domain-Specific Annotation Tasks},
+  author   = {Yuxuan Lu and Bingsheng Yao and Shao Zhang and Yun Wang and Peng Zhang and Tun Lu and Toby Jia-Jun Li and Dakuo Wang},
+  year     = {2023},
+  journal  = {arXiv preprint arXiv:2311.09825},
+  abstract = {Large Language Models (LLMs) have demonstrated considerable advances, and several claims have been made about their exceeding human performance. However, in real-world tasks, domain knowledge is often required. Low-resource learning methods like Active Learning (AL) have been proposed to tackle the cost of domain expert annotation, raising this question: Can LLMs surpass compact models trained with expert annotations in domain-specific tasks? In this work, we conduct an empirical experiment on four datasets from three different domains comparing SOTA LLMs with small models trained on expert annotations with AL. We found that small models can outperform GPT-3.5 with a few hundreds of labeled data, and they achieve higher or similar performance with GPT-4 despite that they are hundreds time smaller. Based on these findings, we posit that LLM predictions can be used as a warmup method in real-world applications and human experts remain indispensable in tasks involving data annotation driven by domain-specific knowledge.},
+  pdf      = {https://arxiv.org/abs/2311.09825},
+  abbr     = {arXiv},
+  arxiv={2311.09825}
+}
+
+@article{chen2023fairytalecqa,
+  title    = {FairytaleCQA: Integrating a Commonsense Knowledge Graph into Children's Storybook Narratives},
+  author   = {Jiaju Chen and Yuxuan Lu and Shao Zhang and Bingsheng Yao and Yuanzhe Dong and Ying Xu and Yunyao Li and Qianwen Wang and Dakuo Wang and Yuling Sun},
+  year     = {2023},
+  journal  = {arXiv preprint arXiv:2311.09756},
+  abstract = {AI models (including LLM) often rely on narrative question-answering (QA) datasets to provide customized QA functionalities to support downstream children education applications; however, existing datasets only include QA pairs that are grounded within the given storybook content, but children can learn more when teachers refer the storybook content to real-world knowledge (e.g., commonsense knowledge). We introduce the FairytaleCQA dataset, which is annotated by children education experts, to supplement 278 storybook narratives with educationally appropriate commonsense knowledge. The dataset has 5,868 QA pairs that not only originate from the storybook narrative but also contain the commonsense knowledge grounded by an external knowledge graph (i.e., ConceptNet). A follow-up experiment shows that a smaller model (T5-large) fine-tuned with FairytaleCQA reliably outperforms much larger prompt-engineered LLM (e.g., GPT-4) in this new QA-pair generation task (QAG). This result suggests that: 1) our dataset brings novel challenges to existing LLMs, and 2) human experts' data annotation are still critical as they have much nuanced knowledge that LLMs do not know in the children educational domain.},
+  pdf      = {https://arxiv.org/abs/2311.09756},
+  abbr     = {arXiv},
+  arxiv={2311.09756}
+}
+
+@inproceedings{yao-etal-2023-beyond,
+  title     = {Beyond Labels: Empowering Human Annotators with Natural Language Explanations through a Novel Active-Learning Architecture},
+  author    = {Yao, Bingsheng  and
+               Jindal, Ishan  and
+               Popa, Lucian  and
+               Katsis, Yannis  and
+               Ghosh, Sayan  and
+               He, Lihong  and
+               Lu, Yuxuan  and
+               Srivastava, Shashank  and
+               Li, Yunyao  and
+               Hendler, James  and
+               Wang, Dakuo},
+  editor    = {Bouamor, Houda  and
+               Pino, Juan  and
+               Bali, Kalika},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2023},
+  month     = dec,
+  year      = {2023},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2023.findings-emnlp.778},
+  pages     = {11629--11643},
+  abstract  = {Real-world domain experts (e.g., doctors) rarely annotate only a decision label in their day-to-day workflow without providing explanations. Yet, existing low-resource learning techniques, such as Active Learning (AL), that aim to support human annotators mostly focus on the label while neglecting the natural language explanation of a data point. This work proposes a novel AL architecture to support experts{'} real-world need for label and explanation annotations in low-resource scenarios. Our AL architecture leverages an explanation-generation model to produce explanations guided by human explanations, a prediction model that utilizes generated explanations toward prediction faithfully, and a novel data diversity-based AL sampling strategy that benefits from the explanation annotations. Automated and human evaluations demonstrate the effectiveness of incorporating explanations into AL sampling and the improved human annotation efficiency and trustworthiness with our AL architecture. Additional ablation studies illustrate the potential of our AL architecture for transfer learning, generalizability, and integration with large language models (LLMs). While LLMs exhibit exceptional explanation-generation capabilities for relatively simple tasks, their effectiveness in complex real-world tasks warrants further in-depth study.},
+  abbr = {EMNLP 2023<br>Findings},
+  arxiv={2305.12710}
+}
+
+
+@inproceedings{wsdm2024,
+  author    = {
+    Chen, Hao and
+    Du, Lun and
+    Lu, Yuxuan and
+    Fu, Qiang and
+    Chen, Xu and
+    Han, Shi and
+    Kang, Yanbin and
+    Guangming Lu
+  },
+  title     = {Professional Network Matters: Connections Empower Person-Job Fit},
+  year      = {2024},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  abstract  = {Online recruitment platforms typically employ Person-Job Fit models in the core service that automatically match suitable job seekers with appropriate job positions. While existing works leverage historical or contextual information, they often disregard a crucial aspect: job seekers' social relationships in professional networks. This paper emphasizes the importance of incorporating professional networks into the Person-Job Fit model. Our innovative approach consists of two stages: (1) defining a Workplace Heterogeneous Information Network (WHIN) to capture heterogeneous knowledge, including professional connections and pre-training representations of various entities using a heterogeneous graph neural network; (2) designing a Contextual Social Attention Graph Neural Network (CSAGNN) that supplements users' missing information with professional connections' contextual information. We introduce a job-specific attention mechanism in CSAGNN to handle noisy professional networks, leveraging pre-trained entity representations from WHIN. We demonstrate the effectiveness of our approach through experimental evaluations conducted across three real-world recruitment datasets from LinkedIn, showing superior performance compared to baseline models.},
+  booktitle = {Proceedings of the 17th ACM International Conference on Web Search and Data Mining},
+  series    = {WSDM '24},
+  abbr = {WSDM 2024}
+}
+
+@inproceedings{2022-acm-bcb,
+  author    = {Lu, Yuxuan and Yan, Jingya and Qi, Zhixuan and Ge, Zhongzheng and Du, Yongping},
+  title     = {Contextual Embedding and Model Weighting by Fusing Domain Knowledge on Biomedical Question Answering},
+  year      = {2022},
+  isbn      = {9781450393867},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3535508.3545508},
+  doi       = {10.1145/3535508.3545508},
+  abstract  = {Biomedical Question Answering aims to obtain an answer to the given question from the biomedical domain. Due to its high requirement of biomedical domain knowledge, it is difficult for the model to learn domain knowledge from limited training data. We propose a contextual embedding method that combines open-domain QA model AoA Reader and BioBERT model pre-trained on biomedical domain data. We adopt unsupervised pre-training on large biomedical corpus and supervised fine-tuning on biomedical question answering dataset. Additionally, we adopt an MLP-based model weighting layer to automatically exploit the advantages of two models to provide the correct answer. The public dataset biomrc constructed from PubMed corpus is used to evaluate our method. Experimental results show that our model outperforms state-of-the-art system by a large margin.},
+  booktitle = {Proceedings of the 13th ACM International Conference on Bioinformatics, Computational Biology and Health Informatics},
+  articleno = {54},
+  numpages  = {4},
+  keywords  = {model weighting, domain knowledge, biomedical question answering, contextual embedding},
+  location  = {Northbrook, Illinois},
+  series    = {BCB '22},
+  arxiv={2206.12866},
+  abbr={BCB 2022}
+}
+@article{9765710,
+  author  = {Du, Yongping and Yan, Jingya and Lu, Yuxuan and Zhao, Yiliang and Jin, Xingnan},
+  journal = {IEEE/ACM Transactions on Computational Biology and Bioinformatics},
+  title   = {Improving Biomedical Question Answering by Data Augmentation and Model Weighting},
+  year    = {2023},
+  volume  = {20},
+  number  = {2},
+  pages   = {1114-1124},
+  doi     = {10.1109/TCBB.2022.3171388},
+  abbr={TCBB 2023}
+}
+@inproceedings{9669386,
+  author    = {Du, Yongping and Yan, Jingya and Zhao, Yiliang and Lu, Yuxuan and Jin, Xingnan},
+  booktitle = {2021 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)},
+  title     = {Dual Model Weighting Strategy and Data Augmentation in Biomedical Question Answering},
+  year      = {2021},
+  volume    = {},
+  number    = {},
+  pages     = {659-662},
+  doi       = {10.1109/BIBM52615.2021.9669386},
+  abbr={BIBM 2021}
+}
+@article{yao2023samples,
+      title={More Samples or More Prompt Inputs? Exploring Effective In-Context Sampling for LLM Few-Shot Prompt Engineering}, 
+      author={Bingsheng Yao and Guiming Chen and Ruishi Zou and Yuxuan Lu and Jiachen Li and Shao Zhang and Sijia Liu and James Hendler and Dakuo Wang},
+      year={2023},
+      journal={arXiv preprint arXiv:2311.09782},
+      abstract = {While most existing works on LLM prompt-engineering focus only on how to select a better set of data samples inside one single prompt input (In-Context Learning or ICL), why can't we design and leverage multiple prompt inputs together to further improve the LLM performance? In this work, we propose In-Context Sampling (ICS), a low-resource LLM prompt-engineering technique to produce the most confident prediction results by optimizing the construction of multiple ICL prompt inputs. Extensive experiments with two SOTA LLMs (FlanT5-XL and Mistral-7B) on three NLI datasets (e-SNLI, Multi-NLI, and ANLI) illustrate that ICS can consistently enhance LLM's prediction performance and confidence. An ablation study suggests that a diversity-based ICS strategy may further improve LLM's performance, which sheds light on a new yet promising future research direction.},
+      pdf = {https://arxiv.org/abs/2311.09782},
+      abbr = {arXiv}
+}
+
+@article{lu2023human,
+      title={Human Still Wins over LLM: An Empirical Study of Active Learning on Domain-Specific Annotation Tasks}, 
+      author={Yuxuan Lu and Bingsheng Yao and Shao Zhang and Yun Wang and Peng Zhang and Tun Lu and Toby Jia-Jun Li and Dakuo Wang},
+      year={2023},
+      journal={arXiv preprint arXiv:2311.09825},
+      abstract = {Large Language Models (LLMs) have demonstrated considerable advances, and several claims have been made about their exceeding human performance. However, in real-world tasks, domain knowledge is often required. Low-resource learning methods like Active Learning (AL) have been proposed to tackle the cost of domain expert annotation, raising this question: Can LLMs surpass compact models trained with expert annotations in domain-specific tasks? In this work, we conduct an empirical experiment on four datasets from three different domains comparing SOTA LLMs with small models trained on expert annotations with AL. We found that small models can outperform GPT-3.5 with a few hundreds of labeled data, and they achieve higher or similar performance with GPT-4 despite that they are hundreds time smaller. Based on these findings, we posit that LLM predictions can be used as a warmup method in real-world applications and human experts remain indispensable in tasks involving data annotation driven by domain-specific knowledge.},
+      pdf = {https://arxiv.org/abs/2311.09825},
+      abbr = {arXiv}
+}
+
+@article{chen2023fairytalecqa,
+      title={FairytaleCQA: Integrating a Commonsense Knowledge Graph into Children's Storybook Narratives}, 
+      author={Jiaju Chen and Yuxuan Lu and Shao Zhang and Bingsheng Yao and Yuanzhe Dong and Ying Xu and Yunyao Li and Qianwen Wang and Dakuo Wang and Yuling Sun},
+      year={2023},
+      journal={arXiv preprint arXiv:2311.09756},
+      abstract = {AI models (including LLM) often rely on narrative question-answering (QA) datasets to provide customized QA functionalities to support downstream children education applications; however, existing datasets only include QA pairs that are grounded within the given storybook content, but children can learn more when teachers refer the storybook content to real-world knowledge (e.g., commonsense knowledge). We introduce the FairytaleCQA dataset, which is annotated by children education experts, to supplement 278 storybook narratives with educationally appropriate commonsense knowledge. The dataset has 5,868 QA pairs that not only originate from the storybook narrative but also contain the commonsense knowledge grounded by an external knowledge graph (i.e., ConceptNet). A follow-up experiment shows that a smaller model (T5-large) fine-tuned with FairytaleCQA reliably outperforms much larger prompt-engineered LLM (e.g., GPT-4) in this new QA-pair generation task (QAG). This result suggests that: 1) our dataset brings novel challenges to existing LLMs, and 2) human experts' data annotation are still critical as they have much nuanced knowledge that LLMs do not know in the children educational domain.},
+      pdf = {https://arxiv.org/abs/2311.09756},
+      abbr = {arXiv}
+}
