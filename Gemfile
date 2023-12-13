@@ -25,7 +25,7 @@ group :jekyll_plugins do
   gem 'jekyll-email-protect'
   gem 'hawkins'
   gem 'jekyll-scholar'
-  gem "github-pages"
+  # gem "github-pages"
 end
 
 gem "webrick", "~> 1.7"

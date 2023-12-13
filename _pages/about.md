@@ -28,9 +28,7 @@ I got my B.E. in Computer Science and Technology and <b> Graduated with honor </
 Publications
 ======
 <div class="publications" style="max-height: 80vh; overflow-y: auto">
-
 {% bibliography %}
-
 </div>
 
 Research Experience
