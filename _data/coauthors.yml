@@ -40,6 +40,8 @@
 "Chen":
   - firstname: ["Hao"]
     url: https://guangchen811.github.io/
+  - firstname: ["Guiming", "Hardy"]
+    url: https://g-h-chen.github.io/
 
 "Du":
   - firstname: ["Lun"]
@@ -54,3 +56,7 @@
 "Zhang":
   - firstname: ["Shao"]
     url: https://shaozhang.info/
+
+"Zou":
+  - firstname: ["Ruishi"]
+    url: https://motion115.github.io
