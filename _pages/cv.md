@@ -13,9 +13,12 @@ redirect_from:
 
 Education
 ======
-* B.S. in Computer Science, Beijing University of Technology, 2023(expected)
+* Ph.D. in Computer Science, Northeastern University, 2023 -- ?
+  * Honored to be advised by [Prof. Dakuo Wang](https://dakuowang.com)
+* B.S. in Computer Science, Beijing University of Technology, 2019 -- 2023
   * Principle of Compiling 96, Formal Language 96,  Principle of Operating System 95,  Operations Research 97,  Probability Theory 97, Design and Analysis of Algorithms 99
   * GPA 3.84, Major GPA 3.96
+  * **Graduated with Honor**
 
 Awards
 =====
@@ -27,7 +30,8 @@ Awards
 
 Publications
 ======
-  <ul>{% for post in site.publications %}
+  {% assign pubs = site.publications | sort: 'date' | reverse %}
+  <ul>{% for post in pubs %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
 
