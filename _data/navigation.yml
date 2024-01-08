@@ -21,6 +21,7 @@ main:
 
   - title: "Calendar"
     url: /calendar
-
+  - title: "Photos"
+    url: /photos
   # - title: "Guide"
   #   url: /markdown/
