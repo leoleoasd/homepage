@@ -29,13 +29,14 @@ jobs:
           echo "changed=true" >> $GITHUB_OUTPUT
           rm old.ics new.ics files/calendar.ics
           mv files/calendar_new.ics files/calendar.ics
+          echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Commit & Push changes
         uses: actions-js/push@master
         if: steps.download.outputs.changed == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
-          message: "Update calendar ${{ github.event.repository.updated_at}}"
+          message: "Update calendar ${{ env.NOW }}"
   publish:
     uses: ./.github/workflows/jekyll.yml
     needs: build
