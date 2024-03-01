@@ -6,6 +6,8 @@ main:
     url: /open_source
   - title: "Publications"
     url: /publications
+  - title: "Daily Logs"
+    url: /daily_logs
 
   # - title: "Talks"
   #   url: /talks/

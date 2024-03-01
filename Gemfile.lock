@@ -81,6 +81,10 @@ GEM
     octokit (4.25.1)
       faraday (>= 1, < 3)
       sawyer (~> 0.9)
+    octopress-hooks (2.6.2)
+      jekyll (>= 2.0)
+    octopress-paginate (1.2.0)
+      octopress-hooks
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (5.0.4)
@@ -116,6 +120,7 @@ DEPENDENCIES
   jekyll-scholar
   jekyll-sitemap
   kramdown-parser-gfm
+  octopress-paginate
   webrick (~> 1.7)
 
 BUNDLED WITH

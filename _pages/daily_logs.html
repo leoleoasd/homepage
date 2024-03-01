@@ -1,0 +1,53 @@
+---
+layout: archive
+title: "My Daily Logs"
+permalink: /daily_logs/
+author_profile: true
+paginate:
+    collection: daily_log
+    per_page: 3
+    limit: false
+    reversed: true
+---
+
+{% for post in paginator.daily_log %}
+{% include daily-log.html %}
+{% endfor %}
+<!-- 
+{% if paginator.total_pages > 1 %}
+  <div class="pagination--pager">
+    {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="btn btn--primary"> < </a>
+    {% else %}
+        <span class="btn btn--primary"> < </span>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+            <span class="pagebtn btn btn--primary
+            {% if page == paginator.total_pages %}
+                pagination--current
+            {% endif %}">{{ page }}</span>
+        {% elsif page == 1 %}
+            <a href="{{ '/daily_logs' | prepend: site.baseurl | replace: '//', '/' }}" class="pagebtn btn btn--primary
+            {% if page == paginator.total_pages %}
+                pagination--current
+            {% endif %}">{{ page }}</a>
+        {% else %}
+            <a href="{{ '/daily_logs/page' | prepend: site.baseurl | replace: '//', '/' | append: page | append: '/' }}" class="pagebtn btn btn--primary
+            {% if page == paginator.total_pages %}
+                pagination--current
+            {% endif %}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page_path %}
+        <a href="{{ paginator.next_page_path }}" class="btn btn--primary"> > </a>
+    {% else %}
+        <span class="btn btn--primary"> > </span>
+    {% endif %}
+  </div>
+{% endif %} -->
+{% assign page_root_path = '/daily_logs' %}
+
+{% include paginator.html %}

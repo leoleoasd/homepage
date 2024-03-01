@@ -28,6 +28,7 @@ group :jekyll_plugins do
   gem 'jekyll-paginate'
   gem 'jekyll-gist'
   gem 'jekyll-redirect-from'
+  gem 'octopress-paginate'
   # gem "github-pages"
 end
 

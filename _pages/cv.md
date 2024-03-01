@@ -30,10 +30,17 @@ Awards
 
 Publications
 ======
-  {% assign pubs = site.publications | sort: 'date' | reverse %}
-  <ul>{% for post in pubs %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+{% if author.googlescholar %}
+  You can also find my articles on <u><a href="{{author.googlescholar}}">my Google Scholar profile</a>.</u>
+{% endif %}
+
+{% include base_path %}
+
+<div class="publications">
+
+{% bibliography %}
+
+</div>
 
 Work experience
 ======
@@ -80,20 +87,3 @@ Skills
 =====
 * Programming: Multilingual. Fluent in python, rust, go, c++, php, JavaScript, etc.
 * English: Fluent (TOEFL 105, best scores 30/29/24/25)
-
-<!---  
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams --->

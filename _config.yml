@@ -174,18 +174,21 @@ kramdown:
 
 # Collections
 collections:
-  teaching:
+  daily_log:
     output: true
     permalink: /:collection/:path/
-  publications:
-    output: true
-    permalink: /:collection/:path/
-  portfolio:
-    output: false
-    permalink: /:collection/:path/
-  talks:
-    output: true
-    permalink: /:collection/:path/
+  # teaching:
+  #   output: true
+  #   permalink: /:collection/:path/
+  # publications:
+  #   output: true
+  #   permalink: /:collection/:path/
+  # portfolio:
+  #   output: false
+  #   permalink: /:collection/:path/
+  # talks:
+  #   output: true
+  #   permalink: /:collection/:path/
 
 # Defaults
 defaults:
@@ -225,23 +228,31 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  # _portfolio
+  # # _portfolio
+  # - scope:
+  #     path: ""
+  #     type: portfolio
+  #   values:
+  #     layout: single
+  #     author_profile: true
+  #     share: true
+  #     comment: true
+  # # _talks
+  # - scope:
+  #     path: ""
+  #     type: talks
+  #   values:
+  #     layout: talk
+  #     author_profile: true
+  #     share: true
   - scope:
       path: ""
-      type: portfolio
+      type: daily_log
     values:
-      layout: single
+      layout: daily-log
       author_profile: true
       share: true
-      comment: true
-  # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
+      comments: true
 
 # Sass/SCSS
 sass:
@@ -262,6 +273,7 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - "jekyll/scholar"
+  - octopress-paginate
 # mimic GitHub Pages with --safe
 whitelist:
   - jekyll-paginate
@@ -326,7 +338,7 @@ scholar:
   join_strings: true
 
   details_dir: bibliography
-  details_layout: bibtex.html
+  details_layout: bibtex.html # TODO
   details_link: Details
 
   query: "@*"
