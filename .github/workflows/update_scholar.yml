@@ -6,8 +6,6 @@ name: Update google scholar
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.update.outputs.changed }}
     steps:
       - uses: actions/checkout@master
         with:
@@ -30,22 +28,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install scholarly pytz
-
+          pip install scholarly pytz pandas plotly
       - name: Update google scholar
         id: update
         run: |
           python scripts/scholar.py
           # if there is not change (use git), exit 0
-          if [[ -z "$(git status -s)" ]] ; then
-            echo "No changes found"
-            exit 0
-          fi
-          echo "changed=true" >> $GITHUB_OUTPUT
           echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Commit & Push changes
         uses: actions-js/push@master
-        if: steps.update.outputs.changed == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
@@ -53,5 +44,4 @@ jobs:
   publish:
     uses: ./.github/workflows/jekyll.yml
     needs: build
-    if: ${{ needs.build.outputs.changed == 'true'}}
     secrets: inherit

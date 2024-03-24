@@ -87,3 +87,7 @@ Skills
 =====
 * Programming: Multilingual. Fluent in python, rust, go, c++, php, JavaScript, etc.
 * English: Fluent (TOEFL 105, best scores 30/29/24/25)
+
+Citations
+=====
+{% include /scholar.html %}
