@@ -13,12 +13,14 @@ redirect_from:
 
 Education
 ======
-* Ph.D. in Computer Science, Northeastern University, 2023 -- ?
+* Ph.D. in Computer Science, Northeastern University, 2023 -- Present
   * Honored to be advised by [Prof. Dakuo Wang](https://dakuowang.com)
 * B.S. in Computer Science, Beijing University of Technology, 2019 -- 2023
   * Principle of Compiling 96, Formal Language 96,  Principle of Operating System 95,  Operations Research 97,  Probability Theory 97, Design and Analysis of Algorithms 99
   * GPA 3.84, Major GPA 3.96
   * **Graduated with Honor**
+* High School, Beijing National Day School
+  * Always be proud of this experience.
 
 Awards
 =====
@@ -44,7 +46,7 @@ Publications
 
 Work experience
 ======
-* Jul. 2022 -- Present: Machine Learning Researcher
+* Jul. 2022 -- May: Machine Learning Researcher @ LinkedIN & Microsoft Research Asia
   * Contextual Summary for User Profile Regarding Job Description
     * Contextual summarization research on LinkedIn data. Generate a summary for each candidate profile regarding each job description to help HR to know the candidates faster.
     * As the main contributor to this project, I'm responsible for collecting data, designing and evaluating the method, and designing experiments.
@@ -52,7 +54,7 @@ Work experience
     * Person-Job Fit research using heterogeneous GNN pre-training. 
     * We are the first work to **leverage social knowledge among members** to help enhance the performance of Person-Job Fit.
     * Participated in method designing and I'm responsible for collecting data and running baseline experiments.
-    * Submitted to WWW 2023.
+    * This work is accepted to WSDM 2024.
 * Dec. 2021 -- Jun. 2022: Intern Research Assistant
   * Tsinghua University, Natural Language Processing Lab
   * Big Model for Knowledge Graph (BMKG)
@@ -61,7 +63,7 @@ Work experience
     * I'm responsible for designing the framework and writing code that need high performance.
   * Design / Develop / Maintain multiple demos for NLP models
     * I designed and maintain multiple demos for NLP models to show their performance to non-specialists.
-* Dec. 2020 -- Present: Research Assistant
+* Dec. 2020 -- Jun. 2021: Research Assistant
   * Machine Reading Comprehension research in Biomedical Domain.
   * Supported by a **National-level undergraduate research program**.
   * Designed a **contextual embedding** and **model weighting** strategy to **learn domain knowledge ** in Biomedical Question Answering task. **Outforms SOTA models by a large margin**
