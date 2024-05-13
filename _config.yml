@@ -88,7 +88,7 @@ author:
   email: "replace_anything_before_at_to_i@yuxuan.lu"
   fake_email: "honeypot@yuxuan.lu"
   researchgate: # example: "https://www.researchgate.net/profile/yourprofile"
-  uri: "https://leoleoasd.me"
+  uri: # "https://leoleoasd.me"
   bitbucket:
   codepen:
   dribbble:
