@@ -30,7 +30,7 @@ Awards
 * *Global Rank 42 (top 2%)*, IEEE Xtreme 14.0 (2020)
 * *Global Rank 85 (top 3.5%)*, IEEE Xtreme 14.0 (2021)
 
-Publications
+Preprints
 ======
 {% if author.googlescholar %}
   You can also find my articles on <u><a href="{{author.googlescholar}}">my Google Scholar profile</a>.</u>
@@ -40,13 +40,22 @@ Publications
 
 <div class="publications">
 
+{% bibliography --file preprint %}
+
+</div>
+
+Publications
+======
+
+<div class="publications">
+
 {% bibliography %}
 
 </div>
 
 Work experience
 ======
-* Jul. 2022 -- May: Machine Learning Researcher @ LinkedIN & Microsoft Research Asia
+* Jul. 2022 -- May 2023: Machine Learning Researcher @ LinkedIN & Microsoft Research Asia
   * Contextual Summary for User Profile Regarding Job Description
     * Contextual summarization research on LinkedIn data. Generate a summary for each candidate profile regarding each job description to help HR to know the candidates faster.
     * As the main contributor to this project, I'm responsible for collecting data, designing and evaluating the method, and designing experiments.
@@ -55,15 +64,14 @@ Work experience
     * We are the first work to **leverage social knowledge among members** to help enhance the performance of Person-Job Fit.
     * Participated in method designing and I'm responsible for collecting data and running baseline experiments.
     * This work is accepted to WSDM 2024.
-* Dec. 2021 -- Jun. 2022: Intern Research Assistant
-  * Tsinghua University, Natural Language Processing Lab
+* Dec. 2021 -- Jun. 2022: Intern Research Assistant @ Tsinghua University, Natural Language Processing Lab
   * Big Model for Knowledge Graph (BMKG)
     * Develop a toolkit to help **train large Knowledge Embedding models** on **large KGs** and **run various downstream tasks**. 
     * Supports **4 levels of parallel** during the training process of **translation-based or context-based** Knowledge Embedding models.
     * I'm responsible for designing the framework and writing code that need high performance.
   * Design / Develop / Maintain multiple demos for NLP models
     * I designed and maintain multiple demos for NLP models to show their performance to non-specialists.
-* Dec. 2020 -- Jun. 2021: Research Assistant
+* Dec. 2020 -- Jun. 2021: Research Assistant @ Beijing University of Technology
   * Machine Reading Comprehension research in Biomedical Domain.
   * Supported by a **National-level undergraduate research program**.
   * Designed a **contextual embedding** and **model weighting** strategy to **learn domain knowledge ** in Biomedical Question Answering task. **Outforms SOTA models by a large margin**
@@ -81,8 +89,10 @@ Projext Experiences
 * Apr. 2020 -- Jun. 2022 Course Grading and Feedback System based on Fault-Cause analysis
   * An **autograding system** that can help daily teaching and **give accurate scores and feedback** based our **automatic fault-cause clustering method**. 
   * Supported by a **National-level undergraduate research program**.
-  * Capable of handling **500+ QPS** while other similar systems can only do 20+. There are 60k+ lines of code and 72\% of them are covered by unit tests.
-  * We even **found a bug in the go compiler** (see [golang/go\#44614](https://github.com/golang/go/issues/44614)). Check [project introduction](/opensource#eduoj) to see more.
+  * Capable of handling **500+ QPS** while other similar systems can only do 20+.
+  * 72% of the 60k+ line is covered by unit tests.
+  * **Found a bug in the go compiler** (see [golang/go\#44614](https://github.com/golang/go/issues/44614)).
+  * Check [project introduction](/opensource#eduoj) to learn more.
   * I'm the leader of this project, and I'm responsible for designing the system architecture, code reviewing, and full stack developing. 
 
 Skills

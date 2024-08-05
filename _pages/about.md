@@ -25,12 +25,28 @@ I'm currently persuing my Ph.D. in Computer Science at Khoury College of Compute
 
 I got my B.E. in Computer Science and Technology and <b> Graduated with honor </b> at Beijing University of Technology. Before that, I've finished my junior and senior high at Beijing National Day School （北京市十一学校）.
 
-Publications
+Preprints
 ======
+{% if author.googlescholar %}
+  You can also find my articles on <u><a href="{{author.googlescholar}}">my Google Scholar profile</a>.</u>
+{% endif %}
+
+{% include base_path %}
+
 <div class="publications" style="max-height: 80vh; overflow-y: auto">
-{% bibliography %}
+
+{% bibliography --file preprint %}
+
 </div>
 
+Publications
+======
+
+<div class="publications" style="max-height: 80vh; overflow-y: auto">
+
+{% bibliography %}
+
+</div>
 Research Experience
 =====
 My current research fields includes data annotation and optimizing LLMs.
