@@ -8,7 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a Ph.D. student at Northeastern University. Before that, I got my B.E. in Computer Science and Technology and <b> Graduated with honor </b> at Beijing University of Technology. I'm advised by [Prof. Dakuo Wang](https://www.dakuowang.com/). My research interest includes <b> Human Computer Interaction </b> and <b> Natural Language Processing </b>, especially in training, running and utilizing Large Language Models (LLMs) effiently and effectively. In the past, I've worked as Machine Learning Researcher at a joint program between **LinkedIn** and **Microsoft Research Asia**. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Prof. Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
+Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a Ph.D. student at Northeastern University. 
+I'm currently working as an intern applied scientist at Amazon.
+Before that, I got my B.E. in Computer Science and Technology and <b> Graduated with honor </b> at Beijing University of Technology. I'm advised by [Prof. Dakuo Wang](https://www.dakuowang.com/). My research interest includes <b> Human Computer Interaction </b> and <b> Natural Language Processing </b>, especially in training, running and utilizing Large Language Models (LLMs) effiently and effectively. In the past, I've worked as Machine Learning Researcher at a joint program between **LinkedIn** and **Microsoft Research Asia**. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Prof. Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
 
 
 <div style="display: flex; justify-content: center; width: 100%; column-gap: 24px;">
@@ -47,9 +49,12 @@ Publications
 {% bibliography %}
 
 </div>
+
 Research Experience
 =====
-My current research fields includes data annotation and optimizing LLMs.
+My current research fields includes human-ai collaboration and interaction, especially in the area of Large Language Models (LLMs).
+
+I'm currently working as an intern applied scientist at Amazon.
 
 Before that, I've worked as Machine Learning Researcher at a joint program between LinkedIn and Microsoft Research Asia where I do study about LinkedIn's social network data. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by Prof. [Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/). My research area there includes Knowledge Embedding.
 

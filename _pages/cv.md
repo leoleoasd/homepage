@@ -14,7 +14,7 @@ redirect_from:
 Education
 ======
 * Ph.D. in Computer Science, Northeastern University, 2023 -- Present
-  * Honored to be advised by [Prof. Dakuo Wang](https://dakuowang.com)
+  * Advised by [Prof. Dakuo Wang](https://dakuowang.com)
 * B.S. in Computer Science, Beijing University of Technology, 2019 -- 2023
   * Principle of Compiling 96, Formal Language 96,  Principle of Operating System 95,  Operations Research 97,  Probability Theory 97, Design and Analysis of Algorithms 99
   * GPA 3.84, Major GPA 3.96
@@ -55,6 +55,8 @@ Publications
 
 Work experience
 ======
+* Sep. 2024 -- Present: Applied Scientist Intern @ Amazon
+  * Search team
 * Jul. 2022 -- May 2023: Machine Learning Researcher @ LinkedIN & Microsoft Research Asia
   * Contextual Summary for User Profile Regarding Job Description
     * Contextual summarization research on LinkedIn data. Generate a summary for each candidate profile regarding each job description to help HR to know the candidates faster.
