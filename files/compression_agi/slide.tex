@@ -198,6 +198,15 @@
       \2 Can be ``decompress'' back to the original data
       \2 Find ``common part'' of the data
         \3 11111111 -> 8x1
+      \2 So naturally, not everything are compressable
+        \pause
+        \3 consider compressor as a mapping between the data and the compressed data
+        \pause
+        \3 the mapping is a one-one mapping
+        \pause
+        \3 for common cases, the mapped data is shorter
+        \pause
+        \3 then there must be some cases that the mapped data is longer, i.e. the data is not compressable
   \end{outline}
 \end{frame}
 
@@ -346,6 +355,7 @@
   \begin{outline}
     \1 ``Lossy'' compression means the model ``remembers'' everything in the training dataset
       \2 BAD generalization
+      \2 that's why we don't often see the term ``epoch'' in LLM training
     \1 ``Lossless'' compression means the model can better predict unseen data samples
       \2 Better compression means GOOD generalization
         \3 Because \emph{EVERY} example is unseen

@@ -1,0 +1,116 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>123</title>
+<style>
+    body {
+        margin: 0;
+    }
+    .main {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .vcenter {
+        display: flex;
+        align-items: center;
+    }
+    .row {
+        display: flex;
+        width: 100%;
+        background-color: red;
+        * {
+            background-color: lightblue;
+        }
+        .space {
+            flex-grow: 1;
+            background-color: green;
+        }
+    }
+
+</style>
+</head>
+<body>
+    <div class="main">
+        <div class="row" style="height: 64px;">
+            <div class="vcenter">
+                left
+            </div>
+            <div class="space">
+
+            </div>
+            <div class="vcenter">
+                right
+            </div>
+        </div>
+        <div class="row" style="flex: 1; min-height: 0">
+            <div class="card" style="border: 2px solid black; min-height: 100%; height: 100%; box-sizing: border-box; flex: 200px 0 0; display: flex; flex-direction: column;">
+                <div style="background-color: lightgreen; flex: 60px 0 0;">
+                    card-title
+                </div>
+                <div class="card-content" style="flex: 1; min-width: 0; overflow: overlay">
+                    <div style="min-height: 100%;">
+                        <div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                            <div style="width: 100%; height: 60px">
+                                take some space
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 200px 2 0; background-color: lightcoral; display: flex; flex-direction: column;">
+                <div style="flex: 200px 0 0;">
+                    top
+                </div>
+                <div style="flex: 1; min-width: 0; overflow: overlay; background-color: white">
+                    bottom
+                </div>
+            </div>
+            <div style="flex: 200px 4 0; background-color: lightgreen; display: flex; flex-direction: column;">
+                <div style="flex: 1;">
+                    top
+                </div>
+                <div style="flex: 1; background-color: lightcoral;">
+                    bottom
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
