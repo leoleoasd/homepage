@@ -104,4 +104,9 @@ Skills
 
 Citations
 =====
-{% include /scholar.html %}
+
+{%- capture rawContent -%}
+  {%- include scholar.html -%}
+{%- endcapture -%}
+
+{{ rawContent }}

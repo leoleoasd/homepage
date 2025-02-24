@@ -10,4 +10,9 @@ author_profile: true
 {% endif %}
 
 {% include base_path %}
-{% include /scholar.html %}
+
+{%- capture rawContent -%}
+  {%- include scholar.html -%}
+{%- endcapture -%}
+
+{{ rawContent }}

@@ -20,3 +20,10 @@ df = df.sort_values("date")
 fig = go.Figure(data=go.Scatter(x=df["date"], y=df["citedby"], mode="lines+markers"))
 fig.update_layout(xaxis_title="Date", yaxis_title="Cited by", xaxis_type="category")
 fig.write_html("_includes/scholar.html")
+
+# replace '{{' with '{ {'
+with open("_includes/scholar.html", "r") as f:
+    content = f.read()
+content = content.replace("{{", "{ {")
+with open("_includes/scholar.html", "w") as f:
+    f.write(content)
