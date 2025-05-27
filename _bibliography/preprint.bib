@@ -9,30 +9,6 @@
   arxiv={2311.09825}
 }
 
-@inproceedings{geoscience2024,
-  title     = {From Dark Data to Open Data: Challenges and Practices for Data Integrators of Data-Driven Open Science Projects in Geoscience},
-  author    = {Shao Zhang and
-               Shihan Fu and
-               Bin Lu and
-               Yuxuan Lu and
-               Toby Jia-Jun Li and
-               Dakuo Wang and
-               Ying Wen and
-               Xinbing Wang and
-               Chenghu Zhou},
-  year      = {2024},
-  booktitle = {Submission to CSCW 2025},
-  abbr      = {In Submission}
-}
-
-@inproceedings{anonymous2024exploring,
-  title     = {Exploring Domain Adaptation with {LLM}s for Real-World Augmented Question Answer Generation ({RA}-{QAG}) in Children Storytelling},
-  author    = {Jiaju Chen and Yuxuan Lu and Shao Zhang and Bingsheng Yao and Yuanzhe Dong and Ying Xu and Yunyao Li and Qianwen Wang and Dakuo Wang and Yuling Sun},
-  booktitle = {Submission to EMNLP 2024},
-  year      = {2024},
-  abbr      = {In Submission}
-}
-
 @inproceedings{anonymous2024alerts,
   title     = {{ALERTS}: Active Learning and Ensemble {LLM} Real-Time Switch for Real-World Data Drift Challenges},
   author    = {Yuxuan Lu and Bingsheng Yao and Shao Zhang and Yisi Sang and Yun Wang and Hansu Gu and Peng Zhang and Tun Lu and Toby Jia-Jun Li and Dakuo Wang },
@@ -56,7 +32,8 @@
   abstract      = {Usability testing is a fundamental research method that user experience (UX) researchers use to evaluate and iterate a web design, but{\textbackslash}textbf\{ how to evaluate and iterate the usability testing study design \} itself? Recent advances in Large Language Model-simulated Agent ({\textbackslash}textbf\{LLM Agent\}) research inspired us to design {\textbackslash}textbf\{UXAgent\} to support UX researchers in evaluating and reiterating their usability testing study design before they conduct the real human-subject study. Our system features a Persona Generator module, an LLM Agent module, and a Universal Browser Connector module to automatically generate thousands of simulated users to interactively test the target website. The system also provides an Agent Interview Interface and a Video Replay Interface so that the UX researchers can easily review and analyze the generated qualitative and quantitative log data. Through a heuristic evaluation, five UX researcher participants praised the innovation of our system but also expressed concerns about the future of LLM Agent usage in UX studies.},
   archiveprefix = {arXiv},
   keywords      = {Computer Science - Computation and Language,Computer Science - Human-Computer Interaction},
-  abbr      = {In Submission}
+  abbr      = {In Submission},
+  note = {In Submission to UIST 2025},
 }
 
 @misc{wangAgentAAutomatedScalable2025,
@@ -74,8 +51,25 @@
   abstract      = {A/B testing experiment is a widely adopted method for evaluating UI/UX design decisions in modern web applications. Yet, traditional A/B testing remains constrained by its dependence on the large-scale and live traffic of human participants, and the long time of waiting for the testing result. Through formative interviews with six experienced industry practitioners, we identified critical bottlenecks in current A/B testing workflows. In response, we present AgentA/B, a novel system that leverages Large Language Model-based autonomous agents (LLM Agents) to automatically simulate user interaction behaviors with real webpages. AgentA/B enables scalable deployment of LLM agents with diverse personas, each capable of navigating the dynamic webpage and interactively executing multi-step interactions like search, clicking, filtering, and purchasing. In a demonstrative controlled experiment, we employ AgentA/B to simulate a between-subject A/B testing with 1,000 LLM agents Amazon.com, and compare agent behaviors with real human shopping behaviors at a scale. Our findings suggest AgentA/B can emulate human-like behavior patterns.},
   archiveprefix = {arXiv},
   keywords      = {Computer Science - Computation and Language,Computer Science - Human-Computer Interaction},
-  abbr      = {In Submission}
+  abbr      = {In Submission},
+  note = {In Submission to UIST 2025},
 }
+
+@misc{lu2025prompting,
+  title         = {Prompting is Not All You Need! Evaluating LLM Agent Simulation Methodologies with Real-World Online Customer Behavior Data},
+  author        = {Yuxuan Lu and Jing Huang and Yan Han and Bingsheng Yao and Sisong Bei and Jiri Gesi and Yaochen Xie and Zheshen Wang and Qi He and Dakuo Wang},
+  booktitle     = {Submission to EMNLP 2025},
+  year          = {2025},
+  note          = {In Submission to EMNLP 2025},
+  eprint        = {2503.20749},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2503.20749},
+  arxiv         = {2503.20749},
+  pdf           = {https://arxiv.org/pdf/2503.20749},
+  abbr          = {arXiv}
+}
+
 
 @misc{yangRECOVERDesigningLarge2025,
   title         = {{{RECOVER}}: {{Designing}} a {{Large Language Model-based Remote Patient Monitoring System}} for {{Postoperative Gastrointestinal Cancer Care}}},
@@ -95,20 +89,20 @@
   abbr      = {arXiv}
 }
 
-@misc{luLLMAgentsThat2025,
-  title         = {{{LLM Agents That Act Like Us}}: {{Accurate Human Behavior Simulation}} with {{Real-World Data}}},
-  shorttitle    = {{{LLM Agents That Act Like Us}}},
-  author        = {Lu, Yuxuan and Huang, Jing and Han, Yan and Bei, Bennet and Xie, Yaochen and Wang, Dakuo and Wang, Jessie and He, Qi},
-  year          = {2025},
-  month         = apr,
-  number        = {arXiv:2503.20749},
-  eprint        = {2503.20749},
-  primaryclass  = {cs},
-  publisher     = {arXiv},
-  doi           = {10.48550/arXiv.2503.20749},
-  urldate       = {2025-04-30},
-  abstract      = {Recent research shows that LLMs can simulate ``believable'' human behaviors to power LLM agents via prompt-only methods. In this work, we focus on evaluating and improving LLM's objective ``accuracy'' rather than the subjective ``believability'' in the web action generation task, leveraging a large-scale, real-world dataset collected from online shopping human actions. We present the first comprehensive quantitative evaluation of state-of-the-art LLMs (e.g., DeepSeek-R1, Llama, and Claude) on the task of web action generation. Our results show that fine-tuning LLMs on real-world behavioral data substantially improves their ability to generate actions compared to prompt-only methods. Furthermore, incorporating synthesized reasoning traces into model training leads to additional performance gains, demonstrating the value of explicit rationale in behavior modeling. This work establishes a new benchmark for evaluating LLMs in behavior simulation and offers actionable insights into how real-world action data and reasoning augmentation can enhance the fidelity of LLM agents.},
-  archiveprefix = {arXiv},
-  keywords      = {Computer Science - Computation and Language},
+@misc{chen2025mos,
+  title     = {MoS-EVAL: A Mixture-of-Stakeholders Evaluation Framework for Multi-Dimensional Real-World Text Generation Assessment},
+  author    = {Jiaju Chen and Yuxuan Lu and Xiaojie Wang and Huimin Zeng and Jing Huang and Jiri Gesi and Ying Xu and Bingsheng Yao and Dakuo Wang},
+  booktitle = {Submission to EMNLP 2025},
+  year      = {2025},
+  note      = {In Submission to EMNLP 2025},
+  abbr      = {In Submission}
+}
+
+@misc{wang2025opera,
+  title     = {OPeRA: A Dataset of Observation, Persona, Rationale, and Action for Evaluating LLMs on Human Online Shopping Behavior Simulation},
+  author    = {Ziyi Wang and Yuxuan Lu and Wenbo Li and Amirali Amini and Bo Sun and Yakov Bart and Weimin Lyu and Jiri Gesi and Tian Wang and Jing Huang and Yu Su and Upol Ehsan and Malihe Alikhani and Toby Jia-Jun Li and Lydia Chilton},
+  booktitle = {Submission to EMNLP 2025},
+  year      = {2025},
+  note      = {In Submission to EMNLP 2025},
   abbr      = {In Submission}
 }
