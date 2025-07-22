@@ -41,6 +41,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
           message: "Update google scholar ${{ env.NOW }}"
+          author_email: 'github-actions[bot]@users.noreply.github.com'
+          author_name: 'github-actions[bot]'
   publish:
     uses: ./.github/workflows/jekyll.yml
     needs: build
