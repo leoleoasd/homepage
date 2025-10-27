@@ -1,0 +1,3 @@
+\beamer@sectionintoc {1}{Task \& Method}{8}{0}{1}
+\beamer@sectionintoc {2}{Evaluation and Experiments}{17}{0}{2}
+\beamer@sectionintoc {3}{Conclusion}{26}{0}{3}

@@ -1,0 +1,428 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{luUXAgentSystemSimulating2025}{misc}{}
+      \name{author}{10}{}{%
+        {{hash=0f8c12873a99a13ba32ad2f59f9a878e}{%
+           family={Lu},
+           familyi={L\bibinitperiod},
+           given={Yuxuan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=830db62852ae1ebc2ed1827835230fbe}{%
+           family={Yao},
+           familyi={Y\bibinitperiod},
+           given={Bingsheng},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c94b745ca8c3898f8a8f0f328bac7cf0}{%
+           family={Gu},
+           familyi={G\bibinitperiod},
+           given={Hansu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=dc6a25244d65d1c3b76b8da8ba84b54c}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod}}}%
+        {{hash=f05a660d79caa0f3c8a5b53e467740d4}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jessie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2af761d9bef859ea29248418adce0dd7}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=fe79c3b66700ec8d48866a638bab3fb4}{%
+           family={Gesi},
+           familyi={G\bibinitperiod},
+           given={Jiri},
+           giveni={J\bibinitperiod}}}%
+        {{hash=954a8b117e47bd74e7e7fc588d404cc1}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Qi},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=b2eeb63fbb92db5778a721c936a47a80}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Toby\bibnamedelima Jia-Jun},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=f776cf56094fee73e13d0e0343ed0f89}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dakuo},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{62eada9f57701109b02470f868b7aea9}
+      \strng{fullhash}{0a6a772658c6d2736d306824b69a4c08}
+      \strng{bibnamehash}{62eada9f57701109b02470f868b7aea9}
+      \strng{authorbibnamehash}{62eada9f57701109b02470f868b7aea9}
+      \strng{authornamehash}{62eada9f57701109b02470f868b7aea9}
+      \strng{authorfullhash}{0a6a772658c6d2736d306824b69a4c08}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Usability testing is a fundamental research method that user experience (UX) researchers use to evaluate and iterate a web design, but{\textbackslash}textbf\{ how to evaluate and iterate the usability testing study design \} itself? Recent advances in Large Language Model-simulated Agent ({\textbackslash}textbf\{LLM Agent\}) research inspired us to design {\textbackslash}textbf\{UXAgent\} to support UX researchers in evaluating and reiterating their usability testing study design before they conduct the real human-subject study. Our system features a Persona Generator module, an LLM Agent module, and a Universal Browser Connector module to automatically generate thousands of simulated users to interactively test the target website. The system also provides an Agent Interview Interface and a Video Replay Interface so that the UX researchers can easily review and analyze the generated qualitative and quantitative log data. Through a heuristic evaluation, five UX researcher participants praised the innovation of our system but also expressed concerns about the future of LLM Agent usage in UX studies.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{4}
+      \field{number}{arXiv:2504.09407}
+      \field{shorttitle}{{{UXAgent}}}
+      \field{title}{{{UXAgent}}: {{A System}} for {{Simulating Usability Testing}} of {{Web Design}} with {{LLM Agents}}}
+      \field{urlday}{30}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2504.09407
+      \endverb
+      \verb{eprint}
+      \verb 2504.09407
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Human-Computer Interaction}
+    \endentry
+    \entry{parkGenerativeAgentSimulations2024}{misc}{}
+      \name{author}{9}{}{%
+        {{hash=a6d2d4802375c9b3367011ada5e50822}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Joon\bibnamedelima Sung},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=41187f002375a303a79b71e16082ff70}{%
+           family={Zou},
+           familyi={Z\bibinitperiod},
+           given={Carolyn\bibnamedelima Q.},
+           giveni={C\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+        {{hash=88b182371413e7f1539db5ca8803306a}{%
+           family={Shaw},
+           familyi={S\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9be375139cf12475b1eaadb1bd3e7d69}{%
+           family={Hill},
+           familyi={H\bibinitperiod},
+           given={Benjamin\bibnamedelima Mako},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=0e749d32457b8d376e8afca27707fc7a}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Carrie},
+           giveni={C\bibinitperiod}}}%
+        {{hash=5283a53c5c081c04252a659743f886e1}{%
+           family={Morris},
+           familyi={M\bibinitperiod},
+           given={Meredith\bibnamedelima Ringel},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=5afa8630e0334da35e76ea0a86a392c1}{%
+           family={Willer},
+           familyi={W\bibinitperiod},
+           given={Robb},
+           giveni={R\bibinitperiod}}}%
+        {{hash=86c032bbc45c3b616f0a1170befc0e82}{%
+           family={Liang},
+           familyi={L\bibinitperiod},
+           given={Percy},
+           giveni={P\bibinitperiod}}}%
+        {{hash=bb1df70dce464605ddd9cf83485d8db1}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{fullhash}{7d52ac53c1f254872df542f023e48a45}
+      \strng{bibnamehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{authorbibnamehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{authornamehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{authorfullhash}{7d52ac53c1f254872df542f023e48a45}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The promise of human behavioral simulation--general-purpose computational agents that replicate human behavior across domains--could enable broad applications in policymaking and social science. We present a novel agent architecture that simulates the attitudes and behaviors of 1,052 real individuals--applying large language models to qualitative interviews about their lives, then measuring how well these agents replicate the attitudes and behaviors of the individuals that they represent. The generative agents replicate participants' responses on the General Social Survey 85\% as accurately as participants replicate their own answers two weeks later, and perform comparably in predicting personality traits and outcomes in experimental replications. Our architecture reduces accuracy biases across racial and ideological groups compared to agents given demographic descriptions. This work provides a foundation for new tools that can help investigate individual and collective behavior.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{11}
+      \field{number}{arXiv:2411.10109}
+      \field{title}{Generative {{Agent Simulations}} of 1,000 {{People}}}
+      \field{urlday}{15}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2411.10109
+      \endverb
+      \verb{eprint}
+      \verb 2411.10109
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Human-Computer Interaction,Computer Science - Machine Learning}
+    \endentry
+    \entry{parkGenerativeAgentsInteractive2023}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=a6d2d4802375c9b3367011ada5e50822}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Joon\bibnamedelima Sung},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=d806f6454d4649a0513d9a76cd16dbbc}{%
+           family={O'Brien},
+           familyi={O\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e5fc4f38bbb1fff1db6925cc118a4a5f}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Carrie\bibnamedelima Jun},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=5283a53c5c081c04252a659743f886e1}{%
+           family={Morris},
+           familyi={M\bibinitperiod},
+           given={Meredith\bibnamedelima Ringel},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=86c032bbc45c3b616f0a1170befc0e82}{%
+           family={Liang},
+           familyi={L\bibinitperiod},
+           given={Percy},
+           giveni={P\bibinitperiod}}}%
+        {{hash=bb1df70dce464605ddd9cf83485d8db1}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Michael\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{fullhash}{ede5511d1779af0026c470114efaba03}
+      \strng{bibnamehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{authorbibnamehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{authornamehash}{00721d9feeeac4f2c5b88627d28b83cf}
+      \strng{authorfullhash}{ede5511d1779af0026c470114efaba03}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Believable proxies of human behavior can empower interactive applications ranging from immersive environments to rehearsal spaces for interpersonal communication to prototyping tools. In this paper, we introduce generative agents: computational software agents that simulate believable human behavior. Generative agents wake up, cook breakfast, and head to work; artists paint, while authors write; they form opinions, notice each other, and initiate conversations; they remember and reflect on days past as they plan the next day. To enable generative agents, we describe an architecture that extends a large language model to store a complete record of the agent's experiences using natural language, synthesize those memories over time into higher-level reflections, and retrieve them dynamically to plan behavior. We instantiate generative agents to populate an interactive sandbox environment inspired by The Sims, where end users can interact with a small town of twenty-five agents using natural language. In an evaluation, these generative agents produce believable individual and emergent social behaviors. For example, starting with only a single user-specified notion that one agent wants to throw a Valentine's Day party, the agents autonomously spread invitations to the party over the next two days, make new acquaintances, ask each other out on dates to the party, and coordinate to show up for the party together at the right time. We demonstrate through ablation that the components of our agent architecture---observation, planning, and reflection---each contribute critically to the believability of agent behavior. By fusing large language models with computational interactive agents, this work introduces architectural and interaction patterns for enabling believable simulations of human behavior.}
+      \field{booktitle}{Proceedings of the 36th {{Annual ACM Symposium}} on {{User Interface Software}} and {{Technology}}}
+      \field{isbn}{979-8-4007-0132-0}
+      \field{month}{10}
+      \field{series}{{{UIST}} '23}
+      \field{shorttitle}{Generative {{Agents}}}
+      \field{title}{Generative {{Agents}}: {{Interactive Simulacra}} of {{Human Behavior}}}
+      \field{urlday}{4}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 22}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1145/3586183.3606763
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Human-Computer Interaction,Computer Science - Machine Learning}
+    \endentry
+    \entry{wangAgentAAutomatedScalable2025}{misc}{}
+      \name{author}{12}{}{%
+        {{hash=f776cf56094fee73e13d0e0343ed0f89}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dakuo},
+           giveni={D\bibinitperiod}}}%
+        {{hash=21cbc0a4ad1c3ba81c2880c8fdc1a8ae}{%
+           family={Hsu},
+           familyi={H\bibinitperiod},
+           given={Ting-Yao},
+           giveni={T\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=0f8c12873a99a13ba32ad2f59f9a878e}{%
+           family={Lu},
+           familyi={L\bibinitperiod},
+           given={Yuxuan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=c94b745ca8c3898f8a8f0f328bac7cf0}{%
+           family={Gu},
+           familyi={G\bibinitperiod},
+           given={Hansu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=eaab947de9a6b680992b76f07cccddcf}{%
+           family={Cui},
+           familyi={C\bibinitperiod},
+           given={Limeng},
+           giveni={L\bibinitperiod}}}%
+        {{hash=c7d65d0af71f9465a6d41d222886fa04}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Yaochen},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=1785b56943497cfbda2457ac8fccad6a}{%
+           family={Headean},
+           familyi={H\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=830db62852ae1ebc2ed1827835230fbe}{%
+           family={Yao},
+           familyi={Y\bibinitperiod},
+           given={Bingsheng},
+           giveni={B\bibinitperiod}}}%
+        {{hash=f35a082244ecbcbe005acccdcca6d4a5}{%
+           family={Veeragouni},
+           familyi={V\bibinitperiod},
+           given={Akash},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ee1d678fb56d78e62c6486b632f3e442}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Jiapeng},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2b319c2f689304db69e7bafa3bf5551e}{%
+           family={Nag},
+           familyi={N\bibinitperiod},
+           given={Sreyashi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f05a660d79caa0f3c8a5b53e467740d4}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jessie},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{82c6d7d47efc4f0b00d38e4b9b8eb2f4}
+      \strng{fullhash}{40c563cdca15fdd43af91aadbc0bef30}
+      \strng{bibnamehash}{82c6d7d47efc4f0b00d38e4b9b8eb2f4}
+      \strng{authorbibnamehash}{82c6d7d47efc4f0b00d38e4b9b8eb2f4}
+      \strng{authornamehash}{82c6d7d47efc4f0b00d38e4b9b8eb2f4}
+      \strng{authorfullhash}{40c563cdca15fdd43af91aadbc0bef30}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{A/B testing experiment is a widely adopted method for evaluating UI/UX design decisions in modern web applications. Yet, traditional A/B testing remains constrained by its dependence on the large-scale and live traffic of human participants, and the long time of waiting for the testing result. Through formative interviews with six experienced industry practitioners, we identified critical bottlenecks in current A/B testing workflows. In response, we present AgentA/B, a novel system that leverages Large Language Model-based autonomous agents (LLM Agents) to automatically simulate user interaction behaviors with real webpages. AgentA/B enables scalable deployment of LLM agents with diverse personas, each capable of navigating the dynamic webpage and interactively executing multi-step interactions like search, clicking, filtering, and purchasing. In a demonstrative controlled experiment, we employ AgentA/B to simulate a between-subject A/B testing with 1,000 LLM agents Amazon.com, and compare agent behaviors with real human shopping behaviors at a scale. Our findings suggest AgentA/B can emulate human-like behavior patterns.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{4}
+      \field{number}{arXiv:2504.09723}
+      \field{shorttitle}{{{AgentA}}/{{B}}}
+      \field{title}{{{AgentA}}/{{B}}: {{Automated}} and {{Scalable Web A}}/{{BTesting}} with {{Interactive LLM Agents}}}
+      \field{urlday}{30}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2504.09723
+      \endverb
+      \verb{eprint}
+      \verb 2504.09723
+      \endverb
+      \keyw{Computer Science - Computation and Language,Computer Science - Human-Computer Interaction}
+    \endentry
+    \entry{yaoReActSynergizingReasoning2023}{misc}{}
+      \name{author}{7}{}{%
+        {{hash=5c1b62cbd4e181d818b927549813cf73}{%
+           family={Yao},
+           familyi={Y\bibinitperiod},
+           given={Shunyu},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4fc64f0dbaf7cb8f21c7c85d580cdb15}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Jeffrey},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2cb7d2d6e42d109fa2c5086d6c8f6a63}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Dian},
+           giveni={D\bibinitperiod}}}%
+        {{hash=a926c34a0eebdaaa30da36b46bd2192c}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Nan},
+           giveni={N\bibinitperiod}}}%
+        {{hash=20b3779bbd037bbfdd1ffd3967624997}{%
+           family={Shafran},
+           familyi={S\bibinitperiod},
+           given={Izhak},
+           giveni={I\bibinitperiod}}}%
+        {{hash=997c3143c2e5d593e816d2ff704fbf98}{%
+           family={Narasimhan},
+           familyi={N\bibinitperiod},
+           given={Karthik},
+           giveni={K\bibinitperiod}}}%
+        {{hash=2923de2da7f9b32b957552e414b6bc16}{%
+           family={Cao},
+           familyi={C\bibinitperiod},
+           given={Yuan},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{4ae4be538df04cfc1571685175562cad}
+      \strng{fullhash}{6f22c9f891fbcfb7465b1c3157b57023}
+      \strng{bibnamehash}{4ae4be538df04cfc1571685175562cad}
+      \strng{authorbibnamehash}{4ae4be538df04cfc1571685175562cad}
+      \strng{authornamehash}{4ae4be538df04cfc1571685175562cad}
+      \strng{authorfullhash}{6f22c9f891fbcfb7465b1c3157b57023}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{While large language models (LLMs) have demonstrated impressive capabilities across tasks in language understanding and interactive decision making, their abilities for reasoning (e.g. chain-of-thought prompting) and acting (e.g. action plan generation) have primarily been studied as separate topics. In this paper, we explore the use of LLMs to generate both reasoning traces and task-specific actions in an interleaved manner, allowing for greater synergy between the two: reasoning traces help the model induce, track, and update action plans as well as handle exceptions, while actions allow it to interface with external sources, such as knowledge bases or environments, to gather additional information. We apply our approach, named ReAct, to a diverse set of language and decision making tasks and demonstrate its effectiveness over state-of-the-art baselines, as well as improved human interpretability and trustworthiness over methods without reasoning or acting components. Concretely, on question answering (HotpotQA) and fact verification (Fever), ReAct overcomes issues of hallucination and error propagation prevalent in chain-of-thought reasoning by interacting with a simple Wikipedia API, and generates human-like task-solving trajectories that are more interpretable than baselines without reasoning traces. On two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34\% and 10\% respectively, while being prompted with only one or two in-context examples. Project site with code: https://react-lm.github.io}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{3}
+      \field{number}{arXiv:2210.03629}
+      \field{shorttitle}{{{ReAct}}}
+      \field{title}{{{ReAct}}: {{Synergizing Reasoning}} and {{Acting}} in {{Language Models}}}
+      \field{urlday}{30}
+      \field{urlmonth}{8}
+      \field{urlyear}{2024}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2210.03629
+      \endverb
+      \verb{eprint}
+      \verb 2210.03629
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
