@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.11)  18 JUN 2025 18:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.11)  1 DEC 2025 10:35
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1618,10 +1618,10 @@ LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 16
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 160.
@@ -1643,10 +1643,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 1
 
  <./northeastern-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 173.
@@ -1667,10 +1667,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 1
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 173.
@@ -1691,10 +1691,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 1
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 173.
@@ -1728,10 +1728,10 @@ File: figures/teaser.pdf Graphic file (type pdf)
 Package pdftex.def Info: figures/teaser.pdf  used on input line 195.
 (pdftex.def)             Requested size: 307.28987pt x 107.39134pt.
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 195.
@@ -1752,10 +1752,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 1
 
  <./figures/teaser.pdf>]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 204.
@@ -1779,10 +1779,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
  (./_minted-talk/default.pygstyle) (./_minted-talk/3F37C8AF5E2D69602FFE69B97CD9F0F20C9813A0C0B8B2D614CDA8FFBF150642.pygtex)
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 215.
@@ -1806,10 +1806,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
  (./_minted-talk/3F37C8AF5E2D69602FFE69B97CD9F0F20C9813A0C0B8B2D614CDA8FFBF150642.pygtex)
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 215.
@@ -1839,10 +1839,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
  (./_minted-talk/87AAAF3C265E344D17860A0D4BA240D00C9813A0C0B8B2D614CDA8FFBF150642.pygtex)
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 224.
@@ -1863,10 +1863,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 235.
@@ -1887,10 +1887,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 246.
@@ -1911,10 +1911,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 260.
@@ -1946,10 +1946,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
  (./_minted-talk/87AAAF3C265E344D17860A0D4BA240D00C9813A0C0B8B2D614CDA8FFBF150642.pygtex)
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 276.
@@ -1979,10 +1979,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
  (./_minted-talk/87AAAF3C265E344D17860A0D4BA240D00C9813A0C0B8B2D614CDA8FFBF150642.pygtex)
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 276.
@@ -2003,10 +2003,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 290.
@@ -2035,10 +2035,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 2
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 318.
@@ -2064,10 +2064,10 @@ File: figures/action_distribution_below_labels.pdf Graphic file (type pdf)
 Package pdftex.def Info: figures/action_distribution_below_labels.pdf  used on input line 325.
 (pdftex.def)             Requested size: 307.28987pt x 136.99437pt.
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 325.
@@ -2096,10 +2096,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 3
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 353.
@@ -2120,10 +2120,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 3
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 365.
@@ -2149,10 +2149,10 @@ File: figures/error_analysis.pdf Graphic file (type pdf)
 Package pdftex.def Info: figures/error_analysis.pdf  used on input line 372.
 (pdftex.def)             Requested size: 307.28987pt x 114.42413pt.
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 372.
@@ -2175,10 +2175,10 @@ Package pdftex.def Info: northeastern-eps-converted-to.pdf  used on input line 3
 
 ]
 Package epstopdf Info: Source file: <northeastern.eps>
-(epstopdf)                    date: 2025-06-17 23:34:02
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 574714 bytes
 (epstopdf)             Output file: <northeastern-eps-converted-to.pdf>
-(epstopdf)                    date: 2025-06-17 23:44:39
+(epstopdf)                    date: 2025-10-27 15:17:34
 (epstopdf)                    size: 18939 bytes
 (epstopdf)             Command: <epstopdf --outfile=northeastern-eps-converted-to.pdf northeastern.eps>
 (epstopdf)             \includegraphics on input line 382.
@@ -2224,13 +2224,13 @@ Package logreq Info: Writing requests to 'talk.run.xml'.
 Here is how much of TeX's memory you used:
  59234 strings out of 476025
  1371307 string characters out of 5790017
- 2202558 words of memory out of 5000000
+ 2202260 words of memory out of 5000000
  78688 multiletter control sequences out of 15000+600000
  561190 words of font info for 161 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,122p,1998b,2252s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsi0600.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfso1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss0500.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx0700.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on talk.pdf (28 pages, 635983 bytes).
+Output written on talk.pdf (28 pages, 633702 bytes).
 PDF statistics:
  876 PDF objects out of 1000 (max. 8388607)
  448 compressed objects within 5 object streams
