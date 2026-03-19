@@ -1,0 +1,422 @@
+%!LW recipe=pdfLaTeXmk
+
+\documentclass[scheme=plain]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{outlines}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{tabularray}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{academicons}
+\usepackage{pgfplots}
+\usepackage{pgfgantt}
+\usepackage{qrcode}
+\usepackage{ninecolors}
+\usepackage{soul}
+\usepackage{tgheros}
+\usepackage[style=numeric, backend=biber, url=false, doi=false, isbn=false]{biblatex}
+\newmintinline[code]{html}{fontsize=\small}
+\addbibresource{custom.bib}
+\usepackage{graphicx}
+\usetheme[
+    progressbar=frametitle,
+    numbering=fraction,
+    subsectionpage=progressbar,
+    titleformat title=smallcaps,
+    titleformat subtitle=smallcaps,
+    titleformat section=smallcaps,
+    titleformat frame=smallcaps]{moloch}
+
+    
+\setbeamercolor{palette primary}{bg=gray1}
+\setbeamercolor{frametitle}{bg=black,fg=white}
+\setbeamercolor{progress bar}{fg=black}
+\setbeamerfont{footnote}{size=\tiny}
+\renewcommand{\cite}{\footfullcite}
+
+
+\definecolor{ForestGreen}{RGB}{34,139,34}
+\newcommand{\highlightRelevantValue}[1]{%
+  \ifdim #1pt > 0pt
+    {\color{ForestGreen}{#1\%}}%
+  \else
+    {\color{red}{#1\%}}%
+  \fi
+}
+
+\usetikzlibrary{calc}
+\setcounter{tocdepth}{1}
+
+\makeatletter
+\newlength{\frametitle@padding}
+\setlength{\frametitle@padding}{2.2ex}
+\newcommand{\frametitlestrut@start}{
+  \rule{0pt}{\frametitle@padding +%
+    \totalheightof{%
+      \ifcsdef{frametitleformat}{\frametitleformat X}{X}%
+    }%
+  }%
+}
+
+\newcommand{\frametitlestrut@end}{
+  \rule[-\frametitle@padding]{0pt}{\frametitle@padding}
+}
+
+\setbeamertemplate{frametitle}{
+    \nointerlineskip%
+    \begin{beamercolorbox}[%
+        wd=\paperwidth,%
+        sep=0pt,%
+        leftskip=\frametitle@padding,%
+        rightskip=\frametitle@padding,%
+      ]{frametitle}%
+    \frametitlestrut@start%
+    \insertframetitle%
+    \hfill%
+    \nolinebreak%
+    \frametitlestrut@end%
+    \end{beamercolorbox}%
+    \begin{tikzpicture}[remember picture,overlay]
+        \coordinate (logo) at ([xshift=-1.8cm,yshift=-0.5cm]current page.north east);
+        \node at (logo) {\includegraphics[height=.1\textheight]{northeastern.eps}};
+    \end{tikzpicture}
+}
+\makeatother
+
+
+\setbeamertemplate{footline}{
+    \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.5ex,leftskip=2ex,rightskip=2ex]{page footer}%
+        \usebeamerfont{title in head/foot}%
+        \hfill
+        \begin{tblr}{
+            width=.8\linewidth,
+            colspec={X[l]X[c]X[r]}
+        }
+            \insertsectionhead{}
+            &
+            \ifx\insertsubsection\empty
+            \else
+            \insertsubsection{} 
+            \fi
+            &
+            \insertframenumber{} / \inserttotalframenumber
+        \end{tblr}
+        \hfill{}
+    \end{beamercolorbox}}%
+}
+
+\defbeamertemplate{section page}{my progressbar}{
+  \centering
+  \begin{minipage}{22em}
+    \raggedright
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsection\\[-1ex]
+    \usebeamertemplate*{progress bar in section page}
+    \par
+    \ifx\insertsubsectionhead\@empty\else%
+      \usebeamercolor[fg]{subsection title}%
+      \usebeamerfont{subsection title}%
+      \insertsubsectionhead
+    \fi
+  \end{minipage}
+  \par
+  \vspace{\baselineskip}
+}
+\setbeamertemplate{section page}[my progressbar]
+
+
+\DeclareRobustCommand{\projectname}{\textsc{WebServ}\xspace}
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+% \title{\projectname: Full-stack Unified Scalable Environment for Web Agent Reinforcement Learning}
+% \title{
+% \projectname: A Browser-Server Environment for Efficient Training of Reinforcement Learning-based Web Agents at Scale
+% }
+
+\title{
+\projectname: A Full-Stack and RL-Ready Web Environment for Training Web Agents at Scale 
+}
+
+
+\UseTblrLibrary{booktabs}
+\graphicspath{ {./figures/} }
+
+\author{
+% Yuxuan Lu, Ziyi Wang, Jing Huang, Hui Liu, Jiri Gesi, Yan Han, Shihan Fu, Tianqi Zheng, Xianfeng Tang, Chen Luo, Yisi Sang, Jin Lai, Dakuo Wang
+\textbf{Yuxuan Lu\textsuperscript{1,2}},
+\textbf{Ziyi Wang\textsuperscript{1,2}},
+\textbf{Jing Huang\textsuperscript{1}},
+\textbf{Hui Liu\textsuperscript{1}},
+\textbf{Jiri Gesi\textsuperscript{1}},
+\textbf{Yan Han\textsuperscript{1}},
+\textbf{Shihan Fu\textsuperscript{1,2}},
+\textbf{Tianqi Zheng\textsuperscript{1}},
+\textbf{Xianfeng Tang\textsuperscript{1}},
+\textbf{Chen Luo\textsuperscript{1}},
+\textbf{Yisi Sang\textsuperscript{1}},
+\textbf{Jin Lai\textsuperscript{1}},
+\textbf{Dakuo Wang\textsuperscript{1,2}}}
+
+
+\institute{\textsuperscript{1}Amazon.com, Inc.,
+\textsuperscript{2}Northeastern University}
+\date{Jan 14 2026}
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Motivation}
+  \begin{outline}
+    \1 Large Language Model (LLM) Web Agents have been developed and widely used
+    \1 WebGPT\cite{nakanoWebGPTBrowserassistedQuestionanswering2022}, Claude Computer Use, ChatGPT Atlas, Step \cite{sodhiStePStackedLLM2024}, LASER \cite{maLASERLLMAgent2024}, WebAgent \cite{gurRealWorldWebAgentPlanning2023}, \dots
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Motivation}
+  \begin{outline}
+    \1 These agents have become a primising approach for web automation tasks \cite{zhouWebArenaRealisticWeb2024} and simulating user behaviors \cite{luPromptingNotAll2025}. 
+    \1 However, existing Web Agents are mainly built with \textbf{prompting-based} and \textbf{behavior cloning-based} methods.
+    \1 RLHF and RLVR have been proven to work in other fields and tasks \cite{ouyangTrainingLanguageModels2022,deepseek-aiDeepSeekR1IncentivizingReasoning2025}
+    \1 RL Web Agents is limited by the absense of a full-stack, efficient and effective environment.
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Web Browsers are NOT RL-Ready}
+  \begin{outline}
+    \1 Web Browsers are NOT RL-Ready:
+      \2 Requires per-site configuration or rely on site features
+      \2 Noisy context and action
+      \2 Lack of visual hint
+      \2 Non-robust action execution
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Web Servers are NOT RL-Ready}
+  \begin{outline}
+    \1 Web Servers are usally packed in docker images
+    \1 Not possible to run hundsreds \textit{isolated} web server containers to support parallel RL rollouts
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Existing Work}
+  \begin{outline}
+    \1 Researchers have argued that existing web environments are not RL-ready \cite{chenScalingAgentLearning2025}
+    \1 Existing works are:
+      \2 \dots off-policy \cite{qiWebRLTrainingLLM2025}
+      \2 \dots not isolated \cite{weiWebAgentR1TrainingWeb2025}
+      \2 \dots uses synthetic environments \cite{chenScalingAgentLearning2025}
+    \1 The community needs a scalable and efficient training environment 
+  \end{outline}
+\end{frame}
+
+\section{\projectname Architecture Design}
+
+\begin{frame}{\projectname}
+  \begin{figure}
+    \includegraphics[width=.6\linewidth]{figures/teaser.png}
+    \caption{System Architecture of \projectname compared to existing environments}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{\projectname: Web Browser Interface Design}
+  \begin{outline}
+    \1 To tackle challenges in web browser interface, we design:
+      \2 Fully automatic parser 
+      \2 Uses a simplified HTML as context
+        \3 LLM already recognizes HTML structure
+      \2 Network-Idle based waiting 
+      \2 VLM Support
+      \2 
+  \end{outline}
+\end{frame}
+
+\begin{frame}{\projectname: Web Browser Interface Design}
+  \begin{outline}
+    \1 LLM Agent often click on non-interactive elements, but human can easily tell text and link apart
+  \end{outline}
+  \pause
+  \begin{figure}
+    \centering
+    \includegraphics[width=.4\linewidth]{image1.png}
+    \caption{Visual Hint Example}
+  \end{figure}
+  \pause
+  \begin{outline}
+    \1 We made these visual hints available for agent as well
+  \end{outline}
+\end{frame}
+
+\begin{frame}{\projectname: Web Server Design}
+  \begin{outline}
+    \1 Efficient Incus-based server container management
+      \2 Run a server in seconds instead of minutes
+    \1 Reduce resource need by 240x
+    \1 Make it possible to run 200 parallel instances
+  \end{outline}
+\end{frame}
+
+\section{Evaluation and Experiments}
+
+\begin{frame}{Evaluation}
+  \begin{outline}
+    \1 Web browser I/O interface: Task successful rate on WebArena \cite{zhouWebArenaRealisticWeb2024}
+    \1 Server manager effiency: Launch speed and resource need
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Evaluation Result}
+  \begin{table}[t]
+    \centering
+    \begin{booktabs}{
+      colspec = {X c c c},
+      width=\linewidth,
+      row{1} = {font=\bfseries},
+      cell{2,7}{1} = {c=4}{bg=black!30!white,font=\bfseries},
+    }
+    \toprule
+    Model and Method & Shopping & CMS & GitLab \\
+    \midrule
+    Vanilla WebArena \\
+    % Qwen2.5-3B \cite{weiWebAgentR1TrainingWeb2025}  & 4.4 & 5.7 & 13.3 \\
+    % Llama3.1-8B \cite{weiWebAgentR1TrainingWeb2025}  & 8.9 & 5.7 & 10.0 \\
+    % Qwen2.5-32B \cite{weiWebAgentR1TrainingWeb2025}  & 17.8 & 20 & 20.0 \\
+    GPT-4o  & 11.1 & 20 & 10.0 \\
+    % GPT-4o-Turbo \cite{weiWebAgentR1TrainingWeb2025}  & 13.3 & 14.3 & 16.7 \\
+    OpenAI-o3 & 33.3 & 45.7 & 46.7 \\
+    % Step \cite{sodhiStePStackedLLM2024} & Multi-Prompt & 37.0 & 24.0 & 30.0\\
+    % Llama3.1-8B + Behavior Cloning \cite{weiWebAgentR1TrainingWeb2025} & Fine-Tuning & 17.8 & 20 & 6.7 \\
+    Llama-3.1-8B & 8.9 & 5.7 & 10.0 \\
+    WebAgent-R1 & \textbf{44.4} & \textbf{57.1} & \textbf{56.7} \\
+    % \midrule
+    \projectname \\
+    % Qwen-2.5-32B   & 17.8 & 20.0 & 20.0 \\
+    GPT-4o    & 20.0 & 28.6 & 43.3 \\
+    % GPT-4o Mini    & 20.0 & 25.7 & 30.0 \\
+    GPT-5   & 35.6 & 57.1 & \textbf{53.3} \\
+    Claude 3.5 Sonnet    & 26.7 & 31.4 & 36.7 \\
+    Claude 3.7 Sonnet    & 31.1 & 37.1 & 50.0 \\
+    Claude 4 Sonnet    & \textbf{42.2} & 48.6 & 50.0 \\
+    Claude 4.5 Sonnet    & 40.0 & \textbf{62.9} & 50.0 \\
+    % DeepSeek R1 & Reasoning Model & 13.3 & 37.1 & 23.3 \\
+    \bottomrule
+    \end{booktabs}
+    % \vspace{2em}
+    \caption{Comparison of model accuracy (in \%) across Shopping, CMS and GitLab tasks in WebArena-Lite.}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Evaluation Result}
+  \begin{outline}
+    \1 With \projectname, model can achieve better performancde than with vanilla WebArena
+    \1 Achieves tate-of-the-art single-prompt agent performance
+    \1 Prompting-based baseline models can achieve and even beat RL based methods
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Ablation Study: Visual Cue}
+  \begin{outline}
+    \1 How important are visual cues?
+    \1 Ablation study: remove visual cues and "clickable" element hint in the observation space.
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Ablation: Visual Cue}
+  \begin{table}[t]
+    \centering
+    \footnotesize
+    \begin{booktabs}{
+      colspec={Xccc},
+      column{1}={l,font=\footnotesize},
+      row{1}={font=\bfseries\footnotesize,c},
+      width=\linewidth
+    }
+    \toprule
+    Model & $\Delta$ Shopping (\%) & $\Delta$ CMS (\%) & $\Delta$ GitLab (\%) \\
+    \midrule
+    GPT-4o & \highlightRelevantValue{-33.3} & \highlightRelevantValue{-70.0} & \highlightRelevantValue{-46.2} \\
+    GPT-5 & \highlightRelevantValue{-18.8} & \highlightRelevantValue{-35.0} & \highlightRelevantValue{-25.0} \\
+    Claude 3.5 Sonnet & \highlightRelevantValue{-58.3} & \highlightRelevantValue{-45.5} & \highlightRelevantValue{-81.8} \\
+    Claude 3.7 Sonnet & \highlightRelevantValue{-50.0} & \highlightRelevantValue{-53.8} & \highlightRelevantValue{-66.7} \\
+    Claude 4 Sonnet & \highlightRelevantValue{-26.3} & \highlightRelevantValue{-29.4} & \highlightRelevantValue{-33.3} \\
+    Claude 4.5 Sonnet & \highlightRelevantValue{-5.6} & \highlightRelevantValue{-45.5} & \highlightRelevantValue{6.7} \\
+    \bottomrule
+    \end{booktabs}
+    \caption{Performance difference (\%) after removing visual cues.}
+  \end{table}
+  \begin{outline}
+    \1 Except for one setting, all models exhibit performance drops
+    \1 Weaker models suffer larger performance drops
+    \1 Proves that Visual Cues is important especially for weaker models.
+  \end{outline}
+\end{frame}
+
+\begin{frame}{Ablation: Vision Language Model}
+  \begin{outline}
+    \1 How important is other vision signals?
+  \end{outline}
+
+
+\begin{table}[t]
+  \centering
+  \begin{booktabs}{
+  colspec={lccc},
+  cell{3,5}{1}={r}
+  }
+  \toprule
+  Model & Shopping & CMS & GitLab \\
+  \midrule
+  Claude 4 Sonnet & 42.2 & \textbf{48.6} & \textbf{50.0} \\
+   + VLM & \textbf{44.4} & \textbf{48.6} & 43.3 \\
+  Claude 4.5 Sonnet & \textbf{40.0} & 62.9 & 50.0 \\
+   + VLM & 37.8 & \textbf{65.7} & \textbf{56.7} \\
+  \bottomrule
+  \end{booktabs}
+  \caption{Ablation results comparing text-only and VLM settings for Claude~4 Sonnet and Claude~4.5 Sonnet across WebArena-Lite tasks.}
+  \end{table}
+  \pause
+  Visual signals are not universally beneficial for general web agent tasks
+\end{frame}
+
+\begin{frame}{Evaluation: Launch Speed and Resource Need}
+  \begin{table}[t]
+    \centering
+    \begin{booktabs}{
+      colspec = {l c c},
+      row{1} = {font=\bfseries}
+    }
+    \toprule
+    Metric & \projectname (Incus) & Naïve Docker \\
+    \midrule
+    Launch speed & 1.781\,s & 8.963\,s \\
+    Storage & 28.01\,MiB & 6.78\,GiB \\
+    Memory & 1.74\,GiB & 1.63\,GiB \\
+    \bottomrule
+    \end{booktabs}
+    \caption{Comparison of system efficiency between \projectname and Docker.}
+    \label{tab:system_speed}
+    \end{table}
+    With Incus, \projectname can reduce launch latench and improved storage footprint with comparable memory usage, making large-scale RL rollouts possible. 
+\end{frame}
+
+\begin{frame}{Conclusion}
+  \begin{outline}
+    \0 WebServ enables:
+      \1 State-of-the-art single-prompt agent performance on WebArena-Lite
+      \1 No per-site configuration, able to operate on real complex website (Amazon, Google Flight, etc.)
+      \1 Efficient RL training with VeRL integration
+  \end{outline}
+\end{frame}
+
+\end{document}

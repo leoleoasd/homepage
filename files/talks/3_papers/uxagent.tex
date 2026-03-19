@@ -1,0 +1,1294 @@
+
+\documentclass[manuscript,review,anonymous]{acmart}
+
+% \linespread{2}
+\usepackage{tabularray}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{xspace}
+\usepackage{minted}
+\usepackage{soul}
+\usepackage{wrapfig}
+\usepackage{ifthen}
+\DeclareEmphSequence{\bfseries}
+\graphicspath{{./figures}}
+\usepackage{enumitem}
+\UseTblrLibrary{booktabs}
+\setlist{nosep}
+\usepackage{afterpage}
+\usepackage{tikz}
+\newcommand{\twiceinclude}[2][]{%
+  \begin{tikzpicture}%
+    \node at (0,0) {\includegraphics[#1]{#2.png}};%
+    \node at (0,0) {\includegraphics[#1]{#2.pdf}};%
+  \end{tikzpicture}%
+}%
+\let\oldquote\quote
+\let\oldendquote\endquote
+
+\renewenvironment{quote}[1][]{
+\def\speakername{#1}%
+\oldquote
+\itshape
+``}{''
+\normalshape
+\hfill\ifthenelse{\equal{\speakername}{}}{}{(\speakername)}
+\oldendquote
+}
+\newcommand{\inline}[2][]{
+\textit{``#2''}\ifthenelse{\equal{#1}{}}{}{(#1)}
+}
+
+\DeclareRobustCommand{\yuxuan}[1]{\textcolor{orange}{#1}}
+\DeclareRobustCommand{\projectname}{\textsc{UXAgent}\xspace}
+\DeclareRobustCommand{\note}[1]{{\sethlcolor{orange!30!white}\hl{#1}}}
+\DeclareRobustCommand{\todo}[1]{{\sethlcolor{red!30!white}\hl{#1}}}
+\DeclareRobustCommand{\new}[1]{{\sethlcolor{green!30!white}\hl{#1}}}
+\DeclareRobustCommand{\shihan}[1]{{\sethlcolor{blue!30!white}\hl{#1}}}
+\newcommand{\shao}[1]{{\bf \color{pink} [Shao: #1]}}
+\newmintinline[code]{text}{}
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\DeclareRobustCommand{\ash}[1]{{\sethlcolor{pink!70!white}\hl{#1}}}
+% \DeclareRobustCommand{\ash}[1]{}
+
+%% complete the rights form.
+\setcopyright{acmlicensed}
+\copyrightyear{2018}
+\acmYear{2018}
+\acmDOI{XXXXXXX.XXXXXXX}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+\acmConference[Conference acronym 'XX]{Make sure to enter the correct
+  conference title from your rights confirmation emai}{June 03--05,
+  2018}{Woodstock, NY}
+%%
+%%  Uncomment \acmBooktitle if the title of the proceedings is different
+%%  from ``Proceedings of ...''!
+%%
+%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%%  June 03--05, 2018, Woodstock, NY}
+\acmISBN{978-1-4503-XXXX-X/18/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+% end of the preamble, start of the body of the document source.
+% \linespread{2}
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+% \title{\projectname: Leveraging LLM Agents for Usability Testing of Web Design}
+
+\title{\projectname: Simulating Usability Testing of Web Design with LLM Agents as Participants}
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+\author{Yuxuan Lu}
+% \email{lu.yuxuan@northeastern.edu}
+\authornote{This work was done when Yuxuan was an intern, and Dakuo was a visiting scholar at Amazon. Contact email: \{\href{mailto:lu.yuxuan@northeastern.edu}{lu.yuxuan}, \href{mailto:d.wang@northeastern.edu}{d.wang}\}@northeastern.edu
+}
+
+\affiliation{%
+  \institution{Northeastern University}
+  % \city{Boston}
+  % \state{Massachusetts}
+  \country{USA}
+}
+% \affiliation{%
+  % \institution{Amazon}
+  % \city{Palo Alto}
+  % \state{California}
+  % \country{USA}
+% }
+
+\author{Bingsheng Yao}
+% \email{b.yao@northeastern.edu}
+\affiliation{%
+  \institution{Northeastern University}
+  % \city{Boston}
+  % \state{Massachusetts}
+  \country{USA}
+}
+% \email{b.yao@northeastern.edu}
+
+\author{Hansu Gu}
+% \email{hansgu@amazon.com}
+\affiliation{%
+  \institution{Amazon}
+  % \city{Seattle}
+  % \state{Washington}
+  \country{USA}
+}
+
+\author{Jing Huang}
+% \email{jhuangz@amazon.com}
+\affiliation{%
+  \institution{Amazon}
+  % \city{Palo Alto}
+  % \state{California}
+  \country{USA}
+}
+
+\author{Zheshen (Jessie) Wang}
+% \email{zhewang@amazon.com}
+\affiliation{%
+  \institution{Amazon}
+  % \city{Seattle}
+  % \state{Washington}
+  \country{USA}
+}
+
+\author{Yang Li}
+% \email{limyng@amazon.com}
+\affiliation{%
+  \institution{Amazon}
+  % \city{Palo Alto}
+  % \state{California}
+  \country{USA}
+}
+
+\author{Jiri Gesi}
+% \email{jirigesi@amazon.com}
+\affiliation{%
+  \institution{Amazon}
+  % \city{Palo Alto}
+  % \state{California}
+  \country{USA}
+}
+
+\author{Qi He}
+% \email{qih@amazon.com}
+\affiliation{%
+  \institution{Amazon}
+  % \city{Palo Alto}
+  % \state{California}
+  \country{USA}
+}
+
+\author{Toby Jia-Jun Li}
+% \email{toby.j.li@nd.edu}
+\affiliation{%
+  \institution{University of Notre Dame}
+  % \city{Notre Dame}
+  % \state{Indiana}
+  \country{USA}
+}
+
+\author{Dakuo Wang}
+% \email{d.wang@northeastern.edu}
+\affiliation{%
+  \institution{Northeastern University}
+  % \city{Boston}
+  % \state{Massachusetts}
+  \country{USA}
+}
+
+% \affiliation{%
+  % \institution{Amazon}
+  % \city{Palo Alto}
+  % \state{California}
+  % \country{USA}
+% }
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Lu et al.}
+\setcopyright{none}
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+% \todo{rewrite}
+% Usability testing is a fundamental research method that user experience (UX) researchers use to evaluate and iterate new designs, but \textbf{how to evaluate and iterate the usability testing study design } itself?
+Usability testing is a fundamental research method that user experience (UX) researchers use to evaluate and iterate their new designs. But what about \textbf{evaluating and iterating the usability testing study design itself}?
+Recent advances in Large Language Model-simulated Agent (\textbf{LLM Agent}) research inspired us to design \textbf{\projectname} to support UX researchers in evaluating and iterating their study design before they conduct the real human-subject study.
+Our system features a Persona Generator module, an LLM Agent module, and a Universal Browser Connector module to automatically generate thousands of simulated users and to interactively test the target website.
+The system also provides a Result Viewer Interface so that the UX researchers can easily review and analyze the generated qualitative (e.g., agents' post-study surveys) and quantitative data (e.g., agents' interaction logs), or even interview agents directly. 
+Through a heuristic evaluation with 16 UX researchers, participants praised the innovation of our system but also expressed concerns about the future of LLM Agent usage in UX studies.
+\end{abstract}
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10003120.10003121.10011748</concept_id>
+       <concept_desc>Human-centered computing~Empirical studies in HCI</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10003120.10003121.10003129</concept_id>
+       <concept_desc>Human-centered computing~Interactive systems and tools</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10003120.10003121.10003122</concept_id>
+       <concept_desc>Human-centered computing~HCI design and evaluation methods</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Human-centered computing~Empirical studies in HCI}
+\ccsdesc[300]{Human-centered computing~Interactive systems and tools}
+
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Usability Testing, User Simulation, LLM Agent, Web Testing, UX}
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+
+
+\begin{teaserfigure}
+    \centering
+    % \twiceinclude[width=1\linewidth]{figures/system_arch}
+    \includegraphics[width=\linewidth]{figures/system_arch.png}
+    \caption{UXAgent is an open-sourced system. A UX researcher can use the Persona Generator to generate thousands of random personas and create LLM Agents with these personas. The LLM Agent then interacts with the target webpage design via a multi-turn interaction as if it were a user. Generated multimodal log data (e.g., Action Trace, Reasoning Trace, or Post-Study Survey) is presented to the UX researcher through a Result Viewer interface and can be exported as an Excel spreadsheet. UX researchers can also interactively interview these agents at any time point of a simulated UX session to mimic contextual inquiry or post-study interview UX methods.}
+    \Description{A system diagram illustrating how a simulated UX study is conducted using the \projectname system. The process begins with the Persona Generator, which creates a user persona (e.g., “42M Manager”). This persona is passed to the LLM Agent, which interacts with a real Web Browser through a Universal Browser Connector. The connector converts raw HTML from the web page into simplified HTML for the agent and translates the agent’s actions into executable browser commands. The agent produces both an action trace (e.g., “Click on search box”) and a reasoning trace (e.g., thoughts on searching for massage lotion). These outputs are visualized in Result Viewer which enables UX researchers to review the action trace and chat with the agent and collect qualitative feedback. The UX researcher is shown in the center analyzing both the simulation and the agent's responses.}
+    \label{fig:system-arch}
+\end{teaserfigure}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+
+\section{Introduction}
+% \note{two challenge: usability testing design may be flawed -> insufficient, do not lead to good result -> study design is hard to identify before conducting the study. current practice is pilot study, ...}
+% \note{}
+
+
+% \note{too long -- should I break it into two or shorten it?}
+Usability testing is a fundamental research method for evaluating the user experience (UX) of a new feature or a new webpage design~\cite{shawHandbookUsabilityTesting1996a}.
+Typically, a UX researcher (or a UI/UX designer, product manager, etc.) leads the design and execution of a usability testing study: they start with a new feature or web design, and then they need to come up with a UX study design (e.g., A/B testing and the user tasks), recruit participants, execute the study, monitor, and analyze the data.
+However, the current process of conducting usability testing often faces challenges, especially in the study design stage and the study execution stage~\cite{folstadAnalysisPracticalUsability2012, hertzumEvaluatorEffectChilling2003, kuangMergingResultsNo2022, norgaardWhatUsabilityEvaluators2006}.
+In the study design stage, researchers often focus on collecting early feedback on new feature design to iterate the feature, but the study design itself is left unevaluated~\cite{shawHandbookUsabilityTesting1996a}.
+Study design flaws that surface only during execution can lead to costly consequences. This is especially critical when working with underrepresented groups (e.g., non-binary shoppers), where participants are a limited and valuable resource, thus the findings may not be significant or insightful.
+In such cases, a UX practitioner in a company may not even have a second chance to iterate the study design.
+% If flaws of the study design are revealed until the study execution, the cost is substantial:
+% participants are limited and valuable resources, especially when designing for the less-represented populations (e.g., older adults), so a UX practitioner in a company may not have a second chance to run the study or even little room for early iteration of the study design itself.
+
+
+To alleviate this issue, researchers have practiced using \textbf{pilot study} sessions~\cite{decker-maurerMethodMadnessUsability2012} or \textbf{empathy-based research} methods~\cite{sarkelaMethodEmpathyBasedStories2020}:
+Researchers often conduct a limited number of pilot study sessions before the actual study execution to test validity and uncover design flaws. However, these sessions are time-consuming and financially costly, since their data are not considered valid test data and require additional participant recruitment~\cite{decker-maurerMethodMadnessUsability2012}.
+Researchers sometimes also apply an empathy-based research method, during which they attempt to put themselves in the shoes of their target users, especially when designing and studying for an underrepresented user population~\cite{sarkelaMethodEmpathyBasedStories2020}.
+However, this method is inherently limited, as researchers may fail to accurately represent the target population and may unintentionally introduce bias \cite{whartonApplyingCognitiveWalkthroughs1992}. 
+These limitations highlight the need for novel methods and systems that can offer early feedback on the study design as well as on the feature designs to support UX researchers.
+%from the perspective of the target user population (or a reasonable surrogate) without risking participant time or causing harm.
+
+% \note{to address challenge, [current practice] [why they don't work]}
+
+% \note{we aim to build a llm agent system to tackle these challenges. our llm agents are surrogates .. and can generate usability testing data for the researchers to analysis ... iterate their system design and feature design}
+% \note{reads weird to me, maybe I didn't get it during the discussion in Monday}
+% In this project, we aim to build a system to address these challenges.
+% Our system provides surrogates for real human users, simulating diverse and personalized human behaviors and perspectives in usability testing scenarios.
+% By interacting with real-world environments, these agents generate usability testing data, such as action traces, reasoning logs, and final outcomes, that UX researchers can analyze to refine both their experiment design and feature design before involving human participants.
+
+
+With the advancement of Large-Language Models (LLMs), some researchers have prompted LLMs to act as autonomous agents (i.e., \textbf{LLM Agent}) that can perceive the environment and generate human-like actions to interact with the environment \cite{wangSurveyLargeLanguage2024}. 
+For example, researchers have successfully empowered LLM Agents to simulate a group of 25 human agents living in a village \cite{parkGenerativeAgentsInteractive2023},
+replicate participants in a social science study \cite{parkGenerativeAgentSimulations2024,schmidgallAgentClinicMultimodalAgent2024,leeApplicationsGPTPolitical,gurcanLLMAugmentedAgentBasedModelling2024}, act as patients and clinicians in a hospital \cite{liAgentHospitalSimulacrum2024}, and behave as programmers for a software development company \cite{qianChatDevCommunicativeAgents2024}.
+% The most notable effort is that \citet{parkGenerativeAgentsInteractive2023} illustrated a simulated town with 25 LLM Agents, who can interact with each other and with the surrounding environment; this work argues that LLM Agents can generate ``believable'' human-like behaviors and reasonings, where ``believable'' implies that the agents ``appear to make decisions and act on their own volition'' like a real human~\cite{parkGenerativeAgentsInteractive2023, chen2025towards}.
+The advances in LLM agent research inspire us that: if we can simulate diverse user behaviors and perspectives with an LLM agent as surrogates for real human-subject participants, then these surrogates can interact with real-world web environments to produce rich usability testing data.
+Such data can support UX researchers to analyze and identify potential flaws in their study design before conducting real user studies, as well as offer UX researchers early feedback for feature designs. 
+% This feedback has the potential to guide system development and shape hypotheses to be further validated in future studies with human participants.
+
+
+Recently, a few LLM Agent-based systems (e.g., WebAgent~\cite{gurRealWorldWebAgentPlanning2023}, WebVoyager~\cite{heWebVoyagerBuildingEndtoEnd2024}, etc.) have explored simulating human interaction behaviors with web-based systems.
+% For example, Voyager~\cite{heWebVoyagerBuildingEndtoEnd2024} can automatically accomplish web tasks within real-world websites like Google and Amazon.
+For example, ReAct~\cite{yaoReActSynergizingReasoning2023} can generate both reasoning and action trace and simulate human customers on WebShop \cite{yaoWebShopScalableRealWorld2022}, a commonly used sandbox environment for e-commerce platforms.
+Another example is Computer-Using Agent systems such as OpenAI Operator\footnote{\url{https://openai.com/index/introducing-operator/}} and Claude’s Computer-use API\footnote{\url{https://www.anthropic.com/news/3-5-models-and-computer-use}} that can complete tasks in computer environments.
+However, these systems fall short of our use case: we need an LLM Agent to be able to operate with the dynamically changing web pages, to think (generate reasonings) as human users do, and to interact with the web page within a human-like responsive time interval.
+The aforementioned LLM Agent systems (1) are restricted to a sandbox simulation instead of a real-world complex web system (e.g., ReAct~\cite{yaoReActSynergizingReasoning2023}), (2) rely only on complex and heavy reasoning architectures that hinder real-time responsiveness with the web (e.g., ~\cite{maLASERLLMAgent2024,heWebVoyagerBuildingEndtoEnd2024,gurRealWorldWebAgentPlanning2023}), (3) do not have the reasoning depth so the simulated behavior trace output is too simple in comparison to real-human's actions~\cite{sodhiStePStackedLLM2024}.
+% he ability to operate outside sandboxed environments, responsiveness for real-time interaction, and human-like reasoning to simulate decision-making and produce analyzable qualitative insights.
+These challenges call for a new LLM Agent architecture design (Fig.~\ref{fig:structure}) that can balance the reasoning capabilities with interaction speed when meeting complex and diverse real-world web systems.
+
+In this work, we propose \textbf{\projectname} (Fig.~\ref{fig:system-arch}), a system that can generate LLM Agents as usability testing participants at scale and run simulated interactions with a given real-world web environment to collect simulated user behavioral data.
+The UX researcher can define a demographic distribution and use the Persona Generator to generate thousands of personas for the LLM Agents, and then use the Universal Browser Connector module to interact with webpages via Chrome. 
+Inspired by \citet{parkGenerativeAgentsInteractive2023} and the Dual Process Theory \cite{kahneman2011thinking,evansDualProcessTheoriesHigher2013,zhangLeveragingDualProcess2025,christakopoulouAgentsThinkingFast2024}, \projectname includes \textbf{an LLM Agent module }with a new LLM Agent architecture to have a two-loop structure to support both in-depth reasoning and real-time response.
+Our \textbf{Universal Browser Connector modul}e allows LLM Agents to seamlessly parse and interpret real-world webpages while automatically executing real actions on the webpage without the need for manually pre-defined action spaces.
+% \projectname produces a Simulation Replay and an Agent Interview Interface to allow UX researchers to view the LLM Agents' interactions with the webpage and conduct qualitative interviews in natural language conversation.
+\projectname also provides a \textbf{Result Viewer Interface} that enables UX researchers to seamlessly review LLM agents’ interactions with web pages, examine post-study survey results, and conduct qualitative interviews with the agents.
+Our position is that: \textbf{LLM agents are not meant to replace human participants in UX studies, but rather to help UX researchers to iteratively revise the study design, thus to be more responsible to human participants}.
+LLM Agents can work together with UX researchers (human-AI collaboration~\cite{wangHumanAICollaborationData2019}) in a simulated pilot study manner to provide the desired early and immediate feedback for UX researchers to further iterate their design before testing with real human participants.
+
+
+To evaluate our system, we conducted a user study with 16 UX researchers and asked them to analyze usability testing data (action trace, reasoning trace, and qualitative interview) of 20 LLM Agents interacting with a shopping website, as if they were the study owners.
+Our study scenario is that: a UX researcher is tasked to design a usability testing study to gather feedback for a newly designed shopping website feature (product filter menu) and propose new designs for this website feature.
+Our results suggest that the UX researcher participants were able to review and analyze the LLM-agent participants' data generated by \projectname, identify potential study design flaws, and come up with system feature improvement ideas. In comparison to the initial UX study design, they were satisfied with their revised study designs after analyzing the data, despite some criticizing that the LLM agent's generated actions were not what real users would do.
+We conclude our paper by discussing how LLM agents may play an increasingly important role in the future of UX research.
+
+\section{Related Work}
+\subsection{Challenges in Usability Testing}
+Usability testing is a core component of UX research, used to evaluate how easily users can interact with a product to achieve their goals \cite{shawHandbookUsabilityTesting1996a,barnum2020usability, bastienUsabilityTestingReview2010, lewis2012usability}.
+It involves observing real users as they navigate through tasks and providing valuable feedback on design effectiveness \cite{barnum2020usability}. 
+This method helps refine products by identifying usability issues, measuring user satisfaction, and improving overall user experience. The key benefits of usability testing include validating design choices, avoiding internal biases, and ensuring the product meets user expectations.
+
+However, UX researchers conducting usability testing on web designs have been facing multiple challenges in the \textbf{study design stage} and the \textbf{study execution stage}~\cite{folstadAnalysisPracticalUsability2012, hertzumEvaluatorEffectChilling2003, kuangMergingResultsNo2022, norgaardWhatUsabilityEvaluators2006}.  
+During the study design stage, it is often difficult for researchers to craft appropriate study protocols and gather early feedback to iteratively improve the study design.  
+To address this challenge, researchers have proposed guidelines and frameworks to support the design of usability testing, including methods for refining interview protocols~\cite{castillo2016preparing, shoozan2024application, roberts2020qualitative} and developing survey questionnaire items~\cite{rasinski2008designing, muller2015designing, muller2014survey, koelle2020social}.
+To further streamline this process, recent work has begun to explore automated approaches for refining study protocols. For example, \citet{calvanoLeveragingLargeLanguage2025} investigated the use of Large Language Models (LLMs) to assist in generating components of usability studies, such as user tasks and evaluation criteria.  
+To obtain early feedback on their designs, researchers typically rely on pilot studies, which, while valuable~\cite{hertzog2008considerations, truong2017pilot, van2001importance, oppenlaender2024state}, are time-consuming, costly, and limited in scale~\cite{Janaka2024, oppenlaender2021hardhats}.  
+Despite these efforts, there remains a lack of efficient and scalable methods for UX researchers to evaluate and refine study designs before conducting full-scale studies with human participants.
+
+For the study execution stages, a key challenge lies in the high cost and effort required to recruit enough qualified participants~\cite{Nebeling2013, Jane2024}. To mitigate these challenges, researchers have begun exploring the use of agents to simulate real human participants in usability testing~\cite{ren2014agent}. 
+Prior work has introduced agents in various domains, including GUI testing~\cite{eskonenAutomatingGUITesting2020}, game environments~\cite{stahlkeArtificialPlayfulnessTool2019,fernandesAgentsAutomatedUser2021}, and accessibility testing~\cite{taebAXNavReplayingAccessibility2024, zhong2025screenaudit}. 
+A particularly notable effort is SimUser~\cite{xiangSimUserGeneratingUsability2024}, which leveraged LLM Agents to simulate usability testing for mobile applications. In their approach, a user agent simulated human interaction, while an application agent represented the mobile app. These two agents interacted during the simulation to generate behavioral data. However, because the application under test was also simulated, their approach was limited in its ability to evaluate real-world interfaces and behaviors.
+Despite growing interest in agent-based usability testing, the application of agents to real-world web design usability testing remains underexplored—largely due to the complexity of real web environments and the limitations of traditional web automation technologies.
+
+\subsection{Simulation of Human Behavior with LLM and LLM Web Agents}
+
+In the field of HCI, recent studies have demonstrated that LLMs possess the capability to simulate human-like behaviors, enabling research on personalized agent behavior. Unlike task-oriented agents, which are typically focused on achieving narrowly defined goals, \textbf{human agents} or \textbf{role-play agents}~\cite{chen2025towards} are designed with rich personas that encompass not only their roles and expertise but also their preferences, habits, and subjective viewpoints. 
+For example, \citet{parkGenerativeAgentsInteractive2023} created a simulated town inhabited by 25 LLM Agents, each with a unique persona, and showed that these agents could exhibit believable and autonomous human-like interactions. \citet{parkGenerativeAgentSimulations2024} extended this line of work by simulating responses from 1,052 individuals in a social science survey, achieving an accuracy rate of 85\%.
+Similarly, \citet{luPromptingNotAll2025} explored the use of LLM Agents to simulate virtual customers’ shopping behaviors on e-commerce platforms. 
+
+LLM Agents have also been applied to study user attitudes toward privacy. For instance, \citet{zhangPrivacyLeakageOvershadowed2025,chenEmpathyBasedSandboxApproach2024} examined how agents with customizable personas can generate realistic search histories and profile behaviors to explore privacy concerns. In accessibility research, \citet{taebAXNavReplayingAccessibility2024} proposed AXNav, which uses LLMs to convert manual test instructions into replayable navigation videos for evaluating interface accessibility.
+These emerging applications inform our approach: we aim to simulate realistic user behavior in web environments for usability testing, leveraging LLM Agents with diverse, persona-driven characteristics.
+
+Recent advances in LLM-based Web Agents have significantly enhanced the ability of LLMs to assist with web-based tasks.
+Early work like WebGPT~\cite{nakanoWebGPTBrowserassistedQuestionanswering2022} enabled GPT models to interact with search engines, improving question-answering performance. Subsequent systems, including WebVoyager~\cite{heWebVoyagerBuildingEndtoEnd2024}, LASER~\cite{maLASERLLMAgent2024}, and WebAgent~\cite{gurRealWorldWebAgentPlanning2023}, extended LLM capabilities to multimodal interaction, complex state space navigation, and long-horizon planning. Claude’s Computer-use API\footnote{\url{https://www.anthropic.com/news/3-5-models-and-computer-use}} further demonstrated precise, general-purpose control over user interfaces beyond web browsers.
+
+Building on top of these advances, researchers have begun to explore the simulation of \textbf{human online behavior}. \citet{luPromptingNotAll2025} proposed a fine-tuning method to enhance model accuracy in predicting the next human action. OPERA~\cite{wangOPeRADatasetObservation2025} introduced a dataset of user online shopping behavior and benchmarked existing LLMs. Inspired by recent advancements in reasoning-enabled LLMs, Shop-R1~\cite{zhangShopR1RewardingLLMs2025} explored enhancing performance through RL. Still, existing work in the NLP field largely focuses on accuracy rather than mimicking human thinking processes. Since these approaches cannot capture qualitative aspects of user decision-making, key challenges in usability testing remain unresolved.
+
+\subsection{Reasoning Architecture of LLM Agents}
+
+Human cognition is often described as operating through two distinct systems: System 1 and System 2~\cite{kahneman2011thinking}.
+System 1 governs fast, intuitive, emotional, and automatic responses, allowing humans to react quickly with minimal effort.
+In contrast, System 2 is responsible for slower, more deliberate processes: it involves conscious reasoning, logical analysis, and problem-solving~\cite{kahneman2011thinking,evansDualProcessTheoriesHigher2013}.
+Inspired by this dual-process theory, researchers have explored a variety of reasoning architectures in LLM Agent systems to balance speed and depth of thought.
+
+
+For real-time responsiveness, many systems use System 1-style reasoning with single-prompt agents like OpenAI Operator\footnote{\url{https://openai.com/index/introducing-operator/}} and Claude’s Computer-use API\footnote{\url{https://www.anthropic.com/news/3-5-models-and-computer-use}}, which act on immediate inputs without deeper reflection. However, such agents often fail on complex tasks; for example, \citet{luPromptingNotAll2025} found System 1 alone insufficient for simulating realistic user behavior. To improve reasoning, researchers have introduced System 2-style approaches, such as chain-of-thought~\cite{weiChainofThoughtPromptingElicits2023}, ReAct~\cite{yaoReActSynergizingReasoning2023}, and reinforcement learning–based fine-tuning~\cite{deepseek-aiDeepSeekR1IncentivizingReasoning2025}.
+These models excel in complex domains like programming and solving olympiad-level math problems~\cite{deepseek-aiDeepSeekR1IncentivizingReasoning2025,sunChallengingBoundariesReasoning2025}, but their high computational cost and latency~\cite{zhouSurveyEfficientInference2024,huaInteractiveSpeculativePlanning2024} limit their usability in real-time applications like interactive usability testing.
+
+More recently, researchers have sought to integrate the strengths of both systems into unified reasoning architectures that can support real-time applications while preserving in-depth reasoning.
+For instance, \citet{christakopoulouAgentsThinkingFast2024} introduced a talker-reasoner framework for a sleep coaching agent, simulating the interplay between fast reactions and deeper reflections.
+Similarly, \citet{zhangLeveragingDualProcess2025} proposed DPT-Agent, which combines System 1 and System 2 thinking for efficient, simultaneous human-AI collaboration in game settings.
+In particular, DPT-Agent uses System 2 to generate high-level instructions, while System 1 is used to translate those instructions into executable policy code for a finite-state machine.
+However, extending this approach to the usability study scenario with web environments poses new challenges. 
+Unlike structured game environments, web environments are dynamic and unpredictable -- each click can drastically change the context.
+Agents need to continuously adapt their plans in response to newly observed content.
+Building on these insights, we propose a two-loop architecture that combines fast, low-latency responses with reflective, high-level reasoning to simulate realistic, goal-directed user behavior in real-world web environments.
+
+
+
+\section{\projectname: LLM-Agent-Based System for Usability Testing}
+
+
+In this project, we propose \projectname, a system that can generate LLM Agents as usability testing participants at scale and run simulated interactions with a given web environment to collect simulated user behavioral data.
+%Ash: We propose \projectname, a system that generates LLM agents as simulated participants at scale to interact with a given web environment and produces simulated user behavior data.see here
+The architecture of the \projectname{} is illustrated in Figure~\ref{fig:system-arch}. Our system comprises four key components.
+The \textbf{Persona Generator Module} generates a large-scale set of diverse personas, which are fed into the \textbf{LLM Agent}. 
+The \textbf{LLM Agent Module} interacts with a web browser through the \textbf{Universal Browser Connector Module}.
+The \textbf{Universal Browser Connector Module} parses the raw HTML as observation and robustly executes agent actions on the web page.
+% This module parses the raw HTML extracted from the web browser and simplifies it for the agent. 
+% The agent outputs actions, such as \texttt{click on search\_button}, which the Universal Browser Connector translates into raw actions like clicking on a specific coordinate. 
+% HTML, agents' actions and memories traces, are collected for further analysis.
+The \textbf{Result Viewer} allows the UX researcher users to easily review and analyze the generated qualitative (e.g., agents' post-study surveys) and quantitative data (e.g., agents' interaction logs), or even interview agents directly. 
+% , which can be loaded with an agent's reasoning trace, is used to provide more qualitative feedback on the web design.
+
+\subsection{Persona Generator}
+
+To support large-scale simulations with users from diverse backgrounds, our system features a Persona Generator module that automatically creates a wide range of agent personas.  As an example, generating 1,000 personas takes about two mins.
+Users begin by specifying an example persona (e.g., mid-career professional marketing manager; a full example can be found in Appendix \ref{sec:example-persona}) and a target demographic distribution (e.g. 10\% low-income, etc.).
+
+% The system then uses the provided example persona as a seed and generates the desired number of personas by first sampling demographic attributes from a specified distribution.
+% and then using these attributes to construct complete agent personas.
+The system uses the input example persona as a seed to generate the desired number of agent personas. It first samples demographic attributes based on the specified distribution and then builds full personas using those attributes. To enhance diversity, the system randomly selects one of the previously generated personas to serve as the example in the LLM prompt for generating each new persona.
+This prevents repetitive outputs, encourages variation in traits and backgrounds across the generated personas, and allows the system to efficiently generate a rich, demographically balanced set of personas.
+The prompts used for persona generation are detailed in Appendix \ref{sec:prompt-persona}.
+
+\subsection{LLM Agent Architecture for Usability Testing}
+
+
+\subsubsection{Reasoning and Planning Architecture}
+Inspired by the Dual Process Theory~\cite{kahneman2011thinking,evansDualProcessTheoriesHigher2013}, we designed the LLM Agent with a two-loop structure comprising a \textbf{Fast Loop} and a \textbf{Slow Loop} (Figure~\ref{fig:structure}). 
+ % illustrates this architecture. 
+The Fast Loop enables \textbf{rapid interactions with minimal latency}, allowing the agent to promptly respond to changes in the web environment and support real-time simulation.
+In contrast, the Slow Loop performs \textbf{in-depth reasoning}, generating high-level insights and strategic guidance to ensure that the agent's behavior aligns with its intent and persona.
+Each loop consists of modules that retrieve memory pieces from the \textbf{Memory Stream} (Section~\ref{sec:memory-stream}) and generate memory pieces to be stored in the Memory Stream.
+The Perception Module produces \textit{observations}, the Planning Module generates \textit{plans}, the Action Module records \textit{actions}, and the Wondering and Reflection Modules create \textit{thoughts}.
+
+The Fast Loop and Slow Loop operate \textbf{in parallel}, and share information via the \textbf{Memory Stream}.
+For example, high-level reflections generated by the Slow Loop can influence subsequent planning and actions in the Fast Loop. 
+This non-blocking, asynchronous architecture allows the agent to reason deeply while still maintaining responsiveness, making it well-suited for real-time simulations in complex web environments.
+
+% We designed the LLM Agent with a two-loop structure, comprising a \textbf{Fast Loop} and a \textbf{Slow Loop}, enabling the agent to balance rapid, real-time responsiveness with deeper, reflective reasoning.
+% Each module in the fast loop or the slow loop will retrieve memories from the \textbf{Memory Stream} and generate new memories.
+% Figure \ref{fig:structure} illustrates this structure.
+% The \textbf{Fast Loop} enables rapid interactions with minimal latency, allowing the agent to promptly interact with the web environment
+% The \textbf{Slow Loop} supports more in-depth reasoning, providing strategic guidance and high-level insights to ensure alignment with the agent's intent and persona.
+
+% \note{emphasize on real time, we can do real-time as well as in-depth thinking}
+
+
+\definecolor{fastloop}{HTML}{005EA6}
+\definecolor{slowloop}{HTML}{F37E24}
+\definecolor{module}{HTML}{E1708F}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=.8\linewidth]{structure.pdf}
+    \caption{LLM Agent Architecture design.
+    The architecture consists of two loops, the \textcolor{fastloop}{Fast Loop} and the \textcolor{slowloop}{Slow Loop}, responsible for fast interaction with the web and for in-depth thinking, respectively. In the fast loop, the perception module translates the raw observation from the browser connector to natural language observation memories that are stored in the memory stream. The planning module makes short-term plan that is executed by the action module.
+    In the slow loop, the wonder module mimics humans' ``mind drift'' and the reflection module makes in-depth reasoning and reflection about the current situation.
+    Memories stored in the memory stream are retrieved by different modules, and each module will produce some memories that are written back to the memory stream.
+    }
+    \Description{A system diagram of the reasoning architecture for UXAgent, illustrating its two-loop design. On the left, inputs flow from the Persona Generator and the Universal Browser Connector into the LLM Agent. Inside the agent, there are two reasoning loops: the Fast Loop and the Slow Loop. The Fast Loop includes the Perceive Module (which processes the web environment), the Planning Module (which generates a plan based on observations), and the Action Module (which executes actions). These modules interact with a central Memory Stream that stores all memory pieces. The Slow Loop consists of the Reflection Module (which produces strategic insights) and the Wonder Module (which simulates spontaneous thoughts). Both loops access and contribute to the Memory Stream, enabling the agent to reason and act in a human-like manner in real time. Arrows indicate data flow and loop cycles, emphasizing the modular, asynchronous architecture of UXAgent.}
+    \label{fig:structure}
+\end{figure}
+
+\paragraph{Perception Module}
+\label{sec:perception-module}
+% \note{mention why real, memory piece design}
+% To allow the agent to adapt flexibly to different real-world environments by simply updating its perceptual inputs—without requiring task-specific tuning—we integrate a Perception module.
+To allow the agent to observe and comprehend the outside environment, we designed the Perception Module.
+The Perception Module observes the web environment and generates a series of memories describing the LLM Agent's observations.
+Unlike simulated environments, our system interacts with real web pages, and the perception process is designed to mimic how a real human user might visually comprehend a web page.
+As shown in Figure~\ref{fig:perception-demo}, the module systematically reads the web page from top to bottom.
+The web page is then transformed into a text-form observation memory piece and stored in the Memory Stream.
+These observation memories in the Memory Stream are then retrieved and used by other modules to inform subsequent planning, reasoning, and action.
+
+\paragraph{Planning Module} 
+\label{sec:planning-module}
+To enable real-time decision-making, we designed the Planning Module to mimic human System 1–style rapid cognition by leveraging memory pieces generated by other modules.
+This module continuously creates and updates short-term plans aligned with the agent’s intent and persona, based on relevant memories (such as observations and reflections) retrieved from the Memory Stream.
+By relying on precomputed insights rather than performing explicit multi-step reasoning during execution, the Planning Module allows the agent to remain responsive while still benefiting from deeper, strategic thinking in the background.
+
+The module mirrors human planning processes by breaking down tasks into logical, interpretable steps. For example, if the agent's initial intent is to ``buy a sofa,'' its plan may involve steps such as searching for sofas, applying filters for delivery date and price, comparing product details, and proceeding to purchase.
+These plans are continuously refined as new information becomes available through perception and memory updates.
+The generated plan is then stored as a plan memory piece in the Memory Stream, to be retrieved and used by other modules.
+
+Specifically, the module performs three core functions:
+\begin{itemize}
+    \item \textbf{Initial Plan Creation:} At initialization, the agent formulates an initial plan based on the persona's intent. For example, if the intent is ``buy a sofa,'' the initial plan may involve searching online stores, reviewing search results, and selecting potential products.
+    \item \textbf{Plan Updates:} As new observations and memories emerge, the module updates the plan accordingly. For instance, if the agent is browsing search results and finds a sofa that matches the persona's preferences (e.g., color or size), the plan evolves to include reviewing detailed information and considering a purchase.
+    \item \textbf{Rationale and Next Step:} To ensure transparency and interpretability, the module provides a clear rationale for its current decisions and explicitly identifies the next step required to achieve the agent's intent, ensuring logical progression toward goals.
+\end{itemize}
+
+\paragraph{Action Module}
+\label{sec:action-module}
+
+The Action Module is responsible for executing the agent's planned actions in the web environment. It is designed to mimic how humans translate intentions into interface-level interactions. The module takes as input the current environment state, the agent’s persona and intent, the plan generated by the Planning Module, and relevant memories retrieved from the Memory Stream.
+
+From the current step in the plan (e.g., ``I'm going to search for massage lotion''), the Action Module generates a corresponding low-level action defined in the predefined action space (see Section~\ref{sec:action-space}) as well as it's textual description.
+The generated action is executed using the Web Browser Connector and also stored in the Memory Stream as an action memory piece.
+For instance, the above plan step may result in an action like \code[breaklines]{type(``massage lotion'', search_input)}.
+This design enables the agent to perform realistic, human-like interactions with real web environments, such as typing, clicking, navigating, and submitting forms.
+
+\paragraph{Reflection Module}
+\label{sec:reflection-module}
+The Reflection Module simulates human reflective thinking by synthesizing recent memories—including observations, actions, previous plans, and reflections. It generates high-level insights that capture key takeaways and strategies,  mimicking how a person would reason in similar situations.
+These reflections are stored in the Memory Stream as thought memory pieces, informing and guiding future decisions by the agent.
+
+\paragraph{Wonder Module}
+\label{sec:wonder-module}
+Humans frequently engage in spontaneous, unrelated thoughts, allowing their minds to drift beyond the current task. To emulate this behavior, the Wonder Module prompts the agent to generate unrelated, spontaneous thoughts or ``wonders'' based on the persona and recent memories. Although these thoughts may not directly impact immediate tasks, they enhance realism in simulated user behavior.
+Generated wonders are stored in the Memory Stream as thought memory pieces, becoming accessible to other modules.
+
+\subsubsection{Memory Stream}
+\label{sec:memory-stream}
+
+% The \textbf{Memory Stream} is a critical component connecting the Fast Loop and Slow Loop, storing the agent's memories such as observations, actions, reflections, and spontaneous thoughts. 
+The \textbf{Memory Stream} stores the agent's memory pieces (including observations, actions, reflections, and spontaneous thoughts) as natural-language descriptions with associated timestamps.
+It serves as a critical bridge between the Fast Loop and the Slow Loop and enables these two asynchronous loops to exchange information and remain contextually aligned.
+% is a critical component connecting the Fast Loop and Slow Loop, 
+% Each memory entry includes a natural-language description along with a creation timestamp.
+
+As memories accumulate, the Memory Stream becomes increasingly lengthy, posing efficiency challenges for memory retrieval.
+To address this, we implement a retrieval module that prioritizes and retrieves memories relevant to the agent's current task.
+Following prior work \cite{parkGenerativeAgentsInteractive2023}, our retrieval mechanism scores memories based on three dimensions: \textbf{importance}, \textbf{relevance}, and \textbf{recency}. The final retrieval score for each memory is calculated as:
+\[
+score = (importance \times w_{imp} + relevance \times w_{rel} + recency \times w_{rec}) \times w_{type}
+\]
+where $w_{imp}$, $w_{rel}$, and $w_{rec}$ represent the weights for importance, relevance, and recency, respectively, and $w_{type}$ is a weight determined by the memory type.
+Each module uses separate parameter sets to align with their distinct retrieval priorities: modules in the Fast Loop emphasize recency for rapid actions, while modules in the Slow Loop emphasize relevance for deeper reasoning, mirroring human cognitive patterns.
+
+
+\paragraph{Importance}
+\label{sec:importance}
+
+
+The importance score measures how closely a memory piece aligns with the agent's original intent. In real-world web environments, users often ignore irrelevant elements like ads or unrelated content. To mimic this behavior and improve simulation efficiency, each memory piece is assigned an importance score by an LLM, helping the agent prioritize task-relevant information (e.g., product listings, prices) over peripheral details. To maintain responsiveness, importance scores are computed only in the Slow Loop; memory pieces without a score are left undefined, and their importance scores are ignored during retrieval.
+
+\paragraph{Relevance}
+The relevance score reflects the semantic similarity between a memory and the current context. Each memory's natural-language description is transformed into a vector embedding, and its cosine similarity is calculated against a query string generated by the retrieval module.
+
+\paragraph{Recency}  
+The recency score prioritizes recently created memory pieces, as they are more likely to be relevant to the agent’s immediate task. Since our agent focuses on short-term, in-session simulation (as opposed to prior work that models long-term behavior) recency plays a critical role in supporting rapid, context-aware decision-making. It is computed using an exponential decay function based on memory timestamps:
+\[
+    \text{recency} = \frac{1}{e^{k(t_0 - t)}}
+\]
+where $t$ is the timestamp of the memory, $t_0$ is the current time, and $k$ is a decay rate constant. A higher $k$ makes the agent focus more heavily on the most recent memories, while a lower $k$ allows for a broader temporal range. Through empirical trial runs, we set $k = 1$ in our implementation.
+
+\subsubsection{LLM Agent Generated UX Study Data Traces}  
+\label{sec:data-collected}
+
+% During a simulation, \projectname\ collects both behavioral and cognitive data from the LLM Agent, offering both quantitative and qualitative insights into its interactions with the web environment (Figure ~\ref{fig:system-arch}). These data include:
+To enable UX researchers to analyze both what the agent did and why --- thus supporting comprehensive evaluations of web interfaces from multiple perspectives --- \projectname generates a rich set of behavioral and cognitive data from the LLM agent to interact with the web environments via \textbf{ a multi-turn }interaction simulation. 
+
+This data provides both quantitative and qualitative insights into the agent’s interaction with the web environment (Figure~\ref{fig:system-arch}). Specifically, it includes:
+
+\textbf{Action Trace.} The system records every action generated by the Action Module in sequence. This trace captures how the agent navigates and manipulates the web interface, including clicks, form submissions, and navigations. It reflects the observable behavior of the agent and can be used for replay, analysis, or visualization of its interaction flow.
+
+\textbf{Reasoning Trace.} In addition to observable actions, the system captures the agent’s internal reasoning trace, including all memory entries generated by the modules within the Reasoning Architecture. This includes observations, plans, rationales, reflections, and wonders. These memories 
+mimic human participants' ``think-aloud'' sessions, provide a window into the agent’s decision-making process, and can be used to gather qualitative feedback from the agent.
+
+\textbf{Post-Study Survey.} After completing their interaction, agents are asked to answer a pre-defined post-study survey. Loaded with their reasoning trace, they respond as if they were human participants, offering feedback on the system and their experience.
+
+\subsection{Universal Web Connector}
+
+We design a \textbf{Universal Web Connector} that enables LLM agents to \textbf{interact with any real-world web environments}. It provides a structured observation space derived from the browser’s DOM through our \textbf{DOM parser}, and robustly executes actions on the page. The interfaces are human-aligned: the observation space reflects how users perceive a web page, and the action space mirrors how users interact with it. Because the connector requires no per-site configuration, UX researchers can easily test new web designs without additional setup.
+
+
+\begin{figure}[t]
+    \includegraphics[width=\linewidth]{perception-demo.pdf}
+    \caption{Example of a web page component processed by the Universal Web Connector and the Perception Module.
+    The Universal Web Connector parses the raw web page (left) into a simplified HTML structure (upper right) and adds a semantically meaningful ID attribute to every interactable element. The Perception Module generates a descriptive observation memory (lower right) based on the simplified HTML and the screenshot.
+    % The Universal Web Connector and the Perception Module work together to enable the model to interact with real-world web environments with minimal latency.
+    }
+    \Description{A flow diagram illustrating how UXAgent converts a web page component into an observation memory piece. On the left, a product listing from an e-commerce website (showing a Ford truck body, price, rating, and delivery info) is processed by the Universal Browser Connector. The connector outputs simplified HTML code, shown in the top right, which contains structured and labeled tags like <div name="search_results">. Simultaneously, the same input is processed by the Perceive Module (bottom center), which transforms the product information into a natural-language summary called an "Observation Memory Piece." The text describes the product’s name, rating, number of reviews, and price, demonstrating how UXAgent interprets visual web content into structured, human-readable memories for reasoning.}
+    \label{fig:perception-demo}
+\end{figure}
+
+\subsubsection{Observation Space}
+\label{sec:html-parser}
+The observation space of the Universal Web Connector is structured as a JSON object containing:
+
+\begin{itemize}
+    \item \code{html}: Simplified HTML representation of the webpage.
+    \item \code{clickable_elements}: List of clickable elements (e.g., buttons, links).
+    \item \code{input_elements}: List of input elements (e.g., text fields, dropdowns).
+    \item \code{hoverable_elements}: List of hoverable elements (e.g., hover-triggered menus, tooltips)
+    \item \code{select_elements}: List of drop-down single select forms
+    \item \code{tabs}: List of currently available browser tabs
+    \item \code{error}: Description of errors encountered, such as interacting with a non-existent element.
+\end{itemize}
+
+
+To mimic human perception of a web page, we design a \textbf{DOM (Document Object Model) parser} that reduces the page to elements visible and meaningful to users. Invisible content such as scripts, styles, and metadata is discarded, along with elements hidden by CSS, rendered at zero size, or pushed entirely off-screen. To reduce structural redundancy, the parser collapses trivial nesting of non-semantic containers, such as chains of \code{<div>} wrappers, and prunes empty elements. Exceptions are made for controls that may legitimately appear empty (e.g., \code{<input>}, \code{<img>}, etc.). 
+
+The parser heuristically determines whether elements are interactive. Nodes are marked as clickable if they are native controls (e.g., \code{<button>}, \code{<input>}), anchors with \code{href}, elements with explicit \code{onclick} handlers, or elements with ARIA roles such as \code{button} or \code{link}. Humans can easily distinguish between selectable text (indicated by ``\raisebox{-0.2ex}{\includegraphics[height=1.4ex]{figures/text001.png}}'') and clickable elements (indicated by ``\raisebox{-0.2ex}{\includegraphics[height=1.4ex]{figures/pointer001.png}}''), whereas agents often attempt to click on plain text or other non-interactive elements. To reduce such errors, we expose the same cues available to humans: elements with a computed cursor style of \code{pointer} are considered clickable. To further identify hover-sensitive targets, we monkey-patch \code{addEventListener} so that whenever a node registers a hover event listener, it is annotated with \code{maybe-hoverable=true}.
+
+
+
+To enable the model to reference elements during actions, each interactive element is assigned a stable, human-readable identifier derived from visible text, placeholders, or tag names. Identifiers are normalized to short slugs, scoped hierarchically, and made unique with numeric suffixes. Both the stripped node and original DOM share the same \code{semantic-id}, with clickable elements additionally marked \code{clickable=true}. Additionally, since JavaScript states such as input values are not directly available in the HTML, the parser extracts and records them, including values, selections, and focus, and assigns semantic identifiers where needed.
+
+Optionally, when the user wants to evaluate layout-level features, such as comparing two different designs, the observation space can also include a full-page \textbf{screenshot of the webpage}. This provides access to visual cues such as spatial arrangement, alignment, and whitespace that are not recoverable from the stripped DOM alone. By default, the system uses text-only observations, which are more compact and faster to process, while the visual extension offers richer context at the cost of additional computation.  
+
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=1\linewidth]{figures/study_configure_interface.png}
+    \caption{Study Configure Interface. Users can (a) configure the study task and provide example persona for LLM agent participants, (b) congif demographic distribution of the LLM agents. User can also configure open-ended and multiple choice quetions in a post-study survey for LLM agents to fill up after the simulated multi-turn interaction session, as show in Fig. \ref{fig:post-study-configure}}
+    \Description{Screenshot of the study configuration interface with three panels.
+(a) Participant Task Config — form fields to enter the website URL, number of participants, participant task, and an example persona.
+(b) Demographic Distribution Config — options to add demographic fields (e.g., age, gender) with values and weights.}\label{fig:study-configure}
+\end{figure}
+
+
+\subsubsection{Action Space}
+\label{sec:action-space}
+
+We design the action space so that agents can perform the same primitive interactions as human users (click, type, hover, select, navigate, manage tabs). To reduce latency and eliminate unnecessary branching, we explicitly remove the \emph{scroll} action (the environment automatically scrolls the target element into view before execution). Targets are referenced by the stable semantic identifiers described in the observation construction (\code{semantic-id}), which makes actions robust to minor DOM changes. After each action, the executor waits for network and UI quiescence (for example, no active requests for a short idle window) before returning the next observation. This design addresses prior challenges of noisy action choices, arbitrary code generation, and nondeterministic post-action states by keeping the action set compact, interpretable, and synchronized with the rendered page.
+
+All actions that operate on elements identify their targets using semantic IDs that are guaranteed to be unique within the current observation. Before execution, the environment validates that the target remains interactable, scrolls it into view automatically (therefore, no explicit scroll action is necessary), performs the operation, and then waits for an idle period before emitting the next observation. A full list of available actions can be found in appendix \ref{sec:full-action-space}
+
+
+
+% \subsection{Study Configure Interface}
+
+\subsection{Study Configure Interface}  
+We implemented a Study Configure Interface to streamline the process of launching experiments. As shown in Fig.~\ref{fig:study-configure}, users can first specify the participant task and the URL of the website under study, along with an example persona that serves as a template for the persona generator module (Fig.~\ref{fig:study-configure}a). They can then define demographic distributions by adding fields such as age or gender and assigning weights to control sampling (Fig.~\ref{fig:study-configure}b). Finally, users can configure the post-study survey by composing open-ended or multiple-choice questions, or by importing standard instruments such as the System Usability Scale (SUS) from the database for convenience (Fig.~\ref{fig:study-configure}c). This interface allows researchers to set up complete studies quickly without additional coding effort.  
+
+
+\subsection{Result Viewer Interface}
+
+% After a simulation session, the simulated action traces can be loaded into the Simulation Replay Interface (Figure~\ref{fig:study-zoom}).
+% The interface replays the agent’s actions step by step within the original web environment. To improve interpretability, the interface highlights the target element interacted with by the agent at each step.
+% UX researchers can pause the replay at any time to inspect page details and better understand the agent’s behavior.
+
+
+
+% The UX researchers can also select and load an LLM-Agent's persona, action traces, and reasoning traces into the Agent Interview Interface to interview the agent and collect qualitative feedback.  
+% UX researchers can first select a persona from the persona selection page, after which the corresponding memory is loaded into the interface.  
+% Then, on the chat page shown in Figure~\ref{fig:chat-interface-2}, users can conduct a natural language conversation with the agent to ask follow-up questions, uncover decision rationales, complete surveys like system usability scores, or gather feedback on the user experience.
+
+% UX researchers often ask participants for feedback on new feature designs or prototypes after they have explored the current system.  
+% To support this, we enable image uploads within the chat, allowing researchers to present design mockups or prototypes and collect early feedback—even before the new feature is implemented.
+
+% After a simulation session, the simulation data, along with all other sessions, is loaded into the Result Viewer, which begins with the All Simulations page (Figure~\ref{fig:all-simulations}). The interface displays all simulation sessions in a structured table format. Each row represents a simulation entry with fields including simulation ID, one-sentence persona, gender, age, profession, income, clicks (number of clicks), searches (number of searches) and a dynamic number of user-defined fields.
+
+% Users can filter the table using four dropdown menus (Gender, Profession, Age, Income) located in the top left corner. The table supports sorting by Age, Income, Clicks, and Searches fields through the sort buttons in the table header. When users click the "Export Data" button, a zip file containing CSV files with the current filtered and sorted data is downloaded to their device.
+    
+% The zip file includes four CSV files: Simulation, Action, Screenshot, and Memory. These contain simulation data as displayed in the All Simulations table, action data describing the actions taken by each simulation, screenshot data capturing images during each action, and memory data representing the agent's memory for each simulation.
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=1\linewidth]{figures/result_viewer.png}
+%     % \caption{Result Viewer. }
+%     \caption{Result Viewer Interface. Users can (a) view the result table of all simulation runs, (b) expand rows to inspect participant personas and post-study survey responses, and (c) open the detail view to examine the agent's action trace, screenshots, and reasoning trace.}
+%     \Description{Screenshot of the result viewer interface with three panels.
+% (a) Result Table — a table of simulation runs showing participant personas, demographics, and actions, with options to view individual simulations.
+% (b) Result Table (expanded) — expanded rows displaying post-study survey responses with Likert-scale ratings and written feedback.
+% (c) Detail View — a detailed interface that includes an action trace (step-by-step record of agent clicks and navigation), a screenshot viewer of the website at each step, and an agent reasoning trace showing observations and thoughts over time.}\label{fig:result_viewer}
+% \end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/result-viewer-home.png}
+    \caption{The home page of the Result Viewer Interface. Users can view the result table of all simulation runs and expand rows to inspect participant personas and post-study survey responses. The user can also export the data as an Excel spreadsheet.}
+    \label{fig:result-viewer-homepage}
+    \Description{Screenshot of the UXAgent Result Viewer interface. A table lists simulated participants with columns for Agent ID, persona, gender, shopping frequency, age, and number of clicks. Each row has a button to view details, and an export button appears above the table.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.95\linewidth]{figures/result-viewer-detail.png}
+    \caption{Detail view of the Result Viewer. A list of all agents is displayed on the left. Clicking on one of the agents will display it's action trace, reasoning trace and observation snapshot. Clicking on the interview button will show the interview interface pop-up window (Fig. \ref{fig:interview})}
+    \label{fig:result-viewer-detail}
+    \Description{Screenshot of the UXAgent Result Viewer detailed view. The left panel shows an agent list with IDs and persona descriptions. The middle panel displays an action trace with step-by-step clicks and navigation. On the right, there is a screenshot snapshot of the shopping website, an interview button labeled “Interview This Agent,” and a reasoning trace table showing observations and thoughts with timestamps, importance scores, and content.}
+\end{figure}
+% \subsection{Result Viewer}
+The Result Viewer provides a comprehensive interface for analyzing simulation results. As shown in Fig.~\ref{fig:result-viewer-homepage}, the home page displays a table containing all simulation runs, including avent personas, demographics, quantitative measures, and post-study survey results. Users can filter and sort the table headers or export selected runs for external analysis. 
+
+By clicking on the \textit{View Details} button, users can enter the detail view (Fig.~\ref{fig:result-viewer-detail}), which presents the agent’s interaction trace step by step. The action trace records each model action (e.g., clicks or text inputs), while the screenshot viewer displays the corresponding web page state at that moment. The target element of the current action is highlighted with a blue outline in the screenshot. In parallel, the reasoning trace viewer shows the agent's internal reasoning, including observations, thoughts, and reflections, which can be expanded for detailed inspection.  
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/interview.png}
+    % \caption{Enter Caption}
+    \caption{Interview Interface. Researchers can interview the LLM agent participants at any time point to mimic a contextual inquiry in the middle of the UX study session or a post-study interview at the end. The agent responds based on its persona, intent, and reasoning trace till that moment.}
+    \Description{ Screenshot of the interview interface. Researchers can ask LLM agent participants open-ended questions either post-study or mid-study. The panel shows the agent’s persona and intent at the top, followed by a chat exchange where the researcher’s question appears in green and the agent’s detailed response appears below. A text box at the bottom allows researchers to type new questions.}\label{fig:interview}
+\end{figure}
+
+The system also supports interactive post-study interviews (Fig.~\ref{fig:interview}).
+Researchers can conduct interviews after an LLM agent participant has completed its interaction with the website, allowing them to collect qualitative feedback.
+Interviews may also be injected mid-simulation at a specific timestamp.
+In this case, the agent responds based only on its memory up to that point, without knowledge of future events, enabling researchers to probe reasoning in real time.
+Unlike human participants, whose answers may be influenced by confirmation bias \cite{klayman1995varieties} when recalling earlier steps, LLM agents can be interviewed using a precise memory snapshot at a given moment, providing an accurate window into their decision-making process.  
+
+
+
+\section{Case Study: A Usability Testing Simulation with \projectname to Evaluate a Newly Designed Product Filter Feature in an Online Shopping Website }
+
+We chose online shopping, a common and highly personalized use case, to illustrate how UX researchers can use \projectname to augment their usability testing work practice.
+In our evaluation study, we used WebArena~\cite{zhouWebArenaRealisticWeb2024} as our target online shopping web environment.
+We chose WebArena as our experiment platform because it works similarly to Amazon.com and is a publicly available online shopping environment, widely used in many web agent studies\cite{suLearnbyinteractDataCentricFramework2024, yangAgentOccamSimpleStrong2024}.
+
+
+\subsection{LLM Agent's Usability Testing Task and Simulated Participant Data}
+
+In our study, we first created an initial usability testing study protocol borrowed from prior HCI works \cite{Moser2017, prakash2024}.
+We employed the Persona Generator Module to create 20 agent personas, ensuring a uniform distribution across gender (male, female, and non-binary) and online shopping frequency (a few times per year, a few times per month, and a few times per week). 
+LLM agent module uses each persona to perform a usability testing task: \textit{``Buy a mean substitute. With the highest rating and within a budget between \$100 and \$200. You don't need to finish the purchase, just go to the checkout page.''}
+LLM agents were free to explore the WebArena shopping environment via multi-turn interaction to test the newly designed feature of ``product filtering panel''~\cite{zhouWebArenaRealisticWeb2024}.  
+They may or maynot use the filter naturally, or they could either complete a purchase or terminate the session without purchase, if they could not find a suitable item.
+During each session, our system recorded the full simulation result, including the LLM agent participants' reasoning and action traces, as well as their post-study surveys.
+Examples of the generated data are shown in appendix \ref{sec:example-data}.
+% a xxx via multi-turn interaction with the WebArena platform and 
+As a reference to the system's scalability, running 20 simulations took approximately 90 minutes, and 1,000 simulations took about 12 hours.
+The overall runtime primarily depends on the LLM API's rate limits or token throughput.
+
+
+\begin{table}[t]
+    \centering
+    \caption{Participant demographics (age, gender, years of experience with UX research (YoE), and self-reported familiarity with usability testing (1 to 5 very familiar)) and post-study survey responses on usability (-2 to +2 strongly agree), helpfulness (-2 to +2 strongly agree), trust (-2 to +2 strongly agree), satisfaction with revised study design (-2 to +2 strongly agree), and whether LLM can replace human participants (-2 to +2 strongly agree).}
+    \label{tab:findings}
+\begin{booktabs}{
+  colspec = {ccccccccc},
+  row{1} = {font=\bfseries},
+  cell{1}{4-9}={font=\footnotesize\bfseries},
+  cells={c,m}
+}
+\toprule
+PID & Gender & YoE & {UX Familarity \\ (1 to 5)} & {``Easy to Use'' \\ (-2 to 2)} & {``Helpful'' \\ (-2 to 2)} & {``Trust'' \\ (-2 to 2)} & {``Satisfied with Final\\ Study Design'' (-2 to 2)} & {``LLM Can Replace \\ Humans'' (-2 to 2)} \\
+\midrule
+P1  & Female & 5+   & 5 & 1 & 2 & 1  & -1 & -1 \\
+P2  & Male   & 1--2 & 3 & 2 & 2 & 1  &  1 & -1 \\
+P3  & Female & 5+   & 5 & 1 & 1 & 1  &  1 &  0 \\
+P4  & Male   & 2--3 & 3 & 1 & 1 & 0  &  0 & -2 \\
+P5  & Male   & 1--2 & 3 & 1 & 1 & 0  &  1 & -1 \\
+P6  & Female & 0--1 & 3 & 2 & 0 & 0  &  1 & -1 \\
+P7  & Female & 5+   & 5 & 2 & 2 & 1  &  2 & -1 \\
+P8  & Female & 3--4 & 4 & 2 & 1 & 0  &  0 & -2 \\
+P9  & Male   & 5+   & 4 & 1 & 1 & 0  &  0 &  1 \\
+P10 & Female & 4--5 & 5 & 2 & 2 & 2  &  1 &  1 \\
+P11 & Female & 1--2 & 3 & 1 & 2 & 1  &  1 & -1 \\
+P12 & Female & 1--2 & 3 & 2 & 0 & 0  &  2 & -1 \\
+P13 & Male   & 3--4 & 4 & 2 & 2 & 2  &  2 &  2 \\
+P14 & Female & 4--5 & 5 & 2 & 1 & -1 &  2 & -1 \\
+P15 & Female & 1--2 & 3 & 2 & 2 & 1  &  1 &  0 \\
+P16 & Female & 3--4 & 5 & 2 & 2 & 1  &  2 &  1 \\
+\midrule
+Average & -- & -- & -- & 1.63 & 1.38 & 0.63 & 1.00 & -0.44 \\
+SD      & -- & -- & -- & 0.50 & 0.72 & 0.81 & 0.89 & 1.15 \\
+\bottomrule
+\end{booktabs}
+\end{table}
+
+
+\subsection{User Study with 16 UX Researchers}
+\label{sec:study-protocol}
+
+We recruited 16 UX researchers to participate in a heuristic evaluation study with reviewing the 20 simulated sessions using \projectname. 
+The detailed demographics and experience levels of these UX researcher participants are summarized in Table~\ref{tab:findings}. Five participants reported more than 5 years of UX research experience, two reported 4--5 years, three reported 3--4 years, one reported 2--3 years, five reported 1--2 years, and one reported less than one year. Most participants rated themselves as 3 within 1 to 5 in usability testing familiarity (M=3.87, SD=0.92).
+
+Each study session lasted approximately 30 minutes and was video recorded if they consented. Participants were first presented with the initial draft of the usability testing study design protocol (included in Appendix \ref{sec:study-protocil-draft}); if they are unsatisfied, they are instructed to make suggestions to revise the study design. 
+They then used the Study Configure Interface  to config the study design in \projectname. 
+To accommodate the time limit, participants were provided with results from a pre-configured run rather than executing new simulations within the 30 mins of study sessoin in real-time. 
+Using the Result Viewer Interface, they reviewed and analyzed the generated data of the 20 LLM agent participants. 
+UX researcher participants also conducted a post-study interview with the LLM agent, following the interview protocol defined in the draft study design. 
+
+After completing the data analysis and interviewing the agent, UX researchers were asked to propose improvement suggestions both to the initial study protocol and to the new ``filter feature'' design on the shopping website. 
+Finally, they completed a post-study survey consisting of Likert-scale items evaluating \projectname's ease of use, the helpfulness and trustworthiness of the generated data, and their satisfaction with the revised protocol. 
+We also administered a structured questionnaire, which included items probing how participants think \textit{``LLM agents could replace human participants in the future usability testings'',} as well as open-ended questions to gather their feedback on \projectname's desired new features, additional data modalities, potential risks, and other qualitative feedback. A photo of one user study session is shown in Fig.~\ref{fig:participant}.
+
+\subsection{User Study Study Findings}
+
+
+\subsubsection{How Did UX Researchers Use \projectname System?}
+
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/agent-behavior-by-gender.png}
+        \caption{LLM Agent simulated online shopping behaviors, filter feature usage behaviors, and their post-study SUS score and satisfaction score of the online shopping experience, organized by persona's gender sub-groups.}
+        \label{fig:chart-a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/agent-behavior-by-frequency.png}
+        \caption{LLM Agent simulated online shopping behaviors, filter feature usage behaviors, and their post-study SUS score and satisfaction score of the online shopping experience, organized by persona's shopping-frequency sub-groups.}
+        \label{fig:chart-b}
+    \end{subfigure}
+    \caption{The aggregated LLM Agent actions and their post-study questionnaire ratings on SUS and system satisfaction, illustrated by different sub-grouping strategies shown in the bar-chart visualizations.}
+    \label{fig:agent-behavior}
+    \Description{Left: Bar chart showing agent behavior analysis across four metrics grouped by gender. The chart contains four horizontal subplots: Total Actions, Filter Clicks, SUS Score (0-100), and Filter Satisfaction. Each subplot shows three bars representing Male (red), Female (teal), and Non-binary (blue) participants. 
+
+In Total Actions, males show the highest average around 15 actions, females around 12 actions, and non-binary around 8 actions. For Filter Clicks, males average approximately 6 clicks, females 4 clicks, and non-binary 3 clicks. The SUS Score (System Usability Scale) shows males scoring around 50 out of 100, females around 45, and non-binary around 40. Filter Satisfaction ratings show males at approximately 4.5, females at 4.0, and non-binary at 3.5 on what appears to be a 5-point scale. All bars include error bars indicating standard deviation, and values are displayed above each bar.
+
+Right: Bar chart analyzing agent behavior across four metrics grouped by shopping frequency. The chart displays four horizontal subplots: Total Actions, Filter Clicks, SUS Score (0-100), and Filter Satisfaction. Each subplot contains three bars representing different shopping frequencies: Weekly (red), Monthly (teal), and Yearly (blue) shoppers.
+
+For Total Actions, weekly shoppers show the highest activity with approximately 16 actions, monthly shoppers average around 11 actions, and yearly shoppers show about 7 actions. Filter Clicks follow a similar pattern with weekly shoppers at roughly 7 clicks, monthly at 4 clicks, and yearly at 2 clicks. The SUS Score shows weekly shoppers rating the system highest at around 55 out of 100, monthly shoppers at 45, and yearly shoppers at 35. Filter Satisfaction ratings indicate weekly shoppers rate satisfaction at approximately 4.8, monthly shoppers at 4.2, and yearly shoppers at 3.0 on what appears to be a 5-point scale. All measurements include error bars showing standard deviation.
+}
+\end{figure}
+
+\paragraph{\textbf{UX researcher participants went through a four-step paradigm of using \projectname:}} 1) Building trust with data, 2) sense making of the data, 3) proposing hypotheses and in-depth exploration, and 4) drawing conclusions.
+
+When participants had access to all types of data generated by \projectname, their predominant response was to examine each data type to ensure its trustworthiness. 
+Most participants only proceeded with deeper analysis after confirming the data's trustworthiness. However, some participants began to analyze the data early on without fully verifying their trustworthiness and encountered challenges at later stages.
+Once trust was established, they moved on to the sense-making phase, where they tried to interpret the data and understand the relationships between different variables.
+P3 used the sorting feature to understand different agents' behavior and picked the agent that made the most clicks on the filters to interview to understand why.
+Participants then made hypotheses on the experiment result and made detailed observations to verify their hypotheses.
+Most participants noticed agents were looking to sort products by their reviews, but couldn't find the system feature. 
+They then checked the raw action log and interviewed the agent about their feelings about this.
+Participants then discussed what they found during the analysis of the simulated result.
+They organized the findings and discussed how they were going to revise and iterate their study design after the simulation.
+
+\paragraph{\textbf{UX Researchers can use the \projectname to gather early feedback from LLM agents and iterate the study design.}}
+
+Before the study, 12 of the 16 participants suggested minor revisions to the initial usability testing protocol, while the remaining participants agreed that the original design was ready for a human pilot study.
+The proposed changes included adding additional measurements, increasing the number of participants, and, in some cases, modifying the system’s UI design.
+Afterward, all 16 participants were satisfied with the revised study protocol and proceeded to use \projectname.
+During each session, the UX researcher participants followed our study protocol, as described in Sec.~\ref{sec:study-protocol}, to review the LLM agent–simulated usability testing data, conduct interviews, and perform analyses.
+At the end of the session, each participant also completed a post-study questionnaire with open-ended questions to report their perceived trustworthiness and satisfaction with \projectname.
+
+The result shows that although all of them were satisfied with their initial study protocol, almost all participants (14 out of 16) proposed additional improvements to the study design with the help of the \projectname.
+Of the 14 participants who proposed additional improvements to the study design, 6 suggested changes to the participant tasks (P1, P2, P3, P4, P6, P14), such as adding additional filtering tasks, or ensuring task alignment with study goals.
+Three participants recommended recruiting from different or more diverse demographic groups (P5, P10, P12) to avoid bias and better capture varied perspectives:
+\begin{quote}[P5]
+...add restrictions on the highest level of degree of participants since all of them seem to be bachelor's graduates. This might cause some bias to the study.
+\end{quote}
+Two participants proposed adding or refining survey questions (P7, P11, P15), and another two suggested expanding or improving the interview protocol to capture more comprehensive user experiences (P7, P8).
+Additionally, two participants recommended incorporating more metrics or measurements into the study design (P13, P14).
+% With this revised final study protocol design, most participants (12 of 16) expressed satisfaction (M=1.00, SD=0.89 on a five-point Likert scale).
+These results show that \textbf{\projectname{} can effectively support early feedback collection for iterating on study designs}.
+
+
+
+\paragraph{\textbf{\projectname supports UX researchers to come up with new design ideas of system features}}
+Regarding the to-be-evaluated feature design of the system, participants also made use of the simulated data generated by \projectname. 
+For example, seven participants explicitly suggested adding or refining a rating-based sorting or filtering mechanism (P2, P3, P5, P6, P7, P10, P11).
+Others proposed additional enhancements such as customizable price filters (P2, P5) and more detailed product tags (P2). 
+\begin{quote}[P2]
+Add sort and filter by rating, price buckets. improve category results.
+\end{quote}
+Several participants also recommended improvements to the usability and flexibility of the filter panel, including multi-select options, better category design, and enhanced ranking and relevance (P12, P13, P14, P16).
+\begin{quote}[P16]
+Include badges/markers specific to the item being purchased in the filters. For example, for clothings, maybe the brand, the use (e.g., casual), and the colors.
+\end{quote}
+Finally, two participants pointed out interface issues with the filter panel and recommended making it sticky to remain visible during navigation (P4, P9), while another suggested improving its visual prominence (P14).
+These findings suggest that \projectname{} can effectively support UX researchers to come up with new design ideas for the system feature, which serves the ultimate goal of the usability testing method.  
+
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/participant.png}
+    \caption{One of our 16 UX researcher participants uses \projectname in a session.}
+    \Description{Screenshot of a participant using the UXAgent system during the study. The interface shows the agent’s action trace on the left, an interview window in the center where the researcher’s question (in green) and the agent’s response are displayed, and a video call window with the participant at the top right.}\label{fig:participant}
+\end{figure}
+
+
+
+\subsubsection{Participants' Perceptions and Concerns of \projectname}
+% \paragraph{\textbf{\projectname can help }}
+
+
+
+\paragraph{\textbf{Participant found \projectname easy to use and helpful}}
+% \note{change to 3 paragraph + 1 quote}
+Table~\ref{tab:findings} summarizes participants' ratings of UXAgent's usability, helpfulness, and trustworthiness on a five point (-2 to 2) Likert scale. Participants rated the system as very easy to use ($M=1.57$, $SD=0.51$), indicating that they could learn and operate the interfaces smoothly within the 30-minute session.  
+They also rated the data generated by \projectname as helpful ($M=1.29$, $SD=0.73$). Participants reported that the simulated data provided meaningful insights that supported early revisions of usability testing protocols. 
+Finally, participants expressed trust in the generated data ($M=0.57$, $SD=0.85$).
+
+When asked how they would use the system in future research, most participants indicated that \projectname could help them obtain early feedback prior to conducting large-scale studies:  
+\begin{quote}[P1]
+I guess I will use it to generate some data before a large-scale implementation, and also help me to get some inspiration.
+\end{quote}
+
+\paragraph{\textbf{Participants have mixed feeling on whether the simulated data can represent real human participants.}} 
+
+Some participants felt that the LLM-generated behavior ``makes sense'' and looks ``rational''.
+Others explicitly noted that some behaviors appeared unrealistic:  
+\begin{quote}[P6]
+Some behaviors are abnormal---not what real users would do.
+\end{quote}
+
+When asked whether they trusted the generated data from \projectname, almost all participants expressed somewhat trust (M=0.63, SD=0.81), whereas P14 gave a negative rating (-1) on the five-point Likert scale.
+
+Some participants also suggested that knowing more technical details of UXAgent, such as the fine-tuning data, would increase their trust in the results:  
+\begin{quote}[P16]
+...it would depend on whether I know how the UXAgent's LLM has been trained. If I know it's been trained based on data related to my field or there's some metrics proving its accuracy, I would trust it.
+\end{quote}
+
+Most interestingly, when asked whether LLM agents could replace human participants, most participants expressed disagreement ($M=-0.57$, $SD=1.16$). 
+One participant explains her position by saying:
+\begin{quote}[P1]
+I'm really afraid that researchers only rely on this and overtrust such data.
+\end{quote}
+
+\section{Discussion}
+
+\subsection{Design Considerations for  LLM Agent Systems in User Study}
+\label{sec:discussion-design-considerations}
+
+The shift towards using LLMs to assist UX research has demonstrated considerable potential. With \projectname, we show that LLM agents can support user studies by enabling faster design iterations through user behavior simulation, thereby reducing costs and improving the quality of study design~\cite{decker-maurerMethodMadnessUsability2012}. Building on these findings, we outline several design considerations to guide the development of future systems involving AI-simulated agents in user studies.  
+
+\paragraph{Generate high-level insights from raw data.}  
+Future systems should help researchers move beyond raw reasoning traces by automatically generating high-level insights. As P5 noted, visualizations beyond simple aggregate measures (e.g., mean values) would make it easier to intuitively identify issues. Similarly, P3 reported feeling overwhelmed by the detail page, suggesting that concise summaries of memory data would improve usability.  
+
+\paragraph{Support more modalities of simulation and result.}  
+Future systems should extend beyond text-based interaction and static outputs~\cite{liu2025personaflow, kuangCollaborationConversationalAI2023}. P3 suggested enabling LLM agents to interact with systems through voice and tone, thereby broadening applicability to domains such as conversational interfaces. P4 recommended incorporating video replays in addition to step-by-step traces to better capture the dynamics of interactions. P2 further emphasized the need to expand beyond web environments to include graphical user interfaces. Together, these suggestions highlight the importance of supporting multimodal simulation and diverse result formats to improve both ecological validity and researcher insight.  
+
+\subsection{Potential Downstream Application for LLM Agent Systems}
+In this work, we explored the use of LLM Agents to simulate human participants in the context of usability testing. However, the underlying capabilities of these agents—such as reasoning, goal-driven behavior, and interaction with web environments—open the door to a variety of downstream applications beyond UX research.
+
+\paragraph{Help with Low-Resource UX Research}  
+Although LLM agent simulations cannot yet replace human participants, they can be a valuable resource in low-resource research settings. In many educational contexts, students conducting usability studies often rely on friends or family members as participants due to limited access to target users~\cite{houde2025controlling, wang2025user}. A system like \projectname could help by providing simulated participants that approximate realistic user behaviors, allowing students to practice study design, iterate on protocols, and identify usability issues before recruiting actual participants. Similarly, independent researchers or practitioners with limited budgets could use simulated agents to pilot studies quickly and cost-effectively, reducing reliance on extensive recruitment and compensation~\cite{kapania2025simulacrum}. While these simulations are not substitutes for human data~\cite{ashkinaze2025plurals}, they can significantly lower the barrier to entry for conducting UX research and provide a practical first step in the iterative design process.  
+
+
+\paragraph{Digital Twin for End-User Task Automation}
+LLM Agents can serve as ``digital twins'', acting on behalf of users to complete tasks in web environments~\cite{vahdati2025multi}. For example, in online shopping scenarios, a future system could allow users to specify their preferences and intents (e.g., budget, brand, or product features), and delegate the search, comparison, and purchase decisions to a personalized agent. This application would enable users to offload routine decision-making while still aligning outcomes with their goals.
+
+
+\paragraph{Evaluation of Existing AI Systems}
+
+Simulated users can also serve as proxies for evaluating existing AI systems, such as recommender systems and search engines~\cite{ma2025pub, zhao2025exploring}. Unlike traditional evaluation methods that rely on historical interaction logs or static benchmarks, LLM Agents can dynamically engage with system outputs, simulate realistic user behavior, and provide feedback. By assigning diverse personas to the agents, researchers can examine how users with different goals, preferences, or constraints interact with AI systems. This simulation-based approach offers a richer, more nuanced perspective on system performance, fairness, and user alignment across varied use cases.
+
+\paragraph{Simulating A/B Testing with Behavioral Feedback}
+LLM Agents can be deployed to simulate A/B tests for different interfaces and model variants, not only measuring which version performs better in terms of task success but also collecting rich behavioral data and simulated feedback.
+This enables researchers to evaluate both the quantitative and qualitative impact of design changes before allocating real A/B testing resources, potentially reducing iteration cycles and development costs.
+
+\subsection{Resolving Risk and Privacy Concerns}
+% \note{[maybe remove]}
+
+While LLM-assisted UX study systems offer substantial benefits for user studies, they also introduce significant risks and concerns, particularly around privacy and ethical use \cite{liHumanCenteredPrivacyResearch2024, shaoPrivacyLensEvaluatingPrivacy2024}. 
+A notable concern about sensitive data might arise in applying LLM Agents in user studies in fields such as healthcare \cite{perisPrivacyTimeLanguage2023}.
+Our participants viewed data from LLM Agents as supplementary rather than definitive, which is consistent with prior findings that LLMs cannot fully replace human subjects in psychological experiments~\cite{cui2024can}. 
+This preference reflects their ability to detect biases, limiting acceptance of LLMs as accurate representations of outcomes~\cite{schmidtSimulatingHumanHCD2024}.
+
+Another critical issue is the risk of researchers misusing AI-generated data \cite{perisPrivacyTimeLanguage2023}. 
+Some may be tempted to use this simulated data as a substitute for actual human participant data, potentially bypassing real user studies altogether. 
+This could lead to flawed conclusions, as the AI-generated data, while useful for simulations, cannot fully replicate the complexity of real human behavior.
+We believe that addressing these risks requires a clear understanding of the limitations of LLM-generated data and establishing rigorous ethical guidelines and robust privacy safeguards to ensure responsible and effective integration of LLM in UX research.
+
+% Finally, there are broader concerns about AI replacing human participants in research entirely. While LLM Agent simulations can enhance study design and simulate certain behaviors, they come with inherent bias and should not replace the insights gained from real human participants. It is crucial to maintain a balance where AI assists but does not replace human involvement in research.
+
+\subsection{Limitations and Future Works}
+There are several limitations in our work. 
+First, the limited number of participants in our heuristic evaluation may not fully capture the diversity of user experiences or the generalizability of the findings. 
+A larger scale of rigorous user testing in the future will help us further explore the effectiveness of \projectname.
+Also, our current work focuses only on the qualitative analysis of the participants' perspectives toward LLM Agent simulation, but not on quantitative evaluations of the LLM Agents' versus real humans' shopping behaviors. 
+It is crucial to conduct a systematic analysis comparing LLM-generated simulations with real human participants in order to further understand how UX researchers could benefit from using such agents.
+
+Our current results confirm the effectiveness of \projectname in web-related user research, as well as the potential of LLMs in simulating user behavior to assist rapid iteration of user research. 
+In the future, this work could be expanded to encompass a broader range of user research contexts beyond web applications. 
+This might include adaptation to UI/UX design in desktop, mobile, or mixed-reality environments, where LLM Agents could simulate user interactions in complex, multi-modal interfaces. 
+Also, we only tested giving the agents an explicit intention of ``buy a jacket''. Experimenting with other intents, such as window shopping, can also help understand the ability and limits of LLM Agent.
+Additionally, the action space of the agent is currently limited to basic actions such as ``click'' and ``type''. Supporting other types of actions, such as ``wait'', ``read'', and ``scroll'' can allow the experimenter to collect more information useful to their study.
+
+\section{Conclusion}
+
+% \note{one paragraph}
+In this work, we present \projectname to support researchers in conducting simulated user studies.
+By providing action traces, reasoning traces, and post-study survey results, the system supports iterative refinement of both UX study designs and feature designs.
+Our case study with 16 UX researcher participants suggests that \textbf{\projectname helps them identify potential flaws in study protocol } and gains early insights into how users might perceive and interact with the proposed web feature, thus improving the quality and reducing risks of the later experiments with real human participants.
+Our study is the first step towards a promising future of UX researchers to use LLM agents to achieve ``human-AI collaboration'' in the field of UX research.
+
+% structure refer to docuvis
+
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+% \begin{acks}
+% To Robert, for the bagels and explaining CMYK and color spaces.
+% \end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{custom,set,newRef}
+
+\clearpage
+\appendix
+
+\section{Full Action Space}
+\label{sec:full-action-space}
+\begin{itemize}[leftmargin=*]
+
+\item {\textbf{A. Element-level interactions}}
+  \begin{itemize}[leftmargin=*]
+    \item {Click element}: perform a click action on the target element such as a button, link, or control.  
+    \item {Hover element}: move the cursor over the target element to trigger tooltips or dropdown menus.  
+    \item {Key press}: send a keyboard event such as Enter, Escape, Tab, or arrow keys, optionally focusing an element first.  
+  \end{itemize}
+
+\item {\textbf{B. Form and text input}}
+  \begin{itemize}[leftmargin=*]
+    \item {Type text}: enter text into an input field or editable region, optionally pressing Enter afterwards.  
+    \item {Clear input}: remove all content from an input field or editable region.  
+    \item {Select option}: choose a specific option from a dropdown or select menu.  
+  \end{itemize}
+
+\item {\textbf{C. Navigation and page control}}
+  \begin{itemize}[leftmargin=*]
+    \item {Navigate to URL}: load a new address in the current tab.  
+    \item {Back}: navigate one step backward in the browser history.  
+    \item {Forward}: navigate one step forward in the browser history.  
+    \item {Refresh}: reload the current page.  
+  \end{itemize}
+
+\item {\textbf{D. Tab management and task control}}
+  \begin{itemize}[leftmargin=*]
+    \item {New tab}: open a new browser tab, optionally with a specified URL.  
+    \item {Switch tab}: change focus to another tab by index.  
+    \item {Close tab}: close an existing browser tab.  
+    \item {Terminate task}: shut down the browser session and optionally submit a final answer.
+  \end{itemize}
+
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/post-study-configure}
+    \caption{Post-study survey configure interface.}
+    \label{fig:post-study-configure}
+\end{figure}
+
+\section{Study Protocol Draft}
+\label{sec:study-protocil-draft}
+\section*{Study Context}
+You are the designer of a shopping website and have just completed the implementation of a new ``left filter panel'' on the search results page.
+
+\section*{Draft Study Protocol}
+The goal of this study is to evaluate the usability and effectiveness of the left filter panel in supporting users' search and purchase tasks. 
+
+\subsection*{Study Procedure}
+Participants are asked to:
+\begin{enumerate}
+    \item Finish the participant task on the shopping website
+    \item Finish a survey questionnaire
+    \item Finish a post-study interview conducted by you
+\end{enumerate}
+
+\subsection*{Measurements}
+\begin{itemize}
+    \item Click count: total number of clicks made by the user
+    \item Filter click count: total number of clicks on the filters
+    \item Step count: total number of steps taken to complete the task
+\end{itemize}
+
+\subsection*{Participant Task}
+Buy the highest rated product from the meat substitute category within a budget between 100 and 200. You don't need to finish the purchase, just go to the checkout page.
+
+\subsection*{Participants}
+\begin{itemize}
+    \item Total: 20 participants
+    \item Age range: 18--55 
+    \item Gender: Male, Female, Non-binary (1:1:1)
+    \item Online Shopping Frequency: evenly distributed across three frequency groups (1:1:1)
+    \begin{itemize}
+        \item A few times per year
+        \item A few times per month
+        \item A few times per week
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Post-Study Survey Questions}
+\textbf{Usability (1 = Strongly disagree, 5 = Strongly agree):}
+\begin{enumerate}
+    \item I think that I would like to use this system frequently.
+    \item I found the system unnecessarily complex.
+    \item I thought the system was easy to use.
+    \item I think that I would need the support of a technical person to be able to use this system.
+    \item I found the various functions in this system were well integrated.
+    \item I thought there was too much inconsistency in this system.
+    \item I would imagine that most people would learn to use this system very quickly.
+    \item I found the system very cumbersome to use.
+    \item I felt very confident using the system.
+    \item I needed to learn a lot of things before I could get going with this system.
+\end{enumerate}
+
+To what extent do you agree that the left-side filter function helps you narrow your search and find your desired product? (1 = Strongly disagree, 5 = Strongly agree)
+
+Please explain your answer. What aspects of the filter function were helpful or unhelpful in your experience?
+
+\subsection*{Interview Questions}
+\begin{enumerate}
+    \item When did you decide to use the filters, and when did you not? What influenced those choices?
+    \item What do you think is the main benefit of the new filter functionality?
+    \item What challenges or downsides did you encounter when using the filters?
+\end{enumerate}
+
+
+\section{Prompt}
+\subsection{Persona Generation}
+\label{sec:prompt-persona}
+\begin{minted}[breaklines, breaksymbol={},breakanywhere]{markdown}
+You are a helpful assistant that generates diverse personas.
+Examples: <EXAMPLE PERSONA>
+
+Generate a persona using the above examples. The persona should be different from previous personas to ensure diversity.
+The persona should:
+- have the [DEMOGRAPHIC]
+Provide the persona in the same format as the examples.
+Only output the persona, no other text.
+\end{minted}
+
+
+
+% \begin{table}[t]
+%     \centering
+%     \caption{Participant information, including age, gender, years of experience with UX research (YoE) and self-reported familiarity with usability testing (rated on a 5-point scale).}
+% \begin{booktabs}{
+%   colspec = {cccc},
+%   row{1} = {font=\bfseries}
+% }
+% \toprule
+% PID & Gender & YoE & {UX \\ Experience} \\
+% \midrule
+% P1  & Female & 5+   & 5 \\
+% P2  & Male   & 1--2 & 3 \\
+% P3  & Female & 5+   & 5 \\
+% P4  & Male   & 2--3 & 3 \\
+% P5  & Male   & 1--2 & 3 \\
+% P6  & Female & 0--1 & 3 \\
+% P7  & Female & 5+   & 5 \\
+% P8  & Female & 3--4 & 4 \\
+% P9  & Male   & 5+   & 4 \\
+% P10 & Female & 4--5 & 5 \\
+% P11 & Female & 1--2 & 3 \\
+% P12 & Female & 1--2 & 3 \\
+% P13 & Male   & 3--4 & 4 \\
+% P14 & Female & 4--5 & 5 \\
+% P15 & Female & 1--2 & 3 \\
+% P16 & Female & 3--4 & 5 \\
+% \bottomrule
+% \end{booktabs}
+%     % \caption{Participant Information. }
+%     \label{tab:demographics}
+% \end{table}
+
+% \begin{table}[h]
+% \centering
+% \caption{Post-study survey responses on system usability, helpfulness, and trust, satisfaction with revised study design and whether LLM can replace human participant.}
+% \label{tab:survey_results}
+% \begin{booktabs}{
+% colspec={cccccc},
+% row{1}={font=\bfseries},
+% cells={c,m}
+% }
+% \toprule
+% PID & ``Easy to Use'' & ``Helpful'' & ``Trust'' & {``Satisfied with \\ Study Design''} & {``LLM Can \\ Replace Humans''} \\
+% \midrule
+% P1  & 1 & 2 & 1  & -1 & -1 \\
+% P2  & 2 & 2 & 1  &  1 & -1 \\
+% P3  & 1 & 1 & 1  &  1 &  0 \\
+% P4  & 1 & 1 & 0  &  0 & -2 \\
+% P5  & 1 & 1 & 0  &  1 & -1 \\
+% P6  & 2 & 0 & 0  &  1 & -1 \\
+% P7  & 2 & 2 & 1  &  2 & -1 \\
+% P8  & 2 & 1 & 0  &  0 & -2 \\
+% P9  & 1 & 1 & 0  &  0 &  1 \\
+% P10 & 2 & 2 & 2  &  1 &  1 \\
+% P11 & 1 & 2 & 1  &  1 & -1 \\
+% P12 & 2 & 0 & 0  &  2 & -1 \\
+% P13 & 2 & 2 & 2  &  2 &  2 \\
+% P14 & 2 & 1 & -1 &  2 & -1 \\
+% P15	& 2	& 2	& 1	& 1	& 0 \\
+% P16	& 2	& 2	& 1	& 2	& 1 \\
+% \midrule
+% Average	& 1.63	& 1.38	& 0.63& 	1.00& 	-0.44 \\
+% SD	& 0.50& 	0.72& 	0.81& 	0.89& 	1.15 \\
+% \bottomrule
+% \end{booktabs}
+% \end{table}
+
+\subsection{Perceive Module}
+\inputminted[breaklines, breaksymbol={},breakanywhere]{markdown}{prompts/perceive.txt}
+\subsection{Planning Module}
+\inputminted[breaklines, breaksymbol={},breakanywhere]{markdown}{prompts/planning.txt}
+\subsection{Action Module}
+\inputminted[breaklines, breaksymbol={},breakanywhere]{markdown}{prompts/action.txt}
+\subsection{Reflection Module}
+\inputminted[breaklines, breaksymbol={},breakanywhere]{markdown}{prompts/reflect.txt}
+\subsection{Wonder Module}
+\inputminted[breaklines, breaksymbol={},breakanywhere]{markdown}{prompts/wonder.txt}
+\subsection{Memory Importance}
+\inputminted[breaklines, breaksymbol={},breakanywhere]{markdown}{prompts/memory_importance.txt}
+\subsection{Post-study Survey}
+\inputminted[breaklines, breaksymbol={},breakanywhere]{markdown}{prompts/survey.txt}
+
+\section{Example Data}
+\label{sec:example-data}
+
+\begin{table}[t]
+\centering
+\caption{Agent Behavior Data}
+\label{tab:agent_behavior}
+\begin{booktabs}{
+colspec={ccccccc}
+}
+\toprule
+Agent ID & Gender & Shopping Freq. & Total Actions & Filter Clicks & SUS Score & Filter Satisfaction \\
+\midrule
+1 & Male & Monthly & 18 & 7 & 45.0 & 2 \\
+2 & Non-Binary & Monthly & 19 & 2 & 62.5 & 5 \\
+3 & Female & Monthly & 8 & 2 & 75.0 & 5 \\
+4 & Non-Binary & Weekly & 7 & 2 & 75.0 & 5 \\
+5 & Non-Binary & Monthly & 8 & 2 & 75.0 & 5 \\
+6 & Female & Monthly & 9 & 0 & 70.0 & 3 \\
+7 & Female & Weekly & 16 & 2 & 72.5 & 5 \\
+8 & Male & Yearly & 18 & 1 & 35.0 & 4 \\
+9 & Male & Weekly & 21 & 0 & 42.5 & 3 \\
+10 & Non-Binary & Weekly & 20 & 11 & 72.5 & 4 \\
+11 & Female & Monthly & 11 & 0 & 75.0 & 3 \\
+12 & Female & Yearly & 27 & 0 & 35.0 & 2 \\
+13 & Non-Binary & Monthly & 14 & 0 & 70.0 & 3 \\
+14 & Non-Binary & Monthly & 15 & 1 & 32.5 & 4 \\
+15 & Female & Weekly & 16 & 0 & 50.0 & 3 \\
+16 & Non-Binary & Monthly & 14 & 2 & 47.5 & 4 \\
+17 & Male & Yearly & 13 & 2 & 52.5 & 4 \\
+18 & Male & Monthly & 7 & 0 & 75.0 & 3 \\
+19 & Non-Binary & Weekly & 13 & 5 & 35.0 & 4 \\
+20 & Male & Monthly & 12 & 1 & 77.5 & 5 \\
+\bottomrule
+\end{booktabs}
+\end{table}
+
+\subsection{Persona}
+\label{sec:example-persona}
+\begin{minted}[breaklines, breaksymbol={},breakanywhere]{text}
+Persona: Michael
+
+Background:
+Michael is a mid-career professional working as a marketing manager at a technology startup in San Francisco. He is passionate about using data-driven strategies to drive growth and innovation for the company.
+
+Demographics:
+Age: 42
+Gender: Male
+Education: Bachelor's degree in Business Administration
+Profession: Marketing Manager
+Income: $75,000
+
+Financial Situation:
+Michael has a comfortable income that allows him to maintain a decent standard of living in the expensive San Francisco Bay Area. He is financially responsible, saving a portion of his earnings for retirement and emergencies, while also enjoying occasional leisure activities and travel.
+
+Shopping Habits:
+Michael prefers to shop online for convenience, but he also enjoys the occasional trip to the mall or specialty stores to browse for new products. He tends to research items thoroughly before making a purchase, looking for quality, functionality, and value. Michael values efficiency and is not influenced by trends or impulse buys.
+
+Professional Life:
+As a marketing manager, Michael is responsible for developing and implementing marketing strategies to promote the startup's products and services. He collaborates closely with the product, sales, and design teams to ensure a cohesive brand experience. Michael is always looking for ways to optimize marketing campaigns and stay ahead of industry trends.
+
+Personal Style:
+Michael has a casual, yet professional style. He often wears button-down shirts, chinos, and leather shoes to the office. On weekends, he enjoys wearing comfortable, sporty attire for outdoor activities like hiking or cycling. Michael tends to gravitate towards neutral colors and classic, versatile pieces that can be mixed and matched.
+
+Intent:
+buy a large, inflatable spider decoration for halloween
+
+\end{minted}
+\subsection{Action Trace}
+\begin{minted}[breaklines, breaksymbol={},breakanywhere]{json}
+{"action": "click", "target": "grocery_gourmet_food", "description": "Clicking on 'Grocery & Gourmet Food' category from the navigation menu"}
+{"action": "click", "target": "meat_substitutes_79_", "description": "Clicking on 'Meat Substitutes' category from the sidebar to filter products"}
+{"action": "click", "target": "100_00_199_99_4_item", "description": "Clicking on the price filter for products between $100.00-$199.99 to narrow down to items within my budget range"}
+{"action": "click", "target": "add_to_cart2", "description": "Adding 'Beyond Meat Beef Beefy Crumble' to cart as it's the highest rated product within budget"}
+{"action": "click", "target": "my_cart_1_1_items", "description": "Clicking on 'My Cart' to proceed to checkout page"}
+{"action": "click", "target": "proceed_to_checkout", "description": "Clicking on 'Proceed to Checkout' button to go to the checkout page"}
+{"action": "terminate", "description": "Intent completed - successfully reached checkout page with highest rated meat substitute product within budget"}
+\end{minted}
+
+
+\end{document}
+\endinput

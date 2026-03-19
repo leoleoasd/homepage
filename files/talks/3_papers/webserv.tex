@@ -1,0 +1,664 @@
+\documentclass{article}
+\usepackage[review]{acl}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+\usepackage{subcaption}
+% if you need to pass options to natbib, use, e.g.:
+\PassOptionsToPackage{numbers, compress}{natbib}
+
+\definecolor{ForestGreen}{RGB}{34,139,34}
+\newcommand{\highlightRelevantValue}[1]{%
+  \ifdim #1pt > 0pt
+    {\color{ForestGreen}{#1\%}}%
+  \else
+    {\color{red}{#1\%}}%
+  \fi
+}
+% before loading neurips_2025
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2025}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2025}
+% 3. "dandb" option is used for the Datasets & Benchmarks Track
+ % \usepackage[dandb]{neurips_2025}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2025}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2025}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2025}
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2025}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2025}
+% 3. Datasets & Benchmarks Track
+ % \usepackage[dandb, final]{neurips_2025}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2025}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2025}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2025}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2025}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2025}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{xspace}
+\usepackage{minted}
+\usepackage{soul}
+\usepackage{tabularray}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+
+% \bibliographystyle{plainnat} % NeurIPS-compatible numeric style
+
+\setlist{nosep}
+
+\UseTblrLibrary{booktabs}
+\newmintinline[code]{text}{}
+\DeclareRobustCommand{\note}[1]{{\sethlcolor{orange!30!white}\hl{#1}}}
+\DeclareRobustCommand{\todo}[1]{{\sethlcolor{blue!30!white}\hl{#1}}}
+\DeclareRobustCommand{\jing}[1]{{\sethlcolor{green!30!white}\hl{#1}}}
+\DeclareRobustCommand{\yan}[1]{{\sethlcolor{red!30!white}\hl{#1}}}
+\DeclareRobustCommand{\tianqi}[1]{{\sethlcolor{brown!30!white}\hl{#1}}}
+
+\DeclareRobustCommand{\projectname}{\textsc{WebServ}\xspace}
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+% \title{\projectname: Full-stack Unified Scalable Environment for Web Agent Reinforcement Learning}
+% \title{
+% \projectname: A Browser-Server Environment for Efficient Training of Reinforcement Learning-based Web Agents at Scale
+% }
+
+\title{
+\projectname: A Full-Stack and RL-Ready Web Environment for Training Web Agents at Scale 
+}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+Training and evaluation of reinforcement learning (RL) web agents require environments to be both effective and RL-ready. However, current environments often suffer from three issues: observations are noisy and excessively long, action execution is unstable under modern single-page applications (SPAs), and server launching are too slow or too costly for large-scale parallel rollouts.
+We introduce \projectname, a full-stack and RL-ready web environment for scalable RL web-agent training and evaluation. On the browser side, \projectname provides a compact, site-agnostic \textbf{observation and action interface} derived automatically from the web page HTML, and it preserves human-aligned interactivity cues. \projectname also includes a robust \textbf{action execution backend} that synchronizes state transitions using network-aware waiting to better support modern SPAs. On the server side, \projectname uses \textbf{Incus containers} with block-level copy-on-write to support fast launching and cloning of full web applications.
+% an environment that provides: 1) human-aligned compact browser I/O interface; 2) deterministic, robust action execution and 3) scalable isolated server management.
+We evaluate \projectname on shopping, CMS and GitLab tasks in WebArena.
+\projectname achieves state-of-the-art single-prompt agent performance. Also, it reduces container launch latency by approximately \textbf{$\sim$5$\times$} and reduces persistent storage by approximately \textbf{$\sim$240$\times$}. It supports launching and running \textbf{200+} concurrent containers within a few minutes (instead of hours) on a single host.
+% Our results demonstrate that \projectname's redesigned browser I/O interface substantially improves agent performance, achieving \textbf{state-of-the-art single-prompt results} while reducing container launch latency by \textbf{$\sim$5$\times$} and storage requirements by \textbf{$\sim$240$\times$}. These efficiency gains are achieved with a comparable memory footprint, enabling over \textbf{200} concurrent containers on a single host.
+\end{abstract}
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{figures/teaser.png}
+    \caption{System architecture of \projectname. (a) existing web environments rely on a shared server container that leads to cross agent interference; (b) \projectname creates lightweight per agent containers to ensure isolation and scalable rollouts for RL training.}
+    \label{fig:teaser}
+    % \vspace{-1em} % adjust bottom spacing
+\end{figure}
+
+
+\section{Introduction}
+
+% Web agents are increasingly studied and power applications in shopping, booking, information retrieval, and form filling; however, progress in RL is limited by the lack of a reproducible full-stack environment that couples realistic client interaction with controllable server state.
+
+% Web agents perceive the browser environment and execute actions on web pages in a human-like manner \cite{}.
+
+
+Web Agents have become a promising approach for solving complex, multi-step tasks on real user interfaces \cite{weiWebAgentR1TrainingWeb2025,gurRealWorldWebAgentPlanning2023}.
+These agents must perceive rich web content, choose actions that interact with dynamic pages, and recover from failures over long horizons. 
+These agents are increasingly studied for applications in automated UI/UX testing \cite{luUXAgentLLMAgentBased2025}, question answering \cite{nakanoWebGPTBrowserassistedQuestionanswering2022}, and privacy-preserving browsing \cite{chenEmpathyBasedSandboxApproach2024}.
+Prior work has largely centered on prompting \cite{sodhiStePStackedLLM2024,maLASERLLMAgent2024} and fine-tuning \cite{luPromptingNotAll2025}, while recent studies, inspired by advances in reasoning-enabled agents in other domains \cite{deepseek-aiDeepSeekR1IncentivizingReasoning2025}, have begun to explore training Web Agents with Reinforcement Learning (RL) \cite{weiWebAgentR1TrainingWeb2025,qiWebRLTrainingLLM2025}. 
+% However, progress in RL is constrained by the lack of a reproducible full-stack environment that couples realistic and robust client-side interaction with isolated server-side state.
+Despite this growing interest, progress in RL-based Web Agents remains limited by the absence of a full-stack, efficient and effective web environment.
+
+Consequently, researchers have argued that existing web agent benchmarks and environments are not RL-ready \cite{chenScalingAgentLearning2025}. 
+First, some systems are not generalizable to live websites because they require manual, per-site observation engineering or they depend on target-site features such as accessibility trees, which are often missing or inconsistent across websites \cite{zhouWebArenaRealisticWeb2024,yaoWebShopScalableRealWorld2022}.
+Second, some systems make the interface unnecessarily complex: they pass raw HTML as observations and allow arbitrary Python code for the action space, which inflates input length and makes action selection difficult (the model also needs programming ability beyond web understanding) \cite{gurRealWorldWebAgentPlanning2023}. In addition, some systems often wait for the page to fully load or wait for a specific period of time before making the next observation, which may fail under modern Single-Page Applications (SPAs).
+Third, many setups do not expose simple visual hints \cite{zhouWebArenaRealisticWeb2024,lutzWILBURAdaptiveInContext2024} that people use to judge interactivity (for example, pointer cursor on links and buttons, and text cursor on inputs).
+Without these cues, models often click non-interactive elements, overlook hover-only controls, and spend extra steps recovering from errors \cite{luPromptingNotAll2025}.
+Most importantly, existing environments such as WebArena \cite{zhouWebArenaRealisticWeb2024} use Docker containers for server-side reproducibility; however, these containers are resource-intensive (launching a single shopping environment container requires approximately 6\,GB of storage and about one minute to start \cite{zhouWebArenaRealisticWeb2024}), which \textbf{limits large-scale parallel evaluation and massive RL rollouts}.
+Taken together, these limitations impede progress toward building generalizable and robust Web Agents.
+
+
+% Existing Web-RL approaches either fail to generate on-policy trajectories \cite{qiWebRLTrainingLLM2025} or uses synthetic environments for data generation \cite{chenScalingAgentLearning2025}. A notable recent work, WebAgent-R1 \cite{weiWebAgentR1TrainingWeb2025}, employs a shared environment across roll-outs, which can lead to unstable and unrobust training. For example, one agent may add an item to the shopping cart, while another agent may subsequently observe an unrelated item unexpectedly appearing in the cart.
+
+% Existing web environments are not RL-ready for four common reasons.
+
+% To tackle these limitations and support future research on Web Agents, we propose \projectname for scalable and efficient evaluation and RL (Fig. \ref{fig:teaser}).
+% First, we design and implement a compact browser I/O interface via a fully automated parser that includes a fully automated parser which converts raw web pages into a compact browser I/O interface by removing invisible and non-essential nodes, thereby minimizing context length. Key visual cues available to human users, such as cursor styles indicating clickability, are preserved and exposed to the agent. Each interactive element is assigned a unique, semantically meaningful identifier that the agent uses to reference targets in the action space.
+% Second, \projectname offers robust action execution that works with modern single-page applications by intercepting network events in the page JavaScript runtime, and returning the next observation only after the page has settled.
+% Finally, to enable efficient large-scale experimentation, \projectname includes a server manager that can use any existing Docker images as web servers and elastically launch, clone, and reset isolated containers with sub-second startup and minimal resource overhead.
+We introduce \projectname, a full-stack and RL-ready web environment for scalable RL web-agent training and evaluation (Fig. \ref{fig:teaser}).
+\projectname addresses the above issues through coordinated improvements across the browser and server stack. On the browser side, it provides a compact, site-agnostic observation and action interface that is derived automatically from the web page. The interface preserves human-aligned interactivity cues so that agents can identify actionable elements. \projectname also provides a robust action execution backend that synchronizes state transitions using network-aware waiting. This design improves reliability for SPA interactions and reduces variability across repeated runs. On the web  server side, \projectname uses Incus containers with block-level copy-on-write. This mechanism supports fast launching, cloning, and rollback of any existing docker-based web applications. It makes it practical to run hundreds of isolated client–server rollouts on a single host.
+
+To measure the effectiveness of our browser I/O interface design, we evaluate prompting-based agents on WebArena-Lite, where \projectname paired with Claude~4.5 achieves a \textbf{40.0\%} success rate on the Shopping task, \textbf{62.9\%} on the CMS task, and \textbf{50.0\%} on the GitLab task, establishing a new state-of-the-art among single-prompt agents. 
+With \projectname, GPT-4o out-performed itself on vanilla WebArena, which further proves the effectiveness of our environment design.
+Furthermore, to demonstrate scalability and resource efficiency, we show that \projectname reduces launch latency by \textbf{$\sim$5$\times$} and persistent storage by \textbf{$\sim$240$\times$} while maintaining a comparable memory footprint, enabling \textbf{200+} concurrent containers on a single host.
+
+
+To summarize, our contributions are as follows:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Efficient and effective browser I/O interface} A site-agnostic interface that shortens the context by removing invisible or noisy elements and exposes a small, well defined set of actions with simple parameters, while remaining generalizability to arbitrary real websites or dockerized web applications.
+\item \textbf{Robust action execution.} A robust action executor that locates the target element, performs the action and return the next observation only after the page has finished updating (for example, after network requests finish). It uses limited retries and clear error messages, and its generalizes across sites.
+\item \textbf{Scalable environment for RL.} An \textit{Incus} based manager that can start, clone, and reset a paired browser and web server quickly (sub-second startup), so many runs can proceed in parallel with low resource use. We integrate our environment as tools for VeRL\footnote{We will release our code upon paper acceptance} for out-of-the-box usage.
+\end{itemize}
+
+
+\section{Related Works}
+
+% \todo{rewrite}
+
+\subsection{Web Environment Design}
+A key challenge in designing browser-based environments is balancing between the complexity of the observation space and the flexibility of the action space. 
+
+For instance, WebShop \cite{yaoWebShopScalableRealWorld2022} introduces a simulated shopping environment where the observation space is task-specific. It consists of the current page (homepage, search results page, or product detail page) along with structured information such as the list of products. 
+The action space is similarly constrained to a set of task-specific operations (e.g., search, purchase). 
+While this design keeps the action space minimal yet semantically meaningful, it suffers from two major limitations: 
+(1) the model requires a long and complex prompt to encode both the observation and action space definitions, and 
+(2) The environment lacks generalizability across tasks and domains.
+
+In contrast, WebAgent \cite{gurRealWorldWebAgentPlanning2023} represents the observation space using raw HTML and defines the action space as Python code that directly operates the browser. 
+This design removes the need for manually specifying the action space and allows the model to leverage its inherent understanding of HTML elements (for example, recognizing an input field \code{<input type="text"/>} without requiring explicit prompt engineering). 
+However, this approach introduces new challenges: the model must generate arbitrary code as actions, which requires not only familiarity with external libraries (such as Playwright) but also the ability to produce syntactically correct and semantically valid code.
+
+
+To strike a middle ground between raw HTML and task-specific environments, WebArena \cite{zhouWebArenaRealisticWeb2024} introduces an accessibility-tree representation that extracts only the information necessary for completing web tasks, thereby reducing the noise of raw HTML. 
+It also defines a custom action space consisting of operations such as clicks and inputs. 
+This approach maintains a compact context while avoiding an overly complex action space. 
+However, it still requires website-specific adaptations (e.g., accessibility support), limiting its generalizability across domains. 
+
+From an implementation perspective, many existing frameworks re-parse the webpage after a page-load event following each action. 
+This assumption often fails in real-world websites, where only parts of the page are refreshed, leading to incomplete or outdated observations. 
+In addition, human users rely heavily on visual cues while browsing the web, such as cursor styles, to infer interactivity. 
+For example, humans can easily distinguish between selectable text (indicated by ``\raisebox{-0.2ex}{\includegraphics[height=1.4ex]{figures/text001.png}}'') and clickable elements (indicated by ``\raisebox{-0.2ex}{\includegraphics[height=1.4ex]{figures/pointer001.png}}''), whereas agents frequently attempt to click plain text or other non-interactive elements. 
+Such discrepancies highlight the need for web environments that: 
+(1) balance the complexity of context and action spaces, 
+(2) ensure robust action execution on dynamic, real-world websites with complex network conditions, and 
+(3) provide essential visual cues to better align agent perception with human browsing behavior.
+
+
+
+\subsection{Web Agents}
+Recent advances in LLM-based Web Agents have significantly enhanced the ability of LLMs to assist with web-based tasks.
+Early work like WebGPT~\cite{nakanoWebGPTBrowserassistedQuestionanswering2022} enabled GPT models to interact with search engines, significantly improving question-answering performance. Subsequent systems, including WebVoyager~\cite{heWebVoyagerBuildingEndtoEnd2024}, LASER~\cite{maLASERLLMAgent2024}, and WebAgent~\cite{gurRealWorldWebAgentPlanning2023}, extended LLM capabilities to multimodal interaction, complex state space navigation, and long-horizon planning. Claude's Computer-use API\footnote{\url{https://www.anthropic.com/news/3-5-models-and-computer-use}} further demonstrated precise, general-purpose control over user interfaces beyond web browsers.
+
+% Recently, researchers have also begun to explore fine-tuning and reinforcement learning (RL) approaches for developing Web Agents. 
+% \citet{luPromptingNotAll2025} propose fine-tuning LLM-based Web Agents on large-scale online shopping behavioral data to improve their ability to simulate human users. 
+% Building on recent progress in enhancing reasoning capabilities of LLMs through RL, WebAgent-R1 \cite{weiWebAgentR1TrainingWeb2025} introduces an online training paradigm for Web Agents with reinforcement learning. 
+% However, in their setup, multiple agents interact with a shared web server instance during the rollout phase, which can lead to unstable training. 
+% For example, one agent may add an item to the shared shopping cart, while another agent unexpectedly observes a product appearing in the cart, resulting in inconsistent training signals.
+% The RL community has highlighted the need for scalable and efficient solutions to manage server containers for large-scale RL training.
+
+\subsection{RL Training of Web Agents}
+Building on recent progress in improving the reasoning capabilities of LLMs through RL~\cite{deepseek-aiDeepSeekR1IncentivizingReasoning2025}, researchers have started to explore RL in web-based environments.
+Web-RL~\cite{qiWebRLTrainingLLM2025} proposes a self-evolving curriculum learning framework in which agents generate new tasks from previous rollout trajectories. However, due to the low efficiency of on-policy algorithms, it relies on pre-generated off-policy rollouts.
+WebAgent-R1~\cite{weiWebAgentR1TrainingWeb2025} introduces an online RL training paradigm for Web Agents, but its rollout setup allows multiple agents to interact with a shared web server instance, which can lead to interference and unstable training.
+More recently, \citet{chenScalingAgentLearning2025} argue that web tasks are not RL Ready and propose an environment synthesis approach to generate RL training data at scale.
+Together, these works highlight a growing recognition in the RL community of the need for scalable and efficient environment to manage server containers and support large-scale web agent training.
+
+
+
+\section{\projectname}
+
+\subsection{System Overview}
+To address challenges in existing Web Environments, we propose \projectname, a full-stack framework that integrates: 1) a compact, site-agnostic \textbf{observation and action interface} derived automatically from the DOM, and it preserves human-aligned interactivity cues; 2) a robust \textbf{action execution backend} that synchronizes state transitions using network-aware quiescence for reliable SPA interactions; and 3) a Incus-based container manager that supports fast launching, cloning, and rollback of full web applications.
+
+
+\subsection{Environment}
+
+
+\subsubsection{Observation Space}
+A central challenge identified in prior work is that raw HTML observations overwhelm models with excessive and noisy content, while handcrafted task-specific abstractions (for example, WebShop) lack generality across domains.
+
+To address these challenges, \projectname employs a DOM parser that automatically reduces the page to the elements that are visible and meaningful to human users. Elements that cannot be perceived by humans, such as \code{<script>}, \code{<style>} as well as nodes hidden through CSS are removed. To further reduce redundancy, nested non-semantic containers such as chains of \code{<div>} are flattened, and empty tags are pruned unless they correspond to interactive controls like \code{<input>}.  
+
+\paragraph{Filtering.} The parser excludes entire classes of tags that are not directly useful for task execution, including \code{<script>}, \code{<style>}, etc. In addition, elements that are invisible due to CSS properties, that render with zero width and height, or that are completely off-screen and non-scrollable are removed. Only a restricted set of safe attributes is preserved, consisting of a whitelist of HTML attributes (e.g., \code{id}, \code{name}, ...)
+
+\paragraph{Flattening and pruning.} To reduce structural redundancy, the parser collapses trivial nesting of non-semantic containers, such as chains of \code{<div>} wrappers, and prunes empty elements. Exceptions are made for controls that may legitimately appear empty (e.g., \code{<input>}, \code{<select>}). Inline text nodes containing non-whitespace characters are preserved in order to retain meaningful labels.
+
+\paragraph{Interactivity detection.} The parser heuristically determines whether elements are interactive. Nodes are marked as clickable if they are native controls (\code{<button>}), anchors with \code{href}, elements with explicit \code{onclick} handlers, or elements with ARIA roles (\code{button}, \code{link}). In addition, elements with computed cursor style \code{pointer} are considered clickable. Elements that are disabled are excluded. To identify hover-sensitive targets, we monkey-patch \code{addEventListener} such that whenever a node registers a hover event listener, the element is annotated with \code{data-maybe-hoverable=true}. 
+
+\paragraph{Semantic identifiers.} Each interactive element is assigned a stable, human-readable semantic identifier. Base names are derived from visible text, placeholders, or tag names, normalized to short identifiers. Identifiers are scoped hierarchically by their parent elements' names, and uniqueness is enforced globally by appending numeric suffixes as needed. 
+
+\paragraph{Javascript state capture.} The parser augments the stripped DOM with fine-grained state information. For text inputs, textareas, and contenteditable regions, it records the current value, whether the control can be edited, numeric values (for \code{type=number}), text selection ranges, and focus state. For select elements, it records the current value, the selected index, whether multiple selection is enabled, and the set of selected options. Each option is cloned with its text and value, marked as selected when appropriate, and assigned its own semantic identifier.
+
+\paragraph{Output schema.} The final observation is returned as a JSON object with five components: (1) a stripped and annotated HTML snapshot, (2) a list of clickable elements identified by semantic ID, (3) a list of hoverable elements, (4) a list of input elements with their state (identifier, type, value, editability, focus), and (5) a list of select elements with their selection state and per-option identifiers. This representation removes hidden or redundant markup while retaining the cues that humans rely on for interactivity, yielding a compact, semantically aligned observation space.
+
+\subsubsection{Visual Observation Space}
+Beyond text-only agents, recent work has begun to explore Visual Language Models (VLMs \cite{yinSurveyMultimodalLarge2024}) in web-based environments \cite{kohVisualWebArenaEvaluatingMultimodal2024}. To support these use cases, \projectname provides a VLM mode in which a screenshot of the currently observed webpage is captured and provided to the model as part of the observation.
+
+
+\subsubsection{Action Space}
+Another challenge is that prior systems define action spaces at extremes: WebAgent relies on arbitrary code generation in Python, which requires library-specific knowledge and produces unstable executions, while WebShop restricts the agent to narrow, task-specific actions that do not generalize beyond shopping.  
+
+We design the action space so that agents can perform the same primitive interactions as human users (click, type, hover, select, navigate, manage tabs). Full action space can be found in Appendix \ref{sec:action-space}. To reduce latency and eliminate unnecessary branching, we explicitly remove \emph{scroll} action (the environment automatically scrolls the target element into view before execution). Targets are referenced by the stable semantic identifiers described in the observation construction (\code{data-semantic-id}), which makes actions robust to minor DOM changes. 
+Before execution, the environment validates that the target remains interactable, scrolls it into view automatically (therefore no explicit scroll action is necessary), performs the operation, and then waits for an idle period before emitting the next observation. 
+After each action, the executor waits for network and UI quiescence (for example, no active requests for a short idle window) before returning the next observation. This design addresses prior challenges of noisy action choices, arbitrary code generation, and nondeterministic post-action states by keeping the action set compact, interpretable, and synchronized with the rendered page.
+
+
+\subsection{Robust Action Execution}
+
+Prior environments typically enforce a fixed waiting time after each action or assume that a new page will trigger a complete reload event, however, static sleep intervals either waste time or fail to capture late-arriving updates, while relying on full page loads is incompatible with modern single-page applications (SPAs) where only parts of the DOM refresh in response to actions. As a result, agents may observe incomplete or inconsistent states, leading to unstable behavior.
+
+To address this issue, \projectname introduces a network-aware synchronization mechanism that hooks into the browser's JavaScript runtime. We intercept both \code{XMLHttpRequest} and \code{fetch} APIs to track active requests and update a global activity counter whenever a request is initiated or completed. This instrumentation enables us to detect fine-grained network activity across the page, regardless of whether the site uses traditional reloads or partial updates.
+
+After each agent action, the environment delays the next observation until it has observed a configurable idle period (e.g., 500\,ms) with no outstanding network requests. This guarantees that dynamically loaded content (such as search results, shopping carts, or dropdowns populated asynchronously) is fully rendered before being exposed to the agent. If the page fails to reach an idle state within a timeout window, the environment returns control with an explicit error state, allowing the agent or training loop to handle the failure deterministically.
+
+By synchronizing observations with actual network quiescence rather than fixed delays or reload events, \projectname provides robust action execution on real-world websites that depend heavily on asynchronous content loading.
+
+\subsection{Scalable and Efficient Web Server Manager}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=1\linewidth]{figures/shared-web-server.png}
+%     \caption{Traditional environment vs.\ \projectname. In traditional setups (top), different agents interact with separate browser instances but share a single web server and database, which can lead to interference across rollouts. In \projectname (bottom), each LLM agent is paired with its own isolated web server instance, ensuring no information is shared between rollouts.}
+%     \label{fig:web-server-state}
+% \end{figure}
+
+
+% \section{Evaluation}
+
+\begin{table*}[t]
+\centering
+\begin{booktabs}{
+  colspec = {X c c c c},
+  width=\linewidth,
+  row{1} = {font=\bfseries},
+  cell{2,7}{1} = {c=5}{bg=black!30!white,font=\bfseries},
+}
+\toprule
+Model and Method & Type & Shopping & CMS & GitLab \\
+\midrule
+Vanilla WebArena \\
+% Qwen2.5-3B \cite{weiWebAgentR1TrainingWeb2025} & Single-Prompt & 4.4 & 5.7 & 13.3 \\
+% Llama3.1-8B \cite{weiWebAgentR1TrainingWeb2025} & Single-Prompt & 8.9 & 5.7 & 10.0 \\
+% Qwen2.5-32B \cite{weiWebAgentR1TrainingWeb2025} & Single-Prompt & 17.8 & 20 & 20.0 \\
+GPT-4o \cite{weiWebAgentR1TrainingWeb2025} & Single-Prompt & 11.1 & 20 & 10.0 \\
+% GPT-4o-Turbo \cite{weiWebAgentR1TrainingWeb2025} & Single-Prompt & 13.3 & 14.3 & 16.7 \\
+OpenAI-o3 \cite{weiWebAgentR1TrainingWeb2025} & Reasoning Model & 33.3 & 45.7 & 46.7 \\
+% Step \cite{sodhiStePStackedLLM2024} & Multi-Prompt & 37.0 & 24.0 & 30.0\\
+% Llama3.1-8B + Behavior Cloning \cite{weiWebAgentR1TrainingWeb2025} & Fine-Tuning & 17.8 & 20 & 6.7 \\
+Llama-3.1-8B \cite{weiWebAgentR1TrainingWeb2025} & Single-Prompt & 8.9 & 5.7 & 10.0 \\
+Llama3.1-8B + WebAgent-R1 \cite{weiWebAgentR1TrainingWeb2025} & Reinforcement Learning & \textbf{44.4} & \textbf{57.1} & \textbf{56.7} \\
+% \midrule
+\projectname \\
+% Qwen-2.5-32B & Single-Prompt  & 17.8 & 20.0 & 20.0 \\
+GPT-4o  & Single-Prompt  & 20.0 & 28.6 & 43.3 \\
+% GPT-4o Mini  & Single-Prompt  & 20.0 & 25.7 & 30.0 \\
+GPT-5  & Single-Prompt & 35.6 & 57.1 & \textbf{53.3} \\
+Claude 3.5 Sonnet  & Single-Prompt  & 26.7 & 31.4 & 36.7 \\
+Claude 3.7 Sonnet  & Single-Prompt  & 31.1 & 37.1 & 50.0 \\
+Claude 4 Sonnet  & Single-Prompt  & \textbf{42.2} & 48.6 & 50.0 \\
+Claude 4.5 Sonnet  & Single-Prompt  & 40.0 & \textbf{62.9} & 50.0 \\
+% DeepSeek R1 & Reasoning Model & 13.3 & 37.1 & 23.3 \\
+\bottomrule
+\end{booktabs}
+% \vspace{2em}
+\caption{Comparison of model accuracy (in \%) across Shopping, CMS and GitLab tasks in WebArena-Lite \cite{qiWebRLTrainingLLM2025}. Single-prompt models, when paired with WebServ, outperform multi-prompt and reasoning-based baselines and achieve performance comparable to, or exceeding, that of RL-trained models.}
+\label{tab:model_results}
+\vspace{2\baselineskip}
+\end{table*}
+
+To enhance reproducibility, recent works adopt containerized web servers. For example, WebArena distributes its environments as Docker images to ensure consistent server-side state. However, directly using Docker to manage server containers in reinforcement learning presents practical challenges. Docker is designed primarily for long-lived services, and its launch speed and resource usage are not optimized for the repeated resets required in RL. For instance, launching a single shopping environment container in WebArena requires several gigabytes of storage and tens of seconds of startup time, making large-scale rollouts infeasible.
+
+To overcome these limitations, we implement a scalable and efficient web server manager based on \emph{Incus}, a modern container runtime that extends Linux Containers (LXC). Incus provides lightweight system containers with advanced filesystem integration, enabling fast cloning and snapshotting. Compared to Docker's layered filesystem, which copies entire modified files to the upper layer upon each launch, Incus leverages modern filesystems (e.g., ZFS, Btrfs) that support block-level copy-on-write. This distinction is crucial for web environments such as WebArena's shopping site, where a single multi-gigabyte file is touched on each reset. With block-level CoW, only the modified blocks are duplicated, dramatically reducing launch latency and storage overhead. This design offers two main benefits: (1) sub-second container startup, which enables high-throughput RL rollouts, and (2) efficient memory caching, which minimizes redundant disk usage across parallel environments.
+
+In addition to performance gains, Incus provides two further advantages. First, it retains compatibility with Docker images through OCI support, allowing existing Docker-based web environments to run unmodified. This ensures comparability with prior implementations while improving runtime efficiency. Second, Incus supports cloning of running containers, which makes it straightforward to checkpoint server state and resume from consistent snapshots. This feature facilitates reproducible experiments and efficient training pipelines, especially in scenarios where environments must be rolled back or branched during RL exploration. Together, these capabilities enable \projectname to scale web environments to reinforcement learning workloads that demand thousands of parallel  rollouts.
+
+
+\subsection{Post-Training Transfer and Human-Centered Inspection}
+
+Although \projectname is designed primarily for scalable training and evaluation, we also consider the downstream transfer of trained agents to real-world browsing contexts. To bridge the gap between controlled environments and deployment settings, we develop human-centered inspection tools that make model behavior transparent and verifiable.
+
+Together, these tools enable trained agents to move beyond offline simulation and be examined, audited, and adapted for practical integration. They also facilitate the collection of additional user feedback and correction signals that can guide further fine-tuning or reinforcement learning updates.
+
+
+
+% \begin{table*}[t]
+% \centering
+% \begin{booktabs}{
+%   colspec = {l c c c},
+%   row{1} = {font=\bfseries},
+% }
+% \toprule
+% Model & Shopping & CMS & GitLab \\
+% \midrule
+% Qwen2.5-3B & 4.4 & 5.7 & 13.3 \\
+% Llama3.1-8B & 8.9 & 5.7 & 10.0 \\
+% Qwen2.5-32B & 17.8 & 20 & 20.0 \\
+% GPT-4o & 11.1 & 20 & 10.0 \\
+% GPT-4o-mini & 13.3 & 14.3 & 16.7 \\
+% \midrule
+% GPT-4o-mini & 	13.3 & 20.0 & 26.7 \\
+% Claude 3.5 sonnet & 24.4 & 22.9 & 30.0 \\
+% Claude 3.7 sonnet & 37.7 & 28.5 & 40.0 \\
+% Claude 4 sonnet & 28.9 & 28.6 & 33.3 \\
+% Claude 4.5 sonnet & \textbf{46.7} & \textbf{34.3} & \textbf{40.0} \\
+% DeepSeek-R1 & 15.5 & 25.7 & 23.3 \\
+% Claude 4 VLM & 26.7 & 25.7 & 30.0 \\
+% Claude 4.5 VLM & 31.1 & 34.3 & 36.7 \\
+% \bottomrule
+% \end{booktabs}
+% \vspace{2em}
+% \caption{Comparison of models across Shopping and CMS tasks in WebArena-Lite.}
+% \label{tab:model_results}
+% \vspace{3\baselineskip}
+% \end{table*}
+
+
+\section{Evaluation}
+
+\begin{table}[t]
+\centering
+\begin{booktabs}{
+  colspec = {l c c},
+  row{1} = {font=\bfseries}
+}
+\toprule
+Metric & \projectname (Incus) & Naïve Docker \\
+\midrule
+Launch speed & 1.781\,s & 8.963\,s \\
+Storage & 28.01\,MiB & 6.78\,GiB \\
+Memory & 1.74\,GiB & 1.63\,GiB \\
+\bottomrule
+\end{booktabs}
+\vspace{2em}
+\caption{Comparison of system efficiency between \projectname and Docker.}
+\label{tab:system_speed}
+\end{table}
+
+\subsection{Performance Benchmark on WebArena}
+
+We evaluate the robustness of our browser environment on the Shopping, CMS, and GitLab tasks from WebArena. WebArena is a self-hostable, realistic web environment constructed from widely used open-source website frameworks. Each environment is packaged as a Docker image to ensure reproducibility. In WebArena \cite{zhouWebArenaRealisticWeb2024}, each task includes a user intent written by a human annotator, followed by rule-based evaluation rubrics provided by another group of annotators. WebArena-Lite then introduces an additional verification step, where a separate group of researchers manually review a subset of the original tasks. To compare our results with prior work \cite{qiWebRLTrainingLLM2025,weiWebAgentR1TrainingWeb2025}, we follow the same evaluation protocol and use the 110 tasks included in WebArena-Lite.
+Table~\ref{tab:model_results} summarizes performance across prompting-based agents, reasoning models, and reinforcement learning methods. While RL and SFT-based agents such as WebAgent-R1 achieve strong results, they typically require multiple prompts or specialized training. In contrast, \projectname achieves competitive performance under a strict \emph{single prompt} setting, significantly outperforming other single-prompt and multi-prompt baselines. This result demonstrates that the clean and semantically enriched context provided by our environment enables LLMs to solve complex tasks more effectively without relying on multi round reasoning or task specific fine tuning.
+
+In addition, when comparing the performance of the same models on \projectname and on vanilla WebArena, \projectname consistently yields significant performance improvements on GPT-4o, which further demonstrates that the observation and action spaces design of \projectname can substantially boost agent performance across different models 
+
+
+\begin{table*}[t]
+\centering
+\begin{booktabs}{
+colspec={Xccccccc},
+column{1}={l},
+cell{3,5,7,9,11,13,15,17,19}{1}={r,font=\itshape},
+row{1}={font=\bfseries,c},
+width=\linewidth
+}
+\toprule
+Model & Shopping & CMS & GitLab & $\Delta$ Shopping (\%) & $\Delta$ CMS (\%) & $\Delta$ GitLab (\%) \\
+\midrule
+GPT-4o & 20.0 & 28.6 & 43.3 &  &  &  \\
+w/o Visual Cue & 13.3 & 8.6 & 23.3 & \highlightRelevantValue{-33.3} & \highlightRelevantValue{-70.0} & \highlightRelevantValue{-46.2} \\
+% GPT-4o Mini & 20.0 & 25.7 & 30.0 &  &  &  \\
+% w/o Visual Cue & 8.9 & 8.6 & 10.0 & \highlightRelevantValue{-55.6} & \highlightRelevantValue{-66.7} & \highlightRelevantValue{-66.7} \\
+GPT-5 & 35.6 & 57.1 & 53.3 &  &  &  \\
+w/o Visual Cue & 28.9 & 37.1 & 40.0 & \highlightRelevantValue{-18.8} & \highlightRelevantValue{-35.0} & \highlightRelevantValue{-25.0} \\
+Claude 3.5 Sonnet & 26.7 & 31.4 & 36.7 &  &  &  \\
+w/o Visual Cue & 11.1 & 17.1 & 6.7 & \highlightRelevantValue{-58.3} & \highlightRelevantValue{-45.5} & \highlightRelevantValue{-81.8} \\
+Claude 3.7 Sonnet & 31.1 & 37.1 & 50.0 &  &  &  \\
+w/o Visual Cue & 15.6 & 17.1 & 16.7 & \highlightRelevantValue{-50.0} & \highlightRelevantValue{-53.8} & \highlightRelevantValue{-66.7} \\
+Claude 4 Sonnet & 42.2 & 48.6 & 50.0 &  &  &  \\
+w/o Visual Cue & 31.1 & 34.3 & 33.3 & \highlightRelevantValue{-26.3} & \highlightRelevantValue{-29.4} & \highlightRelevantValue{-33.3} \\
+Claude 4.5 Sonnet & 40.0 & 62.9 & 50.0 &  &  &  \\
+w/o Visual Cue & 37.8 & 34.3 & 53.3 & \highlightRelevantValue{-5.6} & \highlightRelevantValue{-45.5} & \highlightRelevantValue{6.7} \\
+% DeepSeek R1 & 13.3 & 37.1 & 23.3 &  &  &  \\
+% w/o Visual Cue & 4.4 & 14.3 & 16.7 & \highlightRelevantValue{-66.7} & \highlightRelevantValue{-61.5} & \highlightRelevantValue{-28.6} \\
+% Qwen 2.5 32B & 17.8 & 20.0 & 20.0 &  &  &  \\
+% w/o Visual Cue & 4.4 & 2.9 & 10.0 & \highlightRelevantValue{-75.0} & \highlightRelevantValue{-85.7} & \highlightRelevantValue{-50.0} \\
+\bottomrule
+\end{booktabs}
+\caption{Ablation study on tge impact of removing visual cues on accuracy (\%) across sites. Each model is evaluated under the default setting and a variant with visual cues removed, highlighting the impact of visual information on task performance.}
+\label{tab:visual_ablation}
+\vspace{\baselineskip}
+\end{table*}
+
+
+
+\begin{table}[t]
+\centering
+\begin{booktabs}{
+colspec={lccc},
+cell{3,5}{1}={r}
+}
+\toprule
+Model & Shopping & CMS & GitLab \\
+\midrule
+Claude 4 Sonnet & 42.2 & \textbf{48.6} & \textbf{50.0} \\
+ + VLM & \textbf{44.4} & \textbf{48.6} & 43.3 \\
+Claude 4.5 Sonnet & \textbf{40.0} & 62.9 & 50.0 \\
+ + VLM & 37.8 & \textbf{65.7} & \textbf{56.7} \\
+\bottomrule
+\end{booktabs}
+\caption{Ablation results comparing text-only and VLM settings for Claude~4 Sonnet and Claude~4.5 Sonnet across WebArena-Lite tasks.}
+
+\vspace{\baselineskip}
+\label{tab:vlm}
+\end{table}
+
+
+
+\subsection{System Speed and Resource Usage}
+
+We benchmark the efficiency of our container manager against a naïve Docker-based setup. 
+All experiments are conducted on an AWS EC2 \code{r6id.metal} instance with 128 vCPUs and 1024\,GiB of memory.
+To warm up the disk cache, we sequentially launch 10 containers and measure the launch speed of the last 8. 
+Table~\ref{tab:system_speed} reports average launch latency, storage footprint, and memory consumption when instantiating the WebArena shopping environment. 
+
+\projectname achieves an average launch time of $1.78$s, compared to nearly $9$s with Docker, and reduces persistent storage from $6.78$GB to only $28$MiB through block-level copy-on-write.
+Memory usage remains comparable across both systems, with \projectname showing a modest increase due to its built-in virtualization and namespace isolation mechanisms.
+These improvements enable a single host to run more than 200 concurrent containers, supporting high-throughput RL rollouts while lowering both storage overhead and startup latency.
+
+
+The slightly higher memory usage in Incus primarily results from its architecture, which maintains a lightweight virtualized environment for each container to ensure deterministic isolation between rollouts.
+Unlike Docker, which shares certain kernel and daemon-level resources across containers, Incus allocates separate namespaces and minimal management daemons to guarantee reproducible execution and strict process boundaries.
+This design choice introduces a small, predictable memory overhead per container (typically within 100–200,MiB), but the benefit is a more stable and isolated environment that eliminates cross-container interference—a crucial requirement for fair and repeatable RL evaluation.
+
+In practice, the limiting factor for scaling up concurrent containers is not memory but disk throughput. Each container launch involves reading image layers, initializing filesystems, and performing copy-on-write operations, which can easily saturate I/O bandwidth when using traditional Docker layer storage. In Docker's overlay-based storage model, every new container instantiates a fresh upper layer and writes several gigabytes of duplicated filesystem content to disk (in our measurement, approximately 6,GiB per launch), resulting in high latency and poor parallelism when multiple containers are started concurrently. These redundant writes not only prolong startup time but also create contention across concurrent rollouts, since all containers compete for limited write bandwidth.
+
+\projectname mitigates this bottleneck by leveraging ZFS-backed block-level snapshots and incremental cloning, which allow new containers to be created almost instantaneously without duplicating data. In our Incus-based implementation, only around 28,MiB of new data is written during each launch, primarily for container-specific metadata and ephemeral state, while the majority of disk operations are read-only. Because multiple containers share the same base image, read operations are heavily cached by the host kernel and ZFS buffer pool, further improving launch efficiency under parallel workloads. This design minimizes write amplification, avoids redundant disk I/O, and scales efficiently across hundreds of simultaneous rollouts.
+
+As a result, container startup time is decoupled from disk throughput and is instead dominated by lightweight metadata operations. Even under heavy parallel initialization, \projectname achieves near constant launch latency and stable runtime performance, shifting the primary scalability bottleneck from diskk writing speed bound overheads to CPU and memory resources that are easier to scale.
+
+
+\subsection{Ablations}
+
+\subsubsection{Visual LM}
+
+
+
+To study the contribution of visual signals in web agent tasks, we evaluate Claude~4 Sonnet and Claude~4.5 Sonnet under a VLM setting. In this configuration, a full page screenshot of the currently observed webpage is captured and provided to the model as an additional input, alongside the existing text based HTML observation. This design allows the model to access visual cues such as layout, relative positioning, and visual grouping, which are absent from text only representations.
+
+Table~\ref{tab:vlm} reports the results. Overall, the impact of visual input is varies across both models and task categories.
+% For Claude~4 Sonnet, enabling the VLM setting leads to a modest improvement on the Shopping task, while performance on CMS remains unchanged and performance on GitLab degrades noticeably. For Claude~4.5 Sonnet, the VLM setting improves performance on CMS and GitLab tasks, with a particularly large gain on GitLab, but slightly hurts performance on Shopping.
+Taken together, these results suggest that visual signals are not universally beneficial for general web agent tasks.
+Their effectiveness depends on both the underlying model capabilities and the nature of the task.
+
+
+\subsubsection{Visual Cue}
+
+A key feature of \projectname is its explicit preservation of visual cues that humans naturally rely on when interacting with webpages. In particular, \projectname identifies clickable elements in a human aligned manner and exposes this information to the model by annotating interactive elements with the HTML attribute (\code{parser-clickable=true}), while assigning element IDs only to those elements. 
+In contrast, prior environments such as WebArena~\cite{zhouWebArenaRealisticWeb2024} assign element IDs to all DOM nodes (or accessbility tree node) without distinguishing interactive from non interactive elements. As a result, models may attempt to click on visually salient but non actionable elements, leading to invalid actions and degraded performance.
+
+To quantify the impact of these visual cues, we conduct an ablation study in which this information is removed. Specifically, we assign IDs to all elements and remove the \code{parser-clickable=true} annotation from the observation space, making interactive and non interactive elements indistinguishable to the model.The results of this ablation are reported in Table~\ref{tab:visual_ablation}. 
+
+Nearly all models exhibit a performance drop across almost all task settings, with degradations ranging from approximately 5\% to over 80\%, with the sole exception of Claude~4.5 Sonnet on the GitLab task. Models with lower baseline performance, such as Qwen~2.5~32B, GPT~4o~Mini, and Claude~3.5 Sonnet, experience substantially larger performance drops, indicating that explicit visual cues play a particularly important role for weaker or smaller models. 
+
+Stronger models are better able to infer interactivity from context and surrounding text even without explicit cues, but they still generally suffer noticeable performance degradation. These results highlight the importance of explicitly encoding human aligned visual signals in the observation space, both to stabilize agent behavior and to improve overall performance, especially in low capacity model regimes.
+
+
+\section{Discussion}
+
+\projectname is designed as a full-stack, RL-ready web environment. Our findings map directly onto three environment bottlenecks for web-agent training and evaluation: compact observation and action interfaces, stable action execution under modern SPAs, and scalable server isolation with fast launching and reset for parallel rollouts. Tables 1–4 show that addressing these bottlenecks improves both task success and system scalability on realistic web tasks.
+
+\subsection{Environment Design as a Web-Agent Bottleneck}
+Table \ref{tab:model_results} shows that \projectname paired with frontier models achieves strong single-prompt performance across all three domains. For example, Claude 4.5 reaches 40.0\% on Shopping, 62.9\% on CMS, and 50.0\% on GitLab under the strict single-prompt setting. These gains are meaningful because the agent paradigm remains fixed. The agent does not rely on multi-round reasoning/deliberation, task-specific fine-tuning, or RL training. The improvement therefore reflects the interaction environment itself.
+This result highlights a key point for web-agent research and RL training.
+Many failures arise from environment-level friction rather than agent-level reasoning alone. 
+In web interaction, small grounding errors compound over long horizons. Agents fail when they cannot reliably identify interactive elements, preserve stable action targets, or observe consistent post-action states. These failure modes increase variance and reduce sample efficiency for RL. Environment design therefore directly shapes both evaluation reliability and RL feasibility.
+
+\subsection{Lightweight Visual Cues vs Full Visual Inputs}
+
+Tables \ref{tab:visual_ablation} and \ref{tab:vlm} provide two complementary views on visual information in web-agent environments. Table \ref{tab:visual_ablation} shows that removing \projectname's VisualCue signals causes large drops in task success across nearly all model–task combinations. The drop ranges from approximately 5\% to over 80\%, and the effect is strongest for smaller or weaker models. For example, Claude 3.5 Sonnet drops from 26.7/31.4/36.7 to 11.1/17.1/6.7 on Shopping/CMS/GitLab, and Claude 4 Sonnet drops from 42.2/48.6/50.0 to 31.1/34.3/33.3. These results suggest that lightweight affordance cues provide essential grounding signals for text-based Web Agents. \projectname marks interactive elements with explicit affordance indicators such as (parser-clickable=true) and assigns element IDs only to interactive nodes, which reduces ambiguity and prevents agents from targeting non-actionable DOM nodes.
+Table \ref{tab:vlm} shows that adding full-page screenshots through a VLM setting yields mixed and model-dependent effects. For Claude 4 Sonnet, the VLM setting improves Shopping (42.2 → 44.4) and keeps CMS unchanged (48.6 → 48.6), but it reduces GitLab (50.0 → 43.3). For Claude 4.5 Sonnet, the VLM setting reduces Shopping (40.0 → 37.8) while improving CMS (62.9 → 65.7) and GitLab (50.0 → 56.7). We also observe one exception in Table \ref{tab:visual_ablation}: Claude 4.5 Sonnet slightly improves on GitLab when VisualCue is removed (50.0 → 53.3), while its CMS performance drops sharply (62.9 → 34.3). Overall, these results suggest that screenshots do not provide consistent gains for general web-agent tasks, while low-cost affordance cues offer a more reliable benefit for action grounding in many settings.
+
+\subsection{Scalable Launching and Isolation as Enablers for RL Training}
+Table \ref{tab:system_speed} shows that \projectname improves scalability through an Incus-based server manager with block-level copy-on-write. \projectname reduces environment launch latency from 8.963s (naïve Docker) to 1.781s, and it reduces persistent storage from 6.78 GiB to 28.01 MiB per environment instance. Memory remains comparable (1.63 GiB for Docker vs 1.74 GiB for \projectname). These improvements enable \projectname to launch and run 200+ concurrent containers on a single host within minutes. This scale is critical for RL training, where throughput is dominated by the number of rollouts and resets, and where resets must restore server-side state rather than only browser state.
+
+Our profiling indicates that concurrency is constrained mainly by disk throughput rather than memory. After image creation, the workload becomes strongly read-dominant. ZFS caching reduces repeated reads and limits write amplification, which improves sustained throughput for launches and rollbacks at scale. Fast cloning and rollback also enable new algorithmic workflows for RL Web Agents. \projectname supports branching from identical intermediate states to compare alternative action sequences, as well as counterfactual trials for credit assignment and deterministic retries for fair comparisons. These workflows are difficult to support in environments with slow resets, shared server state, or unstable post-action observations.
+
+\subsection{Human-in-the-Loop Training and Inspection}
+Realistic web-agent deployment often requires human feedback, preference labeling, and expert correction. \projectname supports these workflows through reproducible rollouts, stable action targets, and system-level isolation. These properties enable fine-grained feedback on specific decisions and make it easier to replay trajectories for diagnosis. They also support safer experimentation, since rollouts do not affect shared infrastructure or external services.
+\projectname further supports inspection workflows that are useful for RL debugging. Researchers can replay action sequences, analyze post-action stabilization events, and identify whether failures stem from missing information, unstable execution, or poor action grounding. This separation matters because many training failures for Web Agents are caused by the interaction environment rather than the learning algorithm itself.
+
+
+\section{Conclusion}
+
+We introduce \projectname, a full-stack and RL-ready web environment for scalable web-agent training and evaluation. \projectname provides a compact DOM-derived observation and action interface, a robust action execution backend based on network-aware quiescence for modern SPAs, and an Incus-based server manager with block-level copy-on-write for fast isolation and reset. Across Shopping, CMS, and GitLab tasks in WebArena-Lite, \projectname enables state-of-the-art single-prompt performance and supports large-scale experimentation. It reduces container launch latency by approximately \textbf{$\sim$5$\times$}, reduces persistent storage by approximately \textbf{$\sim$240$\times$}, and supports launching and running \textbf{200+} concurrent containers on a single host within minutes.
+
+\section*{Limitations}
+
+While \projectname provides a scalable and efficient environment for training and evaluating RL-based Web Agents, it has several limitations that open avenues for future work.
+
+First, in text-only mode, although our parser produces a compact and semantically enriched HTML observation, as with all text-only environments, it does not retain visual \textit{layout} cues. For example, when items are arranged in a grid, the observation exposes them as a flat list without indicating column-level layout information.
+This omission simplifies the representation but removes structural signals that humans rely on to reason about grouping, alignment, and spatial organization.
+
+Second, this work primarily focuses on the design of a scalable and robust RL environment for Web Agents, rather than on improving RL algorithm performance itself. We leave the design of more effective RL algorithms tailored to web agent scenarios as future work.
+
+Finally, we do not conduct large-scale experiments on real, production websites beyond lab-controlled environments.
+This limitation is due to company legal constraints, which prevent automated interaction with live commercial platforms at scale because of Terms of Service restrictions.
+We fully acknowledge the importance of real-world evaluation and note that this limitation of existing benchmarks is a key motivation behind the design of \projectname.
+Unlike prior environments that rely on per-site configuration or site-specific signals such as accessibility trees, \projectname is built with generalization as a core design goal and requires no site-specific customization.
+Through its browser-level execution and parsing pipeline, it can robustly handle real-world behaviors such as pop-ups, loading delays, dynamic content, and timeouts.
+We hope future work, with proper legal approval, can further investigate the generalizability of agents trained in \projectname to real-world websites under realistic deployment conditions.
+
+
+
+\bibliography{custom}
+
+\appendix
+\section{Action Space}
+\label{sec:action-space}
+\begin{itemize}[leftmargin=*]
+
+\item {\textbf{A. Element-level interactions}}
+  \begin{itemize}[leftmargin=*]
+    \item {Click element}: perform a click action on the target element such as a button, link, or control.  
+    \item {Hover element}: move the cursor over the target element to trigger tooltips or dropdown menus.  
+    \item {Key press}: send a keyboard event such as Enter, Escape, Tab, or arrow keys, optionally focusing an element first.  
+  \end{itemize}
+
+\item {\textbf{B. Form and text input}}
+  \begin{itemize}[leftmargin=*]
+    \item {Type text}: enter text into an input field or editable region, optionally pressing Enter afterwards.  
+    \item {Clear input}: remove all content from an input field or editable region.  
+    \item {Select option}: choose a specific option from a dropdown or select menu.  
+  \end{itemize}
+
+\item {\textbf{C. Navigation and page control}}
+  \begin{itemize}[leftmargin=*]
+    \item {Navigate to URL}: load a new address in the current tab.  
+    \item {Back}: navigate one step backward in the browser history.  
+    \item {Forward}: navigate one step forward in the browser history.  
+    \item {Refresh}: reload the current page.  
+  \end{itemize}
+
+\item {\textbf{D. Tab management and task control}}
+  \begin{itemize}[leftmargin=*]
+    \item {New tab}: open a new browser tab, optionally with a specified URL.  
+    \item {Switch tab}: change focus to another tab by index.  
+    \item {Close tab}: close an existing browser tab.  
+    \item {Terminate task}: shut down the browser session and optionally submit a final answer.
+  \end{itemize}
+
+\end{itemize}
+
+
+\end{document}

@@ -1,0 +1,27 @@
+
+We sincerely appreciate the reviewer’s thoughtful, technically grounded feedback. We are glad that the practical utility of the system contribution is acknowledged, and we address each concern below in detail.
+
+> System Contribution to NLP Community.
+Thank you for the thoughtful comment. We agree that the central issue is not any single implementation choice, but the broader scalability barrier that currently limits policy learning for web agents in real environments. The community is actively building autonomous web agents for user-facing tasks [7,8,9], and recent progress increasingly relies on policy training signals [1,2,4,5,6]. Yet real web environments are not naturally RL-ready [8] and incur substantial browser, storage, and I/O overhead [10]. As a result, the rollout scales that are routine in modern RL post-training pipelines remain practically inaccessible to realize on the web.
+Reflecting this bottleneck, several recent efforts have moved toward reducing reliance on costly real environment interaction through synthesis, including experience synthesis [3], synthetic or infinitely generated training environments [11,12,13], and automated pipelines that scale RL data collection toward pretraining level volumes [14]. Despite the methodological differences, our work shares the same vision with these work that the environmental constraints are the primary blocker to scaling agent RL, but we proceed via a complementary solution: rather than synthesizing the environment or experience, our key contribution is methodological: we provide a scalable, robust, RL-ready web environment that makes large-scale on-policy training feasible on real websites. This methodological contribution paves the path for future agent development research to be trained and evaluated on realistic web environments at scale [7, 8, 9].
+
+> Compare with Vanilla WebArena
+Thank you for your valuable suggestion. We agree that a broader side-by-side benchmark would strengthen our claim by better isolating the impact of the environment change. In the revision, we added two additional models (OpenAI o3 and Llama 3.1 8B) and evaluated all models on WebServ and compared with Vanilla Web Arena. As shown below, WebServ consistently improves performance across (1) large pre-trained models (GPT 4o), (2) large reasoning models (o3), and (3) open source models (Llama 3.1 8B), which supports that the gains are attributable to the environment design rather than a single model-specific effect.
+
+| Environment      | Model        | Shopping | CMS  | GitLab |
+|------------------|--------------|----------|------|--------|
+| Vanilla WebArena | GPT-4o       | 11.1     | 20.0 | 10.0   |
+| Vanilla WebArena | OpenAI-o3    | 33.3     | 45.7 | 46.7   |
+| Vanilla WebArena | Llama-3.1-8B | 8.9      | 5.7  | 10.0   |
+| WebServ          | GPT-4o       | 20.0     | 28.6 | 43.3   |
+| WebServ          | OpenAI-o3    | 37.8     | 48.6 | 46.7   |
+| WebServ          | Llama-3.1-8B | 11.1     | 11.4 | 16.7   |
+
+> Behavior pattern analysis
+Thank you for the comment. We want to clarify that, for the same model on the same task, the high-level behavior pattern is largely similar in WebArena and WebServ. The difference is reliability: in WebArena, intended actions more often fail due to less actionable observations (for example, the observation does not explicitly provide a list of interactive elements, making targets more ambiguous or unstable) and brittle execution (for example, stale or off screen elements, timing failures, silent no ops), which can cascade into lower end to end success. WebServ improves the success rate by providing richer observations and a more robust action execution method with clearer execution feedback. We will revise the text to emphasize that the gains come from higher step-level success and robustness rather than different behavior patterns.
+> Add RL Experiment
+Thank you for the comment. We agree that an end-to-end RL training experiment is important for validating stability in the training loop (not just inference time performance). In this revision, we integrated WebServ with VeRL and SlimeRL and will add a detailed description of the SlimeRL training process.
+Concretely, we train Qwen-3-4B-Thinking-2507 on the WebArena dataset for 40 steps. Pass@1 on the training samples increases from about 0.375 to 0.477. Using two 8×H200 nodes, each training step takes about 700 seconds end-to-end (rollout plus optimization). This throughput is comparable to recent RL systems in related settings (for example, AReaL[15] reports about 360 seconds per step for a 7B model on 24 nodes on AIME24, which is a simpler non-agent task). We will also include training dynamics plots (reward, loss, success rate) to demonstrate stable and effective optimization under WebServ.
+> Typo and other comments
+Thank you for pointing this out. We will fix these issues in our camera-ready version.
+We sincerely thank the reviewer for the constructive feedback. In response, we clarified the NLP relevance of WebServ as addressing a key scalability bottleneck for on-policy web agent RL, expanded the side-by-side WebArena comparison with additional models (OpenAI o3 and Llama 3.1 8B), and clarified that improvements come from higher step-level reliability rather than different behavior patterns. We also integrated WebServ with VeRL and SlimeRL and added an end-to-end RL training experiment with training dynamics to demonstrate stability and practical throughput.
