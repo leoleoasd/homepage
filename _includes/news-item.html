@@ -1,0 +1,4 @@
+<div class="news__item">
+  <span class="news__date">{{ item.date | date: "%b %Y" }}</span>
+  <span class="news__content">{{ item.content | markdownify | remove: '<p>' | remove: '</p>' }}</span>
+</div>

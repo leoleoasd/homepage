@@ -174,6 +174,8 @@ kramdown:
 
 # Collections
 collections:
+  news:
+    output: false
   daily_log:
     output: true
     permalink: /:collection/:path/

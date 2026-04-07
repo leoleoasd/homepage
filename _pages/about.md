@@ -23,6 +23,16 @@ Before starting my Ph.D. program, I got my B.E. in Computer Science and Technolo
   Picture of me, taken in The Sayram Lake (赛里木湖)
 </div>
 
+News
+=====
+
+<div class="publications" style="max-height: 200px; overflow-y: auto; margin-bottom: 1.5em;">
+{% assign sorted_news = site.news | sort: 'date' | reverse %}
+{% for item in sorted_news %}
+  {% include news-item.html %}
+{% endfor %}
+</div>
+
 Education
 =====
 I'm currently persuing my Ph.D. in Computer Science at Khoury College of Computer Sciences, Northeastern University, advised by [Prof. Dakuo Wang](https://www.dakuowang.com/).
