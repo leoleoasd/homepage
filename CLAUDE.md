@@ -11,7 +11,7 @@ Yuxuan Lu's personal academic homepage at https://yuxuan.lu — a Jekyll site fo
 - Local dev server: `bundle exec jekyll liveserve` (rebuilds on change, serves on http://localhost:4000). Use `--config _config.yml,_config.dev.yml` if you need the local-only overrides (`url`, expanded SASS, analytics off).
 - One-off build (mirrors CI): `JEKYLL_ENV=production bundle exec jekyll build`. Output goes to `_site/`.
 - Ruby deps: `bundle install`. If you hit version errors, delete `Gemfile.lock` and reinstall (see README). CI pins Ruby 3.4.1.
-- Update the Google Scholar citation chart: `python scripts/scholar.py` (writes `_data/scholar.json` and regenerates `_includes/scholar.html`). Normally this runs via the `update_scholar.yml` workflow — only run manually if intentionally refreshing locally.
+- Update the Google Scholar citation chart: `python scripts/scholar.py` (writes `_data/scholar.json` and regenerates `_includes/scholar.html`). Normally this runs via the `update_scholar.yml` workflow — only run manually if intentionally refreshing locally. Note: the script post-processes the generated `scholar.html` to replace `{{` with `{ {` so Plotly's output doesn't collide with Liquid tag syntax — keep that step if editing the script.
 
 ## Merge / edit policy (from AGENTS.md)
 
@@ -28,6 +28,7 @@ Standard Jekyll layout with a few project-specific conventions worth knowing bef
 - **Layouts beyond the template defaults:** `bib.html` (per-entry scholar detail page, configured via `scholar.details_layout`), `daily-log.html`, `talk.html`, `splash.html`. Most page content uses `single`.
 - **Data files:** `_data/coauthors.yml`, `venues.yml`, `navigation.yml`, `ui-text.yml` configure cross-cutting content. `_data/scholar.json` is the time series the scholar workflow appends to — do not hand-edit unless fixing bad data.
 - **Theme overrides:** SCSS partials in `_sass/`, JS in `assets/js/` (legacy uglify build via `npm run uglify` exists but is rarely needed — the committed `main.min.js` is what ships).
+- **Legacy academicpages tooling — usually ignore.** `markdown_generator/` (notebooks/scripts that generate `_publications`/`_talks` markdown from TSV) and `talkmap.py` / `talkmap/` (leaflet map of talk locations) are inherited from the template and not part of the current content workflow — publications come from the `.bib` files, not generated markdown. Don't wire new content through these unless deliberately reviving them.
 
 ## Deployment
 

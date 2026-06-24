@@ -12,8 +12,7 @@ Hi! 👋🏻 I'm Yuxuan (Leo) Lu, a Ph.D. student at Northeastern University, ad
 
 My current research focus is on <b> developing and leveraging Large Language Model Agents (LLM Agents) for simulating human behaviors </b>, including using LLM Agents in usability testing<a class="cite" href="#luUXAgentLLMAgentBased2025a"> [1] </a>, A/B testing<a class="cite" href="#wangAgentAAutomatedScalable2025"> [2] </a>, training LLM Agents towards accurate simulation of human behaviors<a class="cite" href="#luLLMAgentsThat2025"> [3] </a>, dataset for evaluating LLM Agents' ability to simulate human behaviors<a class="cite" href="#wang2025opera"> [4] </a>, and more.
 
-Before starting my Ph.D. program, I got my B.E. in Computer Science and Technology and <b> Graduated with honor </b> at Beijing University of Technology. In the past, I've worked as Machine Learning Researcher at a joint program between **LinkedIn** and **Microsoft Research Asia**. I've also worked as an intern research assistant at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) lab, supervised by [Prof. Zhiyuan Liu(刘知远)](http://nlp.csai.tsinghua.edu.cn/~lzy/).
-
+Before starting my Ph.D. program, I got my B.E. in Computer Science and Technology and <b> Graduated with honor </b> at Beijing University of Technology. In the past, I've worked as Machine Learning Researcher at a joint program between **LinkedIn** and **Microsoft Research Asia**.
 
 <div style="display: flex; justify-content: center; width: 100%; column-gap: 24px;">
   <img src="/images/holding_shark.jpg" width="250px" />
