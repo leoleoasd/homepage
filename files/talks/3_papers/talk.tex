@@ -77,6 +77,29 @@
 \renewcommand{\cite}{\footcite}
 
 \definecolor{ForestGreen}{RGB}{34,139,34}
+\definecolor{barpos}{HTML}{2F6E73}
+\definecolor{barneg}{HTML}{C0392B}
+\definecolor{whisk}{HTML}{B5B5B5}
+\definecolor{zeroln}{HTML}{CBCBCB}
+\definecolor{tickgray}{HTML}{9A9A9A}
+\definecolor{barbase}{HTML}{9A9A9A}
+\definecolor{barsft}{HTML}{93C0C4}
+\definecolor{gridln}{HTML}{E5E5E5}
+% teaser-figure palette (Context / Reasoning / Action boxes)
+\definecolor{ctxbg}{HTML}{F9D5BC}
+\definecolor{ctxfg}{HTML}{B5551F}
+\definecolor{rsnbg}{HTML}{EAF3B5}
+\definecolor{rsnfg}{HTML}{6B7A12}
+\definecolor{actbg}{HTML}{C3DBF3}
+\definecolor{actfg}{HTML}{2F5597}
+% helper for the Post-Study Ratings diverging Likert bars (must live in preamble, not in-frame)
+\newcommand{\likertbar}[5]{%
+  \draw[whisk,line width=1pt] ({#2-#3},#1) -- ({#2+#3},#1);
+  \draw[whisk,line width=1pt] ({#2-#3},#1-0.12) -- ({#2-#3},#1+0.12);
+  \draw[whisk,line width=1pt] ({#2+#3},#1-0.12) -- ({#2+#3},#1+0.12);
+  \draw[#4,line width=10pt,line cap=round] (0,#1) -- (#2,#1);
+  \node[#4,anchor=west,font=\small\bfseries] at ({#2+#3+0.12},#1) {#5};
+}
 \newcommand{\highlightRelevantValue}[1]{%
   \ifdim #1pt > 0pt
     {\color{ForestGreen}{#1\%}}%
@@ -100,7 +123,7 @@
   \end{frame}
 }
 
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,arrows.meta,decorations.pathreplacing,positioning}
 \setcounter{tocdepth}{1}
 
 \makeatletter
@@ -183,16 +206,25 @@
 \setbeamertemplate{section page}[my progressbar]
 
 \UseTblrLibrary{booktabs}
-\graphicspath{ {./figures/} {./figures/uxagent/} {./figures/finetuned_web_agent/} {./figures/webserv/} }
+\graphicspath{ {./figures/} {./figures/uxagent/} {./figures/finetuned_web_agent/} {./figures/webserv/} {./figures/firefly/} }
 
 \DeclareRobustCommand{\projectname}{\textsc{WebServ}\xspace}
+
+% \figorplaceholder[height]{path}{planned figure}: image if the file exists, else a dashed placeholder box
+\newcommand{\figorplaceholder}[3][.78\textheight]{%
+  \IfFileExists{#2}{\includegraphics[height=#1]{#2}}{%
+    \begin{tikzpicture}
+      \node[draw=gray, dashed, rounded corners, minimum width=.9\linewidth, minimum height=#1,
+            text width=.8\linewidth, align=left, font=\footnotesize, text=gray]
+        {\textbf{[Figure placeholder]} \texttt{#2}\\[4pt] #3};
+    \end{tikzpicture}}}
 
 \title{Human–AI Collaboration for UX Research}
 \subtitle{Designing, Evaluating, and Improving LLM Agents as Simulated Users}
 
 \author{\textbf{Yuxuan Lu}}
 \institute{Northeastern University \quad | \quad \url{https://yuxuan.lu} \quad | \quad lu.yuxuan@northeastern.edu}
-\date{Mar 2026}
+\date{Oct 2026}
 \begin{document}
 
 
@@ -205,7 +237,7 @@
   \textbf{Yuxuan (Leo) Lu} \hfill \url{https://yuxuan.lu} \\
   Ph.D. student, Northeastern University (Khoury) --- advised by Prof. Dakuo Wang \\
 
-  \textbf{Industry Experience:} Applied Scientist Intern at Amazon (Sep 2024--present); ML Research Intern at LinkedIn China (Jul 2022--May 2023).
+  \textbf{Industry Experience:} Applied Scientist Intern at Amazon (Sep 2024--Jul 2026); ML Research Intern at LinkedIn China (Jul 2022--May 2023).
 
 
   \textbf{Research Focus:} I work at the intersection of NLP and HCI.
@@ -215,29 +247,31 @@
 
 \begin{frame}{Selected Works}
 
-  % \vspace{10pt}
   \begin{columns}[t]
     \begin{column}{0.48\linewidth}
-      \begin{tblr}{colspec={lr},row{1}={font=\bfseries}}
-        NLP Works \\
-        SFT LLM Agent & ACL'26 \\
-        WebServ & preprint \\
-        \\
+      \begin{tblr}{colspec={X[l]r},width=\linewidth,row{1}={font=\bfseries}}
+        NLP / ML & \\
+        Finetuned LLM Agent & ACL'26 \\
+        WebServ & ARR$^\dagger$ \\
+        Firefly & NeurIPS'26 \\
       \end{tblr}
     \end{column}
 
     \begin{column}{0.48\linewidth}
-      \begin{tblr}{colspec={lr},row{1}={font=\bfseries}}
-        HCI Works \\
+      \begin{tblr}{colspec={X[l]r},width=\linewidth,row{1}={font=\bfseries}}
+        HCI & \\
         UXAgent & CHI'25 LBW \\
-        Agent A/B & CHI'26 Posters \\
-        UXAgent & UIST'26 under review \\
+        \quad + full system & in submission \\
+        Agent A/B & CHI'26 Poster \\
       \end{tblr}
     \end{column}
   \end{columns}
 
-  \vspace{4pt}
-  Co-authored: 6 accepted NLP papers (ICLR/EMNLP/NAACL/ACL), 4 accepted HCI papers (CHI/CSCW/UbiComp), plus 3 NLP and 1 HCI papers under review.
+  \vspace{6pt}
+  {\footnotesize
+  24 selected papers, 6 first-author (above; $^\dagger$under review).\\
+  18 co-authored --- 15 accepted (ACL'26 $\times$3, ICLR'26, NeurIPS'26, NAACL'24, EMNLP'23/'24/'26, CHI'24/'25, CSCW'24/'26, CoRL'26, ECCV'26) and 3 under review (ARR $\times$2, +1 in submission).
+  }
 \end{frame}
 
 
@@ -250,12 +284,12 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}[plain]
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=.8\linewidth]{openclaw.png}
-\end{figure}
-\end{frame}
+% \begin{frame}[plain]
+% \begin{figure}[htp]
+%   \centering
+%   \includegraphics[width=.8\linewidth]{openclaw.png}
+% \end{figure}
+% \end{frame}
 
 {
 \definecolor{bgdark}{HTML}{121212}
@@ -273,41 +307,33 @@
 \end{frame}
 }
 
+% \begin{frame}[plain]
+% \begin{figure}[htp]
+%   \centering
+%   \includegraphics[height=\textheight]{homeassistant.png}
+% \end{figure}
+% \end{frame}
+
 {%
 
 
-\begin{frame}{What’s the worst nightmare for a researcher?}
-  \begin{outline}
-    \1 Spending weeks on a study, only to find that the results are not significant
-    \1 Training a model for days, only to find a bug in your preprocessing pipeline
-    \1 Realizing that your experiment design is flawed one week before deadline
-  \end{outline}
+\begin{frame}[plain]
+  \begin{figure}[htp]
+    \centering
+    \includegraphics[width=.8\linewidth]{webgpt.png}
+  \end{figure}
+  \silentfootcite{nakanoWebGPTBrowserassistedQuestionanswering2022}
 \end{frame}
 
-\begin{frame}{As someone from both NLP and HCI, I think …}
-\begin{table}
-  \centering
-  \begin{booktabs}{
-    colspec = {ccc},
-    width = \linewidth,
-    cells={m},
-  }
-  \toprule
-   & NLP & HCI \\
-  \midrule
-  Experiment Subject & Models and Machines & Human Subjects \\
-  Experiment Design &  Code and Data & Study Protocol \\
-  Experiment Cost & Money & Human Participants' Time \\
-  ``Debugging'' Method & Code Debugging & ??? \\
-  \bottomrule
-  \end{booktabs}
-\end{table}
-\pause
-\begin{center}
-  \Large
-  \textbf{Human Participants' Time is Valuable and Limited}
-\end{center}
+\begin{frame}[plain,c]
+  \begin{figure}[htp]
+    \centering
+    \includegraphics[width=.8\linewidth]{webagent.png}
+    \caption{WebAgent, ICLR 2024}
+  \end{figure}
+  \silentfootcite{gurRealWorldWebAgentPlanning2023}
 \end{frame}
+
 
 \setbeamercolor{background canvas}{bg=white}
 \begin{frame}[plain]
@@ -335,49 +361,12 @@
 \end{frame}
 
 
-\begin{frame}[plain]
-  \begin{figure}[htp]
-    \centering
-    \includegraphics[width=.8\linewidth]{webgpt.png}
-  \end{figure}
-  \silentfootcite{nakanoWebGPTBrowserassistedQuestionanswering2022}
-  \end{frame}
-  
-  \begin{frame}[plain,c]
-    \begin{figure}[htp]
-      \centering
-      \includegraphics[width=.8\linewidth]{webagent.png}
-      \caption{WebAgent, ICLR 2024}
-    \end{figure}  
-    \silentfootcite{gurRealWorldWebAgentPlanning2023}
-  \end{frame}
 }
 
-
-\begin{frame}{Challenges}
-  \begin{figure}[htp]
-    \centering
-    \includegraphics[width=.5\linewidth]{challenge-sandbox.png}
-  \end{figure}
-  Existing LLM Agent systems mostly works in \textbf{sandboxed environments}
-\end{frame}
-
-\begin{frame}{Challenges}
-  \begin{columns}[c]
-    \begin{column}{0.48\linewidth}
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=\linewidth]{challenge-agent.png}
-\end{figure}
-    \end{column}
-    \begin{column}{0.48\linewidth}
-     \begin{figure}[htp]
-        \centering
-        \includegraphics[width=.8\linewidth]{challenge-user.png}
-      \end{figure}
-    \end{column}
-  \end{columns}
-\end{frame}
+% Narration (spoken bridge):
+% These agents don't just do our work --- they can act like people.
+% Can an LLM agent be a *simulated user*: a computational lens to understand, predict, and enhance human behavior?
+% I start from the setting I know best --- running user research. The three questions below frame the talk.
 
 
 \begin{frame}[standout]
@@ -436,6 +425,70 @@
 % \end{frame}
 
 \section[Case Study 1: UXAgent]{Case Study 1: UXAgent: A System for Simulating Usability Testing of Web Design with LLM Agents}
+
+\begin{frame}[standout]
+  What’s the worst nightmare for a researcher?
+\end{frame}
+
+\begin{frame}{What’s the worst nightmare for a researcher?}
+  \begin{outline}
+    \1 Spending weeks on a study, only to find that the results are not significant
+    \1 Training a model for days, only to find a bug in your preprocessing pipeline
+    \1 The myth of ``Reviewer 2''
+    \pause
+    \1 Realizing that your experiment design is flawed one week before deadline
+  \end{outline}
+\end{frame}
+
+\begin{frame}{As someone from both NLP and HCI, I think …}
+\begin{table}
+  \centering
+  \begin{booktabs}{
+    colspec = {ccc},
+    width = \linewidth,
+    cells={m},
+  }
+  \toprule
+   & NLP & HCI \\
+  \midrule
+  Experiment Subject & Models and Machines & Human Subjects \\
+  Experiment Design &  Code and Data & Study Protocol \\
+  Experiment Cost & Money & Human Participants' Time \\
+  ``Debugging'' Method & Code Debugging & ??? \\
+  \bottomrule
+  \end{booktabs}
+\end{table}
+\pause
+\begin{center}
+  \Large
+  \textbf{Human Participants' Time is Valuable and Limited}
+\end{center}
+\end{frame}
+
+\begin{frame}{Challenges}
+  \begin{figure}[htp]
+    \centering
+    \includegraphics[width=.5\linewidth]{challenge-sandbox.png}
+  \end{figure}
+  Existing LLM Agent systems mostly works in \textbf{sandboxed environments}
+\end{frame}
+
+\begin{frame}{Challenges}
+  \begin{columns}[c]
+    \begin{column}{0.48\linewidth}
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=\linewidth]{challenge-agent.png}
+\end{figure}
+    \end{column}
+    \begin{column}{0.48\linewidth}
+     \begin{figure}[htp]
+        \centering
+        \includegraphics[width=.8\linewidth]{challenge-user.png}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 % \begin{frame}{What’s the worst nightmare for a researcher?}
 %   change to UX Researcher, change to undergrad friendly version
@@ -554,51 +607,135 @@
 \end{frame}
 
 \begin{frame}{User Study Setup}
-  % check sun lu figure 1
-  \begin{outline}
-    \1 16 UX researchers
-    \1 Reviewed 20 LLM simulated sessions
-    \1 Task: buy a meat substitute (highest rating, \$100--200), stop at checkout
-    \1 Flow (\textasciitilde 30 min): 
-      \2 review draft protocol
-      \2 inspect simulated traces/screenshots/reasoning 
-      \2 optional agent interview 
-      \2 revise protocol and feature ideas 
-      \2 survey
-  \end{outline}
+  \begin{center}
+    \small 16 UX researchers \quad$\cdot$\quad 20 simulated sessions \quad$\cdot$\quad \textasciitilde30 min / session
+  \end{center}
+  \vfill
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/uxagent/study_flow.png}
+  \end{figure}
+  \vfill
+  \begin{center}
+    \small Task: buy a meat substitute (top-rated, \$100--200), stop at checkout
+  \end{center}
 \end{frame}
 
 \begin{frame}{Post-Study Ratings (Likert -2 to 2)}
-  % bar chart
-
-  % quotes
-  \begin{outline}
-    \1 Usability M=1.63 (SD=0.50); Helpfulness M=1.38 (SD=0.72)
-    \1 Trust M=0.63 (SD=0.81); Satisfaction with revised protocol M=1.00 (SD=0.89)
-    \1 “LLM can replace humans” M=-0.44 (SD=1.15)
-  \end{outline}
+  \centering
+  \resizebox{.9\linewidth}{!}{%
+  \begin{tikzpicture}[x=1.5cm,y=0.8cm]
+    \draw[zeroln,line width=1.2pt] (0,-0.55) -- (0,4.55);
+    \likertbar{4}{1.63}{0.50}{barpos}{1.63}
+    \likertbar{3}{1.38}{0.72}{barpos}{1.38}
+    \likertbar{2}{1.00}{0.89}{barpos}{1.00}
+    \likertbar{1}{0.63}{0.81}{barpos}{0.63}
+    \draw[whisk,line width=1pt] ({-0.44-1.15},0) -- ({-0.44+1.15},0);
+    \draw[whisk,line width=1pt] ({-0.44-1.15},-0.12) -- ({-0.44-1.15},0.12);
+    \draw[whisk,line width=1pt] ({-0.44+1.15},-0.12) -- ({-0.44+1.15},0.12);
+    \draw[barneg,line width=10pt,line cap=round] (0,0) -- (-0.44,0);
+    \node[barneg,anchor=east,font=\small\bfseries] at ({-0.44-1.15-0.12},0) {$-0.44$};
+    \node[anchor=east,font=\small] at (-2.30,4) {Usability};
+    \node[anchor=east,font=\small] at (-2.30,3) {Helpfulness};
+    \node[anchor=east,font=\small] at (-2.30,2) {Satisfaction};
+    \node[anchor=east,font=\small] at (-2.30,1) {Trust};
+    \node[anchor=east,font=\small,align=right] at (-2.30,0) {LLM can\\replace humans};
+    \node[black,font=\footnotesize] at (-2,-1.0) {$-2$};
+    \node[black,font=\footnotesize] at (-1,-1.0) {$-1$};
+    \node[black,font=\footnotesize] at (0,-1.0) {0};
+    \node[black,font=\footnotesize] at (1,-1.0) {1};
+    \node[black,font=\footnotesize] at (2,-1.0) {2};
+    \node[black,font=\footnotesize\itshape] at (-2,-1.5) {disagree};
+    \node[black,font=\footnotesize\itshape] at (2,-1.5) {agree};
+    \node[black,font=\small,anchor=east] at (2,5.0) {N = 16};
+  \end{tikzpicture}}
+  \centering\small Researchers find UXAgent usable and helpful --- but reject it as a \emph{replacement} for humans.
 \end{frame}
 
 \begin{frame}{Protocol Iteration Outcomes}
-  \begin{outline}
-    \1 14/16 proposed further study-design changes after using UXAgent
-    \1 Edits: tasks (6), demographics (3), survey items (2), interview protocol (2), added metrics (2)
-    \1 Typical cadence: build trust $\rightarrow$ sense-making $\rightarrow$ hypothesize/verify (with interviews) $\rightarrow$ converge on revisions
-  \end{outline}
+  \begin{columns}[c]
+    \begin{column}{0.36\linewidth}
+      \centering
+      {\fontsize{46}{50}\selectfont\textbf{14/16}}\\[4pt]
+      {\small proposed further study-design\\ changes after using UXAgent}
+    \end{column}
+    \begin{column}{0.62\linewidth}
+      \resizebox{\linewidth}{!}{%
+      \begin{tikzpicture}[x=0.7cm,y=0.8cm]
+        \draw[barpos,line width=10pt,line cap=round] (0,4) -- (6,4);
+        \node[barpos,anchor=west,font=\small\bfseries] at (6.35,4) {6};
+        \node[anchor=east,font=\small] at (-0.35,4) {Tasks};
+        \draw[barpos,line width=10pt,line cap=round] (0,3) -- (3,3);
+        \node[barpos,anchor=west,font=\small\bfseries] at (3.35,3) {3};
+        \node[anchor=east,font=\small] at (-0.35,3) {Demographics};
+        \draw[barpos,line width=10pt,line cap=round] (0,2) -- (2,2);
+        \node[barpos,anchor=west,font=\small\bfseries] at (2.35,2) {2};
+        \node[anchor=east,font=\small] at (-0.35,2) {Survey items};
+        \draw[barpos,line width=10pt,line cap=round] (0,1) -- (2,1);
+        \node[barpos,anchor=west,font=\small\bfseries] at (2.35,1) {2};
+        \node[anchor=east,font=\small] at (-0.35,1) {Interview protocol};
+        \draw[barpos,line width=10pt,line cap=round] (0,0) -- (2,0);
+        \node[barpos,anchor=west,font=\small\bfseries] at (2.35,0) {2};
+        \node[anchor=east,font=\small] at (-0.35,0) {Added metrics};
+      \end{tikzpicture}}
+    \end{column}
+  \end{columns}
+  
 \end{frame}
 
-\begin{frame}{Trust and Realism}
-  \begin{outline}
-    \1 Data seen as useful/rational; some behaviors “not what real users would do”
-    % \todo{change to one page with only quote}
-    \1 Trust improves with transparency (reasoning trace)
-    \1 Position: complement, not replace, human participants—best for early, low-cost iteration
-  \end{outline}
+\begin{frame}{Typical Iteration Cadence}
+  \vfill
   \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{figures/uxagent/participant.png}
-    \caption{Study session with a UX researcher using UXAgent.}
+    \includegraphics[width=\linewidth]{figures/uxagent/cadence_flow.png}
   \end{figure}
+  \vfill
+\end{frame}
+
+\begin{frame}[c]{Trust comes from cross-modal alignment}
+  \centering
+  {\color{barpos}\fontsize{42}{42}\selectfont ``}\par
+  \vspace{-0.2em}
+  \begin{minipage}{0.82\linewidth}\centering
+    {\LARGE\itshape I trust it pretty much because it's aligned with the reasoning.}
+  \end{minipage}\par
+  \vspace{0.5em}
+  {\bfseries --- P3}\par
+  \vspace{1.6em}
+  {\small Researchers cross-check \textbf{reasoning $\leftrightarrow$ action $\leftrightarrow$ screenshot} before trusting the data.\quad Trust rated $M=0.62$ (SD~0.81).}
+\end{frame}
+
+\begin{frame}[c]{Is the behavior human-like? Mixed.}
+  \begin{columns}[t]
+    \begin{column}{0.46\linewidth}\centering
+      {\color{barpos}\large\bfseries convincing}\par\vspace{0.5em}
+      {\large\itshape ``The reasoning of the actions is very reasonable.''}\par
+      \vspace{0.4em}{\bfseries --- P7}
+    \end{column}
+    \begin{column}{0.46\linewidth}\centering
+      {\color{barneg}\large\bfseries not convincing}\par\vspace{0.5em}
+      {\large\itshape ``I just do not think a real human participant will have actions like that.''}\par
+      \vspace{0.4em}{\bfseries --- P6}
+    \end{column}
+  \end{columns}
+  \vspace{1.8em}
+  \centering
+  {\small \emph{\dots but} ``users always surprise me'' (\textbf{P8}) --- real users are unpredictable too, so some surprising agent behavior may feel \emph{authentic} rather than less.}
+\end{frame}
+
+\begin{frame}[c]{Complement, not replace}
+  \centering
+  {\color{barneg}\fontsize{42}{42}\selectfont ``}\par
+  \vspace{-0.2em}
+  \begin{minipage}{0.82\linewidth}\centering
+    {\LARGE\itshape I'm really afraid that researchers only rely on this and overtrust such data.}
+  \end{minipage}\par
+  \vspace{0.5em}
+  {\bfseries --- P1}\par
+  \vspace{1.6em}
+  {\small Most disagreed that agents can \textbf{replace} humans ($M=-0.44$).
+  
+  Position: \textbf{augment} human studies --- best for early, low-cost iteration.}
 \end{frame}
 
 \begin{frame}[standout]
@@ -657,145 +794,301 @@
 \end{frame}
 
 \begin{frame}{Dataset}
-  \begin{outline}
-    \1 Collected from a real-world online shopping platform.
-    \1 31,865 sessions from 3,526 users
-    \1 230,965 user actions
-    \1 4,432 purchases, 27,433 terminations
-  \end{outline}
+  \begin{columns}[c]
+    \begin{column}{0.40\linewidth}
+      \centering
+      {\color{barpos}\fontsize{46}{50}\selectfont\textbf{230,965}}\\[2pt]
+      {\small real user actions}\\[14pt]
+      {\Large\textbf{31,865}}\,{\small sessions}\quad
+      {\Large\textbf{3,526}}\,{\small users}
+    \end{column}
+    \begin{column}{0.58\linewidth}
+      \centering
+      {\small\bfseries How sessions end}\\[6pt]
+      \begin{tikzpicture}[x=0.6cm,y=1cm]
+        % 4,432 + 27,433 = 31,865 sessions; bar length 10 = 100%
+        \fill[barpos] (0,0) rectangle (1.39,0.7);
+        \fill[barbase!45] (1.39,0) rectangle (10,0.7);
+        \node[anchor=north west,align=left] at (0,-0.1)
+          {{\color{barpos}\Large\textbf{4,432}}\\ {\footnotesize purchases}};
+        \node[anchor=north east,align=right] at (10,-0.1)
+          {{\Large\textbf{27,433}}\\ {\footnotesize terminations}};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+
+  \vspace{18pt}
+  \centering{\small Collected from a real-world online shopping platform.}
 \end{frame}
 
 \begin{frame}{Context}
-  \begin{outline}
-    \1 \textbf{Context} (or the ``observation space'') is defined as the a ``simplified'' HTML-based representation of the current page.
-    \1 JS and CSS are removed.
-    \1 Important structural information (Table, List, etc.) is preserved.
-    \1 LLM already understands the HTML format, no need to re-define ``button'' and ``input'' etc.
-    \pause
-    \1 Each interactable element is assigned a unique ``name'' (e.g. \code{product_form.add_to_cart})
-  \end{outline}
+  \begin{columns}[c]
+    \begin{column}{0.44\linewidth}
+      \centering
+      \includegraphics[height=.58\textheight]{figures/finetuned_web_agent/rawhtml.png}\\[2pt]
+      {\small Rendered page}
+    \end{column}
+    \begin{column}{0.10\linewidth}
+      \centering {\Large$\rightarrow$}
+    \end{column}
+    \begin{column}{0.44\linewidth}
+      \centering
+      \includegraphics[height=.58\textheight]{figures/finetuned_web_agent/simplified-html.png}\\[2pt]
+      {\small \textbf{Context}: simplified HTML}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \centering {\small JS/CSS stripped, page structure kept; each interactable element gets a unique name (e.g.\ \code{product_form.add_to_cart}).}
 \end{frame}
 \begin{frame}{Action}
-  \begin{outline}
-    \1 \textbf{Action} is defined as the next raw browser action conducted by the user.
-      \2 Generalizable to other domains beyond online shopping.
-    \1 \code{click} (click on an element)
-    \1 \code{type_and_submit} (type text and submit a form by hitting enter)
-    \1 \code{terminate} (user ends the session by closing the browser window)
-  \end{outline}
+  \centering
+  {\small \textbf{Action} = the next \emph{raw browser action} by the user}\\[14pt]
+  \begin{tikzpicture}[
+      card/.style={fill=actbg, rounded corners=6pt, minimum width=3.4cm, minimum height=3.3cm},
+      ico/.style={actfg, font=\fontsize{26}{26}\selectfont},
+      nm/.style={actfg, font=\ttfamily\bfseries\small},
+      ds/.style={font=\footnotesize, text width=3cm, align=center}]
+    \foreach \x/\i/\n/\d in {
+        0/\faMousePointer/click/click on an element,
+        4/\faKeyboard/type\_and\_submit/type text and press Enter,
+        8/\faTimesCircle/terminate/close the browser window} {
+      \node[card] at (\x,0) {};
+      \node[ico] at (\x,0.75) {\i};
+      \node[nm]  at (\x,-0.15) {\n};
+      \node[ds]  at (\x,-0.85) {\d};
+    }
+  \end{tikzpicture}\\[14pt]
+  {\small Not shopping-specific: the same setup generalizes to other web domains.}
+  % Original bullets:
+  % \1 \textbf{Action} is defined as the next raw browser action conducted by the user.
+  %   \2 Generalizable to other domains beyond online shopping.
+  % \1 \code{click} (click on an element)
+  % \1 \code{type_and_submit} (type text and submit a form by hitting enter)
+  % \1 \code{terminate} (user ends the session by closing the browser window)
 \end{frame}
 
 
 \begin{frame}{Reasoning}
-  \begin{outline}
-    \1 \textbf{Reasoning} is defined as a natural language sentence that describes the reasoning behind an action.
-      \2 \textit{``I want to find a comfortable piece of clothing, so I’m looking for options with high ratings.''}
-    \1 Enhances the explainability of the model.
-    \1 Not present in existing datasets.
-  \end{outline}
-  
+  \centering
+  \begin{tikzpicture}[
+      box/.style={rounded corners=6pt, minimum width=2.6cm, minimum height=1cm, font=\small\bfseries},
+      arr/.style={-{Stealth[length=6pt]}, line width=1.2pt, tickgray}]
+    % real data
+    \node[font=\footnotesize] at (0,1.75) {in the dataset};
+    \node[box, fill=ctxbg, text=ctxfg] (ctx) at (0,0.8) {Context};
+    \node[box, fill=actbg, text=actfg] (act) at (0,-0.6) {Action};
+    % teacher
+    \node[align=center, font=\footnotesize] (llm) at (3.6,0.1)
+      {{\fontsize{26}{26}\selectfont\faRobot}\\[3pt] Teacher LLM};
+    \draw[arr] (ctx.east) -- (llm.west |- 0,0.35);
+    \draw[arr] (act.east) -- (llm.west |- 0,-0.15);
+    % synthesized reasoning
+    \node[font=\footnotesize] at (8.1,1.75) {synthesized};
+    \node[fill=rsnbg, rounded corners=6pt, text width=4.6cm, align=left, inner sep=8pt,
+          font=\small\itshape, execute at begin node={\hyphenpenalty=10000}] (rsn) at (8.1,0.1)
+      {``I want to find a comfortable piece of clothing, so I'm looking for options with high ratings.''};
+    \node[rsnfg, font=\small\bfseries, anchor=north] at (rsn.south) {Reasoning};
+    \draw[arr] (llm.east) -- (rsn.west);
+  \end{tikzpicture}\\[18pt]
+  {\small {\color{barpos}\faCheck}~makes each action explainable \qquad
+          {\color{barneg}\faTimes}~missing from existing datasets}
+  % Original bullets:
+  % \1 \textbf{Reasoning} is defined as a natural language sentence that describes the reasoning behind an action.
+  %   \2 \textit{``I want to find a comfortable piece of clothing, so I’m looking for options with high ratings.''}
+  % \1 Enhances the explainability of the model.
+  % \1 Not present in existing datasets.
+  % \1 Synthesize with teacher LLM
 \end{frame}
 
-\begin{frame}{Rationale Synthesis}
+% \begin{frame}{Rationale Synthesis}
 
-  % change to example
-
-
-  \begin{outline}
-    \1 Reasoning traces are crucial for understanding users' action choices
-    \1 Difficult to collect; thus, they are often not available in behavioral datasets.
-    \1 Reasoning Synthesis Pipeline:
-      \2 Record a real human customer's think-aloud shopping sessions as in-context learning examples.
-      \2 Provide an LLM with the observation context and the corresponding action.
-      \2 Use LLM to generate a free-text reasoning explaining the user's decision.
-  \end{outline}  
-\end{frame}
+%   \begin{outline}
+%     \1 Reasoning traces are crucial for understanding users' action choices
+%     \1 Difficult to collect; thus, they are often not available in behavioral datasets.
+%     \1 Reasoning Synthesis Pipeline:
+%       \2 Record a real human customer's think-aloud shopping sessions as in-context learning examples.
+%       \2 Provide an LLM with the observation context and the corresponding action.
+%       \2 Use LLM to generate a free-text reasoning explaining the user's decision.
+%   \end{outline}  
+% \end{frame}
 
 \begin{frame}{Finetuning LLMs}
+  \centering
+  {\small Fine-tune the LLM to predict the next $\langle$Reasoning, Action$\rangle$}\\[12pt]
+  \begin{tikzpicture}[x=0.8cm,
+      blk/.style={rounded corners=3pt, minimum width=0.66cm, minimum height=0.62cm, font=\footnotesize\bfseries, inner sep=0pt},
+      C/.style={blk, fill=ctxbg, text=ctxfg},
+      R/.style={blk, fill=rsnbg, text=rsnfg},
+      A/.style={blk, fill=actbg, text=actfg},
+      gen/.style={dashed, line width=0.8pt, fill=white},
+      lbl/.style={font=\small\bfseries, anchor=east},
+      loss/.style={decorate, decoration={brace, mirror, amplitude=4pt}, barneg, line width=0.8pt},
+      arr/.style={-{Stealth[length=6pt]}, line width=1.2pt, tickgray}]
+    % ---- Training: whole session in one pass, loss on R and A only
+    \node[lbl] at (-0.6,0) {Training};
+    \foreach \x/\t/\s in {0/C/1,1/R/1,2/A/1,3.3/C/2,4.3/R/2,5.3/A/2,7.7/C/t,8.7/R/t,9.7/A/t}
+      \node[\t] at (\x,0) {\t$_\s$};
+    \node at (6.5,0) {\dots};
+    \foreach \a in {1,4.3,8.7}
+      \draw[loss] (\a-0.42,-0.42) -- (\a+1.42,-0.42) node[midway, below=4pt, font=\scriptsize] {loss};
+    \node[font=\footnotesize, anchor=west] at (-0.4,-1.35)
+      {whole session in one pass \,$\cdot$\, loss only on Reasoning and Action tokens};
+    % ---- Inference: history + current context -> generated R_t, A_t
+    \begin{scope}[yshift=-2.9cm]
+      \node[lbl] at (-0.6,0) {Inference};
+      \foreach \x/\t/\s in {0/C/1,1/R/1,2/A/1,4.4/C/t}
+        \node[\t] at (\x,0) {\t$_\s$};
+      \node at (3.2,0) {\dots};
+      \node[font=\fontsize{20}{20}\selectfont] (bot) at (6.3,0) {\faRobot};
+      \draw[arr] (5.0,0) -- (bot.west);
+      \draw[arr] (bot.east) -- (7.9,0);
+      \node[R, gen, draw=rsnfg] at (8.7,0) {R$_t$};
+      \node[A, gen, draw=actfg] at (9.7,0) {A$_t$};
+      \node[font=\scriptsize] at (9.2,-0.6) {generated};
+    \end{scope}
+  \end{tikzpicture}
+  % Original bullets:
   % loss function, formally define
-  \begin{outline}
-    \1 To enhance LLMs' accuracy in simulating human behavior, we finetune them on the task.
-    \2 \textbf{Input:} ${\langle Context, Reasoning, Action\rangle}_{1:t-1}$ + $<Context>_t$ 
-    \2 \textbf{Output:} $\langle Reasoning, Action\rangle _{t}$
-    \1 Training:
-      \2 Entire session is inputed as a whole.
-      \2 Minimize the loss of the predicted action and reasoning tokens
-    \1 Inference:
-      \2 Input the context, past actions and corresponding reasoning.
-      \2 Output the next action and reasoning.
-  \end{outline}
+  % \1 To enhance LLMs' accuracy in simulating human behavior, we finetune them on the task.
+  % \2 \textbf{Input:} ${\langle Context, Reasoning, Action\rangle}_{1:t-1}$ + $<Context>_t$
+  % \2 \textbf{Output:} $\langle Reasoning, Action\rangle _{t}$
+  % \1 Training:
+  %   \2 Entire session is inputed as a whole.
+  %   \2 Minimize the loss of the predicted action and reasoning tokens
+  % \1 Inference:
+  %   \2 Input the context, past actions and corresponding reasoning.
+  %   \2 Output the next action and reasoning.
 \end{frame}
 
 \subsection{Evaluation and Experiments}
 
 \begin{frame}{Evaluation Metrics}
-  \begin{outline}
-    % \1 Two tasks: 
-    \1 Next Action Generation
-      \2 Exact Match
-      \2 Predicted action is only considered correct if both the action type (click, terminate, etc.) and the action attribute (the click target / the input text) match the ground truth.
-      \pause
-    \1 Shopping Outcome Prediction
-      \2 Essentially predicting the last action based on the session history.
-      \2 One of \code{click} on a \code{buy_now} button or \code{terminate} the session.
-      \2 F1 score
-  \end{outline}
+  \begin{columns}[t]
+    \begin{column}{0.5\linewidth}
+      \centering
+      \begin{tikzpicture}[
+          act/.style={fill=actbg, text=actfg, rounded corners=3pt, font=\ttfamily\scriptsize, minimum height=0.55cm, inner xsep=4pt},
+          hd/.style={font=\scriptsize}]
+        \fill[gray!8, rounded corners=8pt] (-0.3,0.55) rectangle (6.7,-3.35);
+        \node[font=\small\bfseries, anchor=west] at (-0.1,0.15) {Next Action \,$\cdot$\, Accuracy};
+        \node[hd] at (1.25,-0.45) {predicted};
+        \node[hd] at (4.5,-0.45) {ground truth};
+        \node[act] at (1.25,-1.05) {click$\cdot$add\_to\_cart};
+        \node[act] at (4.5,-1.05) {click$\cdot$add\_to\_cart};
+        \node[barpos, font=\large] at (6.25,-1.05) {\faCheck};
+        \node[act] at (1.25,-1.85) {click$\cdot$reviews};
+        \node[act] at (4.5,-1.85) {click$\cdot$add\_to\_cart};
+        \node[barneg, font=\large] at (6.25,-1.85) {\faTimes};
+        \node[font=\footnotesize] at (3.2,-2.8) {action type \emph{and} target must match};
+      \end{tikzpicture}
+    \end{column}
+    \pause
+    \begin{column}{0.5\linewidth}
+      \centering
+      \begin{tikzpicture}[
+          sstep/.style={fill=barbase!35, rounded corners=2pt, minimum size=0.45cm},
+          arr/.style={-{Stealth[length=5pt]}, line width=1pt, tickgray}]
+        \fill[gray!8, rounded corners=8pt] (-0.3,0.55) rectangle (6.7,-3.35);
+        \node[font=\small\bfseries, anchor=west] at (-0.1,0.15) {Session Outcome \,$\cdot$\, F1};
+        \foreach \x in {0.2,0.85} \node[sstep] at (\x,-1.45) {};
+        \node at (1.5,-1.45) {\dots};
+        \node[sstep] (last) at (2.15,-1.45) {};
+        \node[barpos, font=\footnotesize\bfseries] (buy) at (4.55,-0.8) {\faShoppingCart~\texttt{buy\_now}};
+        \node[barneg, font=\footnotesize\bfseries] (term) at (4.55,-2.1) {\faTimesCircle~\texttt{terminate}};
+        \draw[arr] (last.east) -- (buy.west);
+        \draw[arr] (last.east) -- (term.west);
+        \node[font=\footnotesize] at (3.2,-2.8) {predict how the session ends};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  % Original bullets:
+  % \1 Next Action Generation
+  %   \2 Exact Match
+  %   \2 Predicted action is only considered correct if both the action type (click, terminate, etc.) and the action attribute (the click target / the input text) match the ground truth.
+  % \1 Shopping Outcome Prediction
+  %   \2 Essentially predicting the last action based on the session history.
+  %   \2 One of \code{click} on a \code{buy_now} button or \code{terminate} the session.
+  %   \2 F1 score
 \end{frame}
 
-\begin{frame}{Models}
-  \begin{outline}
-    \1 Baseline Models:
-      \2 Claude
-      \2 Llama
-      \2 Mistral
-      \2 DeepSeek-R1
-    \1 Fine-tuned Models:
-      \2 Llama
-      \2 Qwen
-      \2 Mistral
-  \end{outline}
-\end{frame}
+% \begin{frame}{Models}
+%   \begin{outline}
+%     \1 Baseline Models:
+%       \2 Claude
+%       \2 Llama
+%       \2 Mistral
+%       \2 DeepSeek-R1
+%     \1 Fine-tuned Models:
+%       \2 Llama
+%       \2 Qwen
+%       \2 Mistral
+%   \end{outline}
+% \end{frame}
 
 \begin{frame}{Results -- Accuracy \& F1}
-  \begin{table}[t]
-    \centering
-    \footnotesize
-    
-    \begin{booktabs}{
-        width=\linewidth,
-        colspec={lcccccc},
-        cell{1}{2,5} = {c=3}{},
-        cell{1}{1} = {r=2}{},
-        column{1}={font=\small},
-        row{1,2}={font=\bfseries},
-        cell{3,9}{1} = {c=7}{bg=black!30!white,font=\bfseries},
-        % row{3,8}={rowsep=4pt},
-        cell{11,13,15}{1} = {r},
-    }
-    \toprule
-    Model                & {Next Action Gen.} & & & {Session Outcome} \\
-    \cmidrule[r]{2-4} \cmidrule[l]{5-7}
-                         & Acc.                & $\%\Delta$ & v.s. DS-R1 & F1 Score             & $\%\Delta$& v.s. DS-R1 \\
-    \midrule
-    Pre-Trained Models   &                         &                    &                  &                      &                    &                  \\
-    DeepSeek-R1          & 11.86\%                 & -                  & -                & 20.01\%              & -                  & -                \\
-    Mistral-7B-v0.3      & 4.25\%                  & -                  & \highlightRelevantValue{-7.61} & 11.27\%              & -                  & \highlightRelevantValue{-8.74} \\
-    Qwen2.5-7B           & 4.25\%                  & -                  & \highlightRelevantValue{-7.61} & 11.94\%              & -                  & \highlightRelevantValue{-8.07} \\
-    Llama 3.2 3B         & 2.93\%                  & -                  & \highlightRelevantValue{-8.93} & 8.60\%               & -                  & \highlightRelevantValue{-11.41} \\
-    Claude 3.7 Sonnet    & 9.34\%                  & -                  & \highlightRelevantValue{-2.52} & 12.81\%              & -                  & \highlightRelevantValue{-7.20} \\
-    Fine-tuned Models    &                         &                    &                  &                      &                    &                  \\
-    Qwen2.5-7B~          & \underline{16.67\%}                 & -                  & \highlightRelevantValue{4.81}  & 26.92\%              & -                  & \highlightRelevantValue{6.91}  \\
-    + reasoning          & \textbf{17.26\%}                 & \highlightRelevantValue{3.54}  & \highlightRelevantValue{5.40}  & \underline{ 33.86\%}              & \highlightRelevantValue{25.78} & \highlightRelevantValue{13.85} \\
-    Mistral-7B-v0.3~     & 14.17\%                 & -                  & \highlightRelevantValue{2.31}  & 17.99\%              & -                  & \highlightRelevantValue{-2.02} \\
-    + reasoning          & 15.84\%                 & \highlightRelevantValue{11.79}  & \highlightRelevantValue{3.98}  & 30.12\%              & \highlightRelevantValue{67.43}  & \highlightRelevantValue{10.11} \\
-    Llama-3.2-3B~        & 9.31\%                  & -                  & \highlightRelevantValue{-2.55} & 4.73\%               & -                  & \highlightRelevantValue{-15.28} \\
-    + reasoning          & 15.77\%                 & \highlightRelevantValue{69.39}  & \highlightRelevantValue{3.91}  & \textbf{33.99\%}              & \highlightRelevantValue{618.60} & \highlightRelevantValue{13.98} \\
-    \bottomrule
-    \end{booktabs}
-    \caption{Model performance.}
-    % \vspace{2\baselineskip}
-    \label{tab:results}
-    \end{table}
+  \centering
+  \resizebox{\linewidth}{!}{%
+  \begin{tikzpicture}[
+      vlabel/.style={font=\scriptsize\bfseries,anchor=south,inner sep=1.6pt},
+      xlab/.style={font=\small,anchor=north east,rotate=28,text=black,inner sep=1pt},
+      yscale=0.105,
+    ]
+    \def\PB{8.0}
+    \def\sep{0.5}
+    \def\bw{0.17}
+    \def\bx{0.7}
+    \def\ga{2.2}\def\gb{4.1}\def\gc{6.0}
+    \def\ly{50}
+    \fill[barbase] (0.55,\ly-1.1) rectangle (1.05,\ly+1.1);
+    \node[anchor=west,font=\small] at (1.2,\ly) {prompted baseline};
+    \fill[barsft] (5.2,\ly-1.1) rectangle (5.7,\ly+1.1);
+    \node[anchor=west,font=\small] at (5.85,\ly) {SFT};
+    \fill[barpos] (7.8,\ly-1.1) rectangle (8.3,\ly+1.1);
+    \node[anchor=west,font=\small] at (8.45,\ly) {SFT + reasoning};
+    \begin{scope}
+      \node[font=\bfseries,anchor=south] at (3.3,40) {Next Action \textemdash\ Accuracy (\%)};
+      \foreach \g in {10,20,30}{
+        \draw[gridln,line width=0.7pt] (0.15,\g) -- (6.9,\g);
+        \node[font=\footnotesize,text=gray,anchor=east,inner sep=2.5pt] at (0.15,\g) {\g};
+      }
+      \draw[gray!55,line width=1pt] (0.15,0) -- (6.9,0);
+      \fill[barbase] (\bx-\bw,0) rectangle (\bx+\bw,11.86);
+      \node[vlabel,text=barbase] at (\bx,11.86) {11.86};
+      \foreach \cx/\sv/\pv in {\ga/16.67/17.26, \gb/14.17/15.84, \gc/9.31/15.77}{
+        \fill[barsft] (\cx-\sep-\bw,0) rectangle (\cx-\sep+\bw,\sv);
+        \node[vlabel,text=barsft] at (\cx-\sep,\sv) {\sv};
+        \fill[barpos] (\cx+\sep-\bw,0) rectangle (\cx+\sep+\bw,\pv);
+        \node[vlabel,text=barpos] at (\cx+\sep,\pv) {\pv};
+      }
+      \node[xlab] at (\bx,-1) {DeepSeek-R1};
+      \node[xlab] at (\ga,-1) {Qwen-7B};
+      \node[xlab] at (\gb,-1) {Mistral-7B};
+      \node[xlab] at (\gc,-1) {Llama-3B};
+    \end{scope}
+    \begin{scope}[shift={(\PB,0)}]
+      \node[font=\bfseries,anchor=south] at (3.3,40) {Session Outcome \textemdash\ F1 (\%)};
+      \foreach \g in {10,20,30}{
+        \draw[gridln,line width=0.7pt] (0.15,\g) -- (6.9,\g);
+        \node[font=\footnotesize,text=gray,anchor=east,inner sep=2.5pt] at (0.15,\g) {\g};
+      }
+      \draw[gray!55,line width=1pt] (0.15,0) -- (6.9,0);
+      \fill[barbase] (\bx-\bw,0) rectangle (\bx+\bw,20.01);
+      \node[vlabel,text=barbase] at (\bx,20.01) {20.01};
+      \foreach \cx/\sv/\pv in {\ga/26.92/33.86, \gb/17.99/30.12, \gc/4.73/33.99}{
+        \fill[barsft] (\cx-\sep-\bw,0) rectangle (\cx-\sep+\bw,\sv);
+        \node[vlabel,text=barsft] at (\cx-\sep,\sv) {\sv};
+        \fill[barpos] (\cx+\sep-\bw,0) rectangle (\cx+\sep+\bw,\pv);
+        \node[vlabel,text=barpos] at (\cx+\sep,\pv) {\pv};
+      }
+      \node[xlab] at (\bx,-1) {DeepSeek-R1};
+      \node[xlab] at (\ga,-1) {Qwen-7B};
+      \node[xlab] at (\gb,-1) {Mistral-7B};
+      \node[xlab] at (\gc,-1) {Llama-3B};
+    \end{scope}
+  \end{tikzpicture}}
+
+  \vspace{2pt}
+  \centering {\small \textbf{Prompting is not all you need:} small fine-tuned models beat the best prompted model, and synthesized \emph{reasoning} lifts outcome F1 further.}
 \end{frame}
 
 \begin{frame}{Results -- Distribution}
@@ -862,34 +1155,45 @@
 %   \end{outline}
 % \end{frame}
 
-\begin{frame}[c]
-  Supervised fine-tuning improves simulation accuracy, but it remains fundamentally limited.
-
-  As an off-policy learning paradigm, SFT can only reproduce behaviors present in offline data or teacher-generated traces, rather than explore and learn new strategies.
-
-  This places an inherent ceiling on performance.
-
-  Beyond supervised fine-tuning, how can reinforcement learning further improve LLMs for human behavior simulation?
+\begin{frame}{SFT Imitates, RL Explores}
+  \centering
+  \figorplaceholder{figures/webserv/sft-vs-rl.png}{Two panels, yellow robot style. Left ``SFT'': robot steps exactly inside a line of existing human footprints that ends at a dead end (off-policy imitation can only reproduce behaviors in the data). Right ``RL'': robot at a fork of paths, one marked with a red X and one with a green check, walking a newly discovered path to a gold trophy (exploration plus reward finds new strategies). Speaker note: next question, how can RL further improve LLMs for human behavior simulation?}
+  % Original text:
+  % Supervised fine-tuning improves simulation accuracy, but it remains fundamentally limited.
+  % As an off-policy learning paradigm, SFT can only reproduce behaviors present in offline data or teacher-generated traces, rather than explore and learn new strategies.
+  % This places an inherent ceiling on performance.
+  % Beyond supervised fine-tuning, how can reinforcement learning further improve LLMs for human behavior simulation?
 \end{frame}
 
-\section[WebServ: Browser-Server Environment for RL Web Agents]{WebServ: A Browser-Server Environment for Efficient Training of Reinforcement Learning-based Web Agents at Scale}
+\section[Case Study 3: Making Agents RL-Ready]{Case Study 3: Making Agents RL-Ready: an Environment to Act in, and Verified Rewards to Learn from}
+
+\begin{frame}[standout]
+  RL needs two things:
+  \vspace{6pt}
+
+  {\Large a \ul{place to act} \quad and \quad a \ul{signal to learn from}}
+\end{frame}
+
+\subsection{WebServ: A Browser-Server Environment for RL Web Agents}
 
 
 \begin{frame}{Web Browsers are NOT RL-Ready}
-  \begin{outline}
-    \1 Web Browsers are NOT RL-Ready:
-      \2 Requires per-site configuration or rely on site features
-      \2 Noisy context and action
-  \end{outline}
+  \centering
+  \figorplaceholder{figures/webserv/browser-not-rl-ready.png}{Two panels, yellow robot style. Left ``Per-site setup'': tired robot surrounded by several browser windows, each with its own wrench or adapter that must be hand-fitted (requires per-site configuration or relies on site features). Right ``Noisy pages'': confused robot in front of a window overflowing with pop-ups, ads, cookie banners and tangled wires (noisy context and action).}
+  % Original bullets:
+  % \1 Web Browsers are NOT RL-Ready:
+  %   \2 Requires per-site configuration or rely on site features
+  %   \2 Noisy context and action
 \end{frame}
 
 \begin{frame}{Web Servers are NOT RL-Ready}
-  \begin{outline}
-    \1 Web Servers are NOT RL-Ready
-      \2 Expensive, slow, large image size
-      \2 Single agent per server (lack of isolation)
-      \2 Rollout is expensive
-  \end{outline}
+  \centering
+  \figorplaceholder{figures/webserv/server-not-rl-ready.png}{Three panels, yellow robot style. Left ``Heavy'': robot drags a huge server container with an hourglass and coins (expensive, slow, large image size). Middle ``Shared'': two robots bump into each other over one server and one keyboard (single agent per server, lack of isolation). Right ``Costly rollouts'': long queue of robots waiting at one server under a ticking clock (rollout is expensive).}
+  % Original bullets:
+  % \1 Web Servers are NOT RL-Ready
+  %   \2 Expensive, slow, large image size
+  %   \2 Single agent per server (lack of isolation)
+  %   \2 Rollout is expensive
 \end{frame}
 
 \begin{frame}{System Architecture}
@@ -1036,21 +1340,299 @@
   \end{table}
 \end{frame}
 
+\begin{frame}[standout]
+  WebServ gives agents a \ul{place to act}.
+  \vspace{10pt}
+  \pause
+
+  Where does a \ul{verified} learning signal come from?
+\end{frame}
+
+\subsection{Firefly: Verified Tool-Call Data from Real APIs}
+
+\begin{frame}{Scalable, Real, Verifiable: Pick Two}
+  \centering
+  \figorplaceholder[.7\textheight]{figures/firefly/pick-two.png}{Three panels, yellow robot style. Left ``Human annotation'': one tired robot hand-writes tool-call examples while a wall of hundreds of APIs waits (reliable, but expensive and cannot cover the long tail of real APIs). Middle ``Simulated APIs'': robot plays with a cardboard toy server while the real server behind glass answers differently (responses diverge from real API behavior). Right ``Task first'': robot writes a task, then imagines a chain of tool calls ending in a question mark with a crossed-out answer (no ground-truth trajectory or final state to verify against).}\\[6pt]
+  {\small {\color{barneg}\faTimes}~not scalable \qquad {\color{barneg}\faTimes}~not real \qquad {\color{barneg}\faTimes}~not verifiable}
+  % Speaker (paper intro, para 1): training needs large-scale trajectories with correct intermediate calls and
+  % verifiable outcomes. Human annotation is reliable but expensive and domain-specific. Synthetic pipelines either
+  % simulate the tools (responses drift from real APIs) or generate tasks first over real tools (no ground truth).
+\end{frame}
+
+\begin{frame}[standout]
+  How can we get tool-call training data that is \ul{scalable}, \ul{real}, and \ul{verifiable} at the same time?
+\end{frame}
+
+\begin{frame}{Key Idea: Invert the Pipeline}
+  \centering
+  \resizebox{\linewidth}{!}{%
+  \begin{tikzpicture}[
+      box/.style={rounded corners=5pt, minimum height=1cm, minimum width=2.6cm, font=\small, align=center},
+      arr/.style={-{Stealth[length=6pt]}, line width=1.2pt, tickgray},
+      lbl/.style={font=\small\bfseries, anchor=east, align=right}]
+    % forward generation
+    \node[lbl] at (-0.3,0) {Forward generation\\{\footnotesize\mdseries prior work}};
+    \node[box, fill=gray!15] (t1)  at (1.3,0) {Task\\{\footnotesize written first}};
+    \node[box, fill=gray!15] (tr1) at (4.9,0) {Trajectory\\{\footnotesize LLM-imagined}};
+    \node[box, fill=gray!15] (a1)  at (8.5,0) {Answer\\{\footnotesize unverified}};
+    \draw[arr] (t1) -- (tr1);
+    \draw[arr] (tr1) -- (a1);
+    \node[barneg, font=\small, anchor=west] at (10.2,0) {\faTimes~hope it is solvable};
+    % back-chaining
+    \node[lbl] at (-0.3,-2.4) {Back-chaining\\{\footnotesize\mdseries Firefly}};
+    \node[box, fill=barpos!15] (api) at (1.3,-2.4) {Real APIs\\{\footnotesize explore \& execute}};
+    \node[box, fill=barpos!15] (st)  at (4.9,-2.4) {Observed states\\{\footnotesize cached}};
+    \node[box, fill=barpos!15] (t2)  at (8.5,-2.4) {Task\\{\footnotesize synthesized backward}};
+    \draw[arr] (api) -- (st);
+    \draw[arr] (st) -- (t2);
+    \node[barpos, font=\small, anchor=west] at (10.2,-2.4) {\faCheck~correct by construction};
+  \end{tikzpicture}}
+  \vspace{10pt}
+
+  {\small Correctness is built into \emph{generation}, not bolted on by post-hoc filtering.}
+\end{frame}
+
+\begin{frame}{Firefly Pipeline}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/firefly/firefly.pdf}
+  \end{figure}
+  \centering {\small Filter real servers \,$\rightarrow$\, explore and back-chain tasks \,$\rightarrow$\, RL in an offline simulator.}
+\end{frame}
+
+\begin{frame}{Simple Idea, Two Challenges at Scale}
+  \begin{columns}[c]
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[height=.62\textheight]{figures/firefly/challenge-too-many-tools.png}\\[4pt]
+      {\small Hundreds of servers, $\sim$1,000 tools: blind exploration wastes most calls.}\\
+      {\small\bfseries $\rightarrow$ graph-guided exploration}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[height=.62\textheight]{figures/firefly/challenge-drifting.png}\\[4pt]
+      {\small Live APIs change, go down, rate-limit: rollouts are not reproducible.}\\
+      {\small\bfseries $\rightarrow$ replay simulator}
+    \end{column}
+  \end{columns}
+  % Speaker (paper intro, para 3-4): concurrent work (Trajectory2Task) only handles small fixed tool spaces;
+  % real MCP ecosystems are large and messy. And real tools are not stable training environments.
+\end{frame}
+
+\begin{frame}{Graph-Guided Exploration}
+  \begin{columns}[c]
+    \begin{column}{0.5\linewidth}
+      \centering
+      \resizebox{.95\linewidth}{!}{%
+      \begin{tikzpicture}[
+          tn/.style={circle, fill=gray!25, minimum size=0.5cm, inner sep=0},
+          hn/.style={circle, fill=barpos, text=white, minimum size=0.5cm, inner sep=0, font=\scriptsize\bfseries},
+          ge/.style={gray!45, line width=0.8pt},
+          he/.style={-{Stealth[length=5pt]}, barpos, line width=1.6pt}]
+        \foreach \n/\x/\y in {a/0/0, b/1.5/1.2, c/1.6/-1.3, d/3.2/0.4, e/3.4/-1.1, f/4.9/1.3, g/5.0/-0.4, h/2.5/2.2, i/-1.3/1.3, j/-1.1/-1.4, k/6.3/0.8}
+          \node[tn] (\n) at (\x,\y) {};
+        \foreach \s/\t in {i/a, i/b, j/a, j/c, a/h, b/h, b/d, c/d, c/e, d/f, d/g, e/g, h/f, f/k, g/k, b/f, e/j}
+          \draw[ge] (\s) -- (\t);
+        \foreach \n/\l in {a/1, b/2, c/2, d/3, g/4}
+          \node[hn] at (\n) {\l};
+        \draw[he] (a) -- (b);
+        \draw[he] (a) -- (c);
+        \draw[he] (b) -- (d);
+        \draw[he] (c) -- (d);
+        \draw[he] (d) -- (g);
+        \node[font=\scriptsize, anchor=east] at (-0.35,-0.35) {start};
+        \node[font=\scriptsize\color{barpos}] at (0.9,0.95) {fan-out};
+        \node[font=\scriptsize\color{barpos}] at (3.0,-0.5) {fan-in};
+      \end{tikzpicture}}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      {\Large\textbf{993}}\,{\small tools from}\, {\Large\textbf{240}}\,{\small real MCP servers}\\[8pt]
+      {\Large\textbf{83K}}\,{\small edges: ``can $A$'s output feed $B$?''}\\
+      {\small judged by an LLM from tool schemas}\\[12pt]
+      {\small A strong LLM walks a sampled sub-graph, \textbf{executing real tools} at every step, and leaves behind a DAG of actual calls.}\\[8pt]
+      {\small Without the graph, most calls land on incoherent tool combinations.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Back-Chaining: From Observed States to a Task}
+  \centering
+  \begin{tikzpicture}[
+      call/.style={fill=barpos!15, rounded corners=4pt, font=\ttfamily\scriptsize, align=left, inner sep=6pt, text width=4.3cm},
+      arr/.style={-{Stealth[length=6pt]}, line width=1.2pt, tickgray}]
+    \node[font=\footnotesize] at (0,1.9) {observed during exploration};
+    \node[call] (c1) at (0,0.9) {whois\_lookup(``amazon.com'')\\$\rightarrow$ registered: 1994};
+    \node[call] (c2) at (0,-0.6) {whois\_lookup(``netflix.com'')\\$\rightarrow$ registered: 1997};
+    \node[font=\footnotesize] at (7.6,1.9) {synthesized backward};
+    \node[fill=rsnbg, rounded corners=6pt, text width=5.6cm, align=left, inner sep=8pt, font=\small\itshape] (task) at (7.6,0.75)
+      {``Which domain was registered first, amazon.com or netflix.com, and how many years apart?''};
+    \node[fill=actbg, text=actfg, rounded corners=4pt, text width=5.6cm, align=left, inner sep=6pt, font=\ttfamily\scriptsize] (ans) at (7.6,-1.0)
+      {\{first: amazon.com, years\_apart: 3\}};
+    \node[rsnfg, font=\scriptsize\bfseries, anchor=south east] at (task.north east) {Task};
+    \node[actfg, font=\scriptsize\bfseries, anchor=north east] at (ans.south east) {Verified label};
+    \draw[arr] (2.4,0.15) -- node[above, font=\footnotesize] {back-chain} (4.6,0.15);
+  \end{tikzpicture}\\[12pt]
+  {\small Every answer field comes from a response that \emph{actually happened}.}\\
+  {\small Unused nodes become distractors. An LLM judge drops about half the candidates.}
+\end{frame}
+
+\begin{frame}{Real APIs Drift: Replay Them Instead}
+  \centering
+  \begin{tikzpicture}[
+      tier/.style={rounded corners=5pt, minimum height=0.9cm, minimum width=3.6cm, font=\small, align=center},
+      arr/.style={-{Stealth[length=6pt]}, line width=1.2pt, tickgray}]
+    \node[font=\small\bfseries] (q) at (-3.6,0) {agent tool call};
+    \node[tier, fill=barpos!20] (t1) at (0,1.3)  {\textbf{exact match}\\{\footnotesize return cached output}};
+    \node[tier, fill=rsnbg]     (t2) at (0,0)    {\textbf{fuzzy match}\\{\footnotesize top-$k$ similar calls + LLM}};
+    \node[tier, fill=barneg!15] (t3) at (0,-1.3) {\textbf{no data}\\{\footnotesize return an error}};
+    \draw[arr] (q.east) -- (t1.west);
+    \draw[arr] (q.east) -- (t2.west);
+    \draw[arr] (q.east) -- (t3.west);
+    \node[anchor=west, font=\small, barpos] at (2.2,1.3)  {\textbf{42.2\%} of calls during RL};
+    \node[anchor=west, font=\small, rsnfg]  at (2.2,0)    {\textbf{57.8\%}};
+    \node[anchor=west, font=\small, barneg, text width=4.6cm, align=left] at (2.2,-1.3)
+      {\textbf{0\%} \; {\color{black}never in any ground truth, so almost surely a wrong call}};
+  \end{tikzpicture}\\[14pt]
+  {\small Cache every exploration call; replay it instead of hitting live servers during RL.}\\[4pt]
+  {\small Same tension as WebServ: real execution's realism, a replay's reproducibility.}
+\end{frame}
+
+\begin{frame}{The Firefly Dataset}
+  \begin{columns}[c]
+    \begin{column}{0.42\linewidth}
+      \centering
+      {\color{barpos}\fontsize{46}{50}\selectfont\textbf{5,144}}\\[2pt]
+      {\small verified tasks}\\[14pt]
+      {\Large\textbf{240}}\,{\small servers}\quad
+      {\Large\textbf{993}}\,{\small tools}
+    \end{column}
+    \begin{column}{0.56\linewidth}
+      {\Large\textbf{3.0}}\,{\small tool calls per task on average (1--10)}\\[8pt]
+      {\Large\textbf{38.5\%}}\,{\small of tasks span \emph{multiple} servers}\\[8pt]
+      {\Large\textbf{4.6}}\,{\small answer fields per task}\\[8pt]
+      {\Large\textbf{7.8}\,/\,10}\,{\small realism, LLM-judged}
+    \end{column}
+  \end{columns}
+  \vspace{16pt}
+  \centering{\small One-time cost: 23.5B tokens, about \$47K. After that, offline rollouts are free.}
+\end{frame}
+
+\begin{frame}{Compared with Existing Datasets}
+  \begin{table}[t]
+    \centering
+    \begin{booktabs}{
+      colspec = {l r r c c c},
+      row{1} = {font=\bfseries},
+      row{7} = {font=\bfseries, fg=barpos}
+    }
+    \toprule
+    Dataset & Tasks & Servers/APIs & Multi-step & Verifiable & Real APIs \\
+    \midrule
+    API-Bank   & 1,888 & 2,138 & \checkmark & \checkmark & $\times$ \\
+    ToolAlpaca & 3,938 & 400+  & $\times$   & $\times$   & \checkmark \\
+    APIGen-MT  & 5,000 & 27    & \checkmark & \checkmark & $\times$ \\
+    Tau2-Bench & 279   & 68    & \checkmark & \checkmark & $\times$ \\
+    Toucan     & 1.5M  & 2000+ & \checkmark & $\times$   & \checkmark \\
+    \midrule
+    Firefly    & 5,144 & 993   & \checkmark & \checkmark & \checkmark \\
+    \bottomrule
+    \end{booktabs}
+  \end{table}
+  \vspace{4pt}
+  \centering {\small The only one that is multi-step, verifiable, and grounded in real APIs.}
+\end{frame}
+
+\begin{frame}{Results: A 4B Model Matches Claude Sonnet}
+  \begin{columns}[c]
+    \begin{column}{0.40\linewidth}
+      \centering
+      {\color{barpos}\fontsize{46}{50}\selectfont\textbf{41.5}}\\[2pt]
+      {\small pass@1 on held-out Firefly tasks}\\
+      {\small up from 28.1 before RL}\\[12pt]
+      {\small Qwen3-4B after GRPO on Firefly\\ matches \textbf{Claude Sonnet 4.6} (42.2)}
+    \end{column}
+    \begin{column}{0.58\linewidth}
+      \centering
+      \resizebox{\linewidth}{!}{%
+      \begin{tikzpicture}[x=0.11cm,y=0.85cm]
+        \foreach \y/\v/\c/\n in {4/28.1/barbase/Qwen3-4B base, 3/30.0/barsft/Claude Haiku 4.5, 2/42.2/barsft/Claude Sonnet 4.6, 1/44.5/barsft/Claude Opus 4.7, 0/41.5/barpos/Qwen3-4B + Firefly RL}{
+          \draw[\c,line width=10pt,line cap=round] (0,\y) -- (\v,\y);
+          \node[\c,anchor=west,font=\small\bfseries] at (\v+2.5,\y) {\v};
+          \node[anchor=east,font=\small] at (-2.5,\y) {\n};
+        }
+        \node[black,font=\footnotesize] at (22,-0.9) {pass@1 (\%), 16 rollouts per task};
+      \end{tikzpicture}}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \centering {\small At pass@8 it reaches 52.8, above Sonnet (50.3) and close to Opus (54.4).}
+\end{frame}
+
+\begin{frame}{Results: Steady Gains over RL Training}
+  \begin{figure}
+    \centering
+    \includegraphics[height=.78\textheight]{figures/firefly/pass_at_k.pdf}
+  \end{figure}
+  \centering {\small Dashed lines: Claude Haiku 4.5, Sonnet 4.6, Opus 4.7, same protocol.}
+\end{frame}
+
+\begin{frame}{Results: It Transfers}
+  \begin{table}[t]
+    \centering
+    \small
+    \begin{booktabs}{
+      colspec = {l X[c] X[c] X[c] X[c] X[c] X[c] X[c]},
+      width = \linewidth,
+      row{1,2} = {font=\bfseries},
+      cell{1}{2} = {c=3}{c},
+      cell{1}{5} = {c=1}{c},
+      cell{1}{6} = {c=3}{c},
+    }
+    \toprule
+    & Tau2-Bench & & & MCP-Atlas & MCPMark & & \\
+    Model & Retail & Airline & Telecom & & File Sys. & PG Easy & PG Std \\
+    \midrule
+    Qwen3-4B              & 49.1 & 36.5 & 18.9 & 19.4 & 40.0 & 70.0 & 9.5 \\
+    \textbf{+ Firefly RL} & \textbf{62.7} & \textbf{52.5} & \textbf{20.4} & \textbf{26.0} & \textbf{60.0} & \textbf{80.0} & \textbf{13.3} \\
+    \bottomrule
+    \end{booktabs}
+  \end{table}
+  \vspace{6pt}
+  \centering {\small Improves on every public benchmark, \textbf{multi-turn} and \textbf{real MCP execution} included.}\\[2pt]
+  {\small Trained only on single-turn tasks in a replay simulator: not memorization.}
+\end{frame}
+
+\begin{frame}{Closing the Loop}
+  \centering
+  \resizebox{!}{.82\textheight}{%
+  \begin{tikzpicture}[
+      arr/.style={-{Stealth[length=9pt]}, line width=2pt, barpos},
+      lab/.style={align=center, font=\small}]
+    \node (d) at (90:3.0)  {\includegraphics[height=1.9cm]{puzzled-agent.png}};
+    \node (e) at (-30:3.0) {\includegraphics[height=1.9cm]{evaluate-agent.png}};
+    \node (i) at (210:3.0) {\includegraphics[height=1.9cm]{improve-agent.png}};
+    \node[lab, above=2pt of d] {\textbf{Design}\\UXAgent};
+    \node[lab, below right=2pt and -14pt of e] {\textbf{Evaluate}\\real behavior data};
+    \node[lab, below left=2pt and -14pt of i] {\textbf{Improve}\\WebServ + Firefly};
+    \draw[arr] (d) to[bend left=28] node[midway, right=6pt, font=\footnotesize, text=black] {is it accurate?} (e);
+    \draw[arr] (e) to[bend left=28] node[midway, below=6pt, font=\footnotesize, text=black] {gap found, SFT caps out} (i);
+    \draw[arr] (i) to[bend left=28] node[midway, left=6pt, font=\footnotesize, text=black] {RL-trained simulated users} (d);
+    \node[align=center, font=\small\bfseries] at (0,0) {LLM agents as\\simulated users};
+  \end{tikzpicture}}
+\end{frame}
 
 \begin{frame}{Recap}
   \begin{outline}
-    \1 Designing: UXAgent shows how LLM agents can support UX researchers before running costly human studies.
-    \1 Evaluating: real behavioral data shows that current agents are still far from faithfully simulating humans.
-    \1 Improving: WebServ provides the infrastructure needed to train and improve web agents with reinforcement learning.
+    \1 Designing: UXAgent lets UX researchers iterate on a study design before spending participants' time.
+    \1 Evaluating: against real behavioral data, prompted agents are far from human; fine-tuning with reasoning helps, but SFT can only imitate.
+    \1 Improving: WebServ gives agents a scalable place to act, Firefly a verified signal to learn from; RL takes a 4B model to Claude Sonnet level.
   \end{outline}
 \end{frame}
 
 \begin{frame}[plain]
-  \begin{figure}[htp]
-    \centering
-    \includegraphics[height=\textheight]{papers.png}
-    % \caption{}
-  \end{figure}
+  \centering
+  \includegraphics[height=.96\paperheight]{papers.png}\hspace{10pt}%
+  \includegraphics[height=.96\paperheight]{papers2.png}
 \end{frame}
 
 \begin{frame}[standout]

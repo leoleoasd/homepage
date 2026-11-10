@@ -1,0 +1,210 @@
+% Chinese versions of the Firefly talk diagrams, for the 机器之心 article.
+% Build: lualatex figs_zh.tex  (one PDF page per figure)
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{luatexja-fontspec}
+\setmainfont{TeX Gyre Heros}
+\setsansfont{TeX Gyre Heros}
+\setmainjfont{Heiti SC}
+\setsansjfont{Heiti SC}
+\usepackage{fontawesome5}
+\usetikzlibrary{calc,arrows.meta,positioning}
+
+\definecolor{barpos}{HTML}{2F6E73}
+\definecolor{barneg}{HTML}{C0392B}
+\definecolor{tickgray}{HTML}{9A9A9A}
+\definecolor{barbase}{HTML}{9A9A9A}
+\definecolor{barsft}{HTML}{93C0C4}
+\definecolor{rsnbg}{HTML}{EAF3B5}
+\definecolor{rsnfg}{HTML}{6B7A12}
+\definecolor{actbg}{HTML}{C3DBF3}
+\definecolor{actfg}{HTML}{2F5597}
+\definecolor{pblue}{HTML}{1F4E8C}
+\definecolor{pteal}{HTML}{1E8C82}
+\definecolor{porange}{HTML}{E07B24}
+
+\tikzset{arr/.style={-{Stealth[length=7pt]}, line width=1.3pt, tickgray}}
+
+\begin{document}
+
+% ---------------------------------------------------------------- 1. 三重困境
+\begin{tikzpicture}[
+    vert/.style={circle, fill=barpos, text=white, font=\large\bfseries, minimum size=2.2cm, inner sep=2pt, align=center},
+    edge/.style={line width=2.5pt, barbase!55},
+    elab/.style={fill=white, inner sep=5pt, font=\normalsize, align=center}]
+  \coordinate (S) at (90:3.4);
+  \coordinate (R) at (210:3.4);
+  \coordinate (V) at (330:3.4);
+  \draw[edge] (S) -- (R);
+  \draw[edge] (R) -- (V);
+  \draw[edge] (V) -- (S);
+  \node[vert] at (S) {可规模化};
+  \node[vert] at (R) {真实};
+  \node[vert] at (V) {可验证};
+  \node[elab] at ($(S)!0.5!(R)$) {前向合成\\{\color{barneg}\faTimes~不可验证}};
+  \node[elab] at ($(R)!0.5!(V)$) {人工标注\\{\color{barneg}\faTimes~难以规模化}};
+  \node[elab] at ($(V)!0.5!(S)$) {纯模拟环境\\{\color{barneg}\faTimes~不真实}};
+  \node[font=\Huge\bfseries, text=barneg] at (0,-0.2) {?};
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 2. 前向合成
+\begin{tikzpicture}[
+    box/.style={rounded corners=6pt, inner sep=9pt, align=left, text width=4.3cm, minimum height=2.8cm, fill=gray!12},
+    hd/.style={font=\bfseries, anchor=south west, inner sep=3pt},
+    bad/.style={text=barneg, text width=4.5cm, align=left, anchor=north}]
+  \node[box] (t) at (0,0) {输入：所有工具的描述。\\[4pt] LLM 据此写出一个需要调用这些工具的任务。};
+  \node[box] (tr) at (5.8,0) {另一个 solver 模型针对该任务，rollout 出一条 tool-call 轨迹。};
+  \node[box] (a) at (11.6,0) {solver 的最终答案被当作 ground truth。};
+  \node[hd] at (t.north west) {1. 先写任务};
+  \node[hd] at (tr.north west) {2. Solver rollout};
+  \node[hd] at (a.north west) {3. Ground truth};
+  \draw[arr] (t) -- (tr);
+  \draw[arr] (tr) -- (a);
+  \node[bad] at (0,-1.75) {\faTimes~任务本身可能无法完成：目标状态不可达。};
+  \node[bad] at (5.8,-1.75) {\faTimes~solver 可能做错：ground truth 随之出错。};
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 3. 反转流程
+\begin{tikzpicture}[
+    box/.style={rounded corners=5pt, minimum height=1.15cm, minimum width=2.9cm, align=center},
+    lbl/.style={font=\bfseries, anchor=east, align=right}]
+  \node[lbl] at (-0.4,0) {前向合成\\{\small\mdseries 已有方法}};
+  \node[box, fill=gray!15] (t1)  at (1.4,0) {任务\\{\small 先写出来}};
+  \node[box, fill=gray!15] (tr1) at (5.2,0) {轨迹\\{\small solver rollout}};
+  \node[box, fill=gray!15] (a1)  at (9.0,0) {Ground truth\\{\small 未经验证}};
+  \draw[arr] (t1) -- (tr1);
+  \draw[arr] (tr1) -- (a1);
+  \node[barneg, anchor=west] at (10.7,0) {\faTimes~只能祈祷它可解};
+  \node[lbl] at (-0.4,-2.4) {Back-Chaining\\{\small\mdseries Firefly}};
+  \node[box, fill=barpos!15] (api) at (1.4,-2.4) {真实 API\\{\small 探索并执行}};
+  \node[box, fill=barpos!15] (st)  at (5.2,-2.4) {观察到的状态\\{\small 全部缓存}};
+  \node[box, fill=barpos!15] (t2)  at (9.0,-2.4) {任务\\{\small 反向合成}};
+  \draw[arr] (api) -- (st);
+  \draw[arr] (st) -- (t2);
+  \node[barpos, anchor=west] at (10.7,-2.4) {\faCheck~正确性由构造保证};
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 4. 整体框架
+\begin{tikzpicture}[
+    blk/.style={rounded corners=8pt, minimum width=4.6cm, minimum height=4.2cm},
+    hd/.style={rounded corners=6pt, text=white, font=\bfseries, minimum width=4.6cm, minimum height=0.85cm},
+    ico/.style={font=\fontsize{34}{34}\selectfont},
+    ds/.style={text width=4cm, align=center}]
+  \node[blk, fill=pblue!10] (b1) at (0,0) {};
+  \node[hd, fill=pblue, anchor=north] at (b1.north) {1. 收集 MCP Server};
+  \node[ico, pblue] at (0,0.35) {\faServer};
+  \node[ds] at (0,-1.1) {筛选真实 server};
+  \node[blk, fill=pteal!10] (b2) at (5.8,0) {};
+  \node[hd, fill=pteal, anchor=north] at (b2.north) {2. 任务合成};
+  \node[ico, pteal] at (5.8,0.35) {\faProjectDiagram};
+  \node[ds] at (5.8,-1.1) {探索 + 反向出题};
+  \node[blk, fill=porange!10] (b3) at (11.6,0) {};
+  \node[hd, fill=porange, anchor=north] at (b3.north) {3. 强化学习};
+  \node[ico, porange] at (11.6,0.35) {\faRobot};
+  \node[ds] at (11.6,-1.1) {在离线 Simulator 中 RL};
+  \draw[arr, line width=2pt] (b1.east) -- (b2.west);
+  \draw[arr, line width=2pt] (b2.east) -- (b3.west);
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 5. 图引导的探索
+\begin{tikzpicture}[
+    tn/.style={circle, fill=gray!25, minimum size=0.55cm, inner sep=0},
+    hn/.style={circle, fill=barpos, text=white, minimum size=0.55cm, inner sep=0, font=\small\bfseries},
+    ge/.style={gray!45, line width=0.9pt},
+    he/.style={-{Stealth[length=6pt]}, barpos, line width=1.8pt}]
+  \foreach \n/\x/\y in {a/0/0, b/1.5/1.2, c/1.6/-1.3, d/3.2/0.4, e/3.4/-1.1, f/4.9/1.3, g/5.0/-0.4, h/2.5/2.2, i/-1.3/1.3, j/-1.1/-1.4, k/6.3/0.8}
+    \node[tn] (\n) at (\x,\y) {};
+  \foreach \s/\t in {i/a, i/b, j/a, j/c, b/h, b/d, c/d, c/e, d/f, d/g, e/g, h/f, f/k, g/k, b/f}
+    \draw[ge] (\s) -- (\t);
+  \foreach \n/\l in {a/1, b/2, c/2, d/3, g/4}
+    \node[hn] at (\n) {\l};
+  \draw[he] (a) -- (b);
+  \draw[he] (a) -- (c);
+  \draw[he] (b) -- (d);
+  \draw[he] (c) -- (d);
+  \draw[he] (d) -- (g);
+  \node[font=\small, anchor=east] at (-0.35,-0.35) {起点};
+  \node[font=\small, barpos] at (0.35,1.0) {fan-out};
+  \node[font=\small, barpos] at (3.0,-0.55) {fan-in};
+  \node[font=\small, align=center] at (2.5,-2.4) {灰色：Tool Graph（工具之间的可串联关系）\\ 青色：一次探索得到的 tool-call DAG};
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 6. 为什么不能直接用 live server
+\begin{tikzpicture}[
+    card/.style={rounded corners=8pt, minimum width=5cm, minimum height=4.6cm, fill=gray!10},
+    ico/.style={barneg, font=\fontsize{26}{26}\selectfont},
+    hd/.style={font=\large\bfseries},
+    ex/.style={font=\small, text width=4.6cm, align=center}]
+  \node[card] at (0,0) {};
+  \node[ico] at (0,1.5) {\faPowerOff};
+  \node[hd] at (0,0.6) {Server 会下线};
+  \node[ex] at (0,-0.85) {\texttt{search("hotels")}\\[4pt] $\rightarrow$ \texttt{503 Unavailable}};
+  \node[card] at (5.6,0) {};
+  \node[ico] at (5.6,1.5) {\faCloudSun};
+  \node[hd] at (5.6,0.6) {结果不可复现};
+  \node[ex] at (5.6,-0.85) {\texttt{get\_weather("Boston")}\\[4pt] 周一 $\rightarrow$ \texttt{18°C, sunny}\\ 周二 $\rightarrow$ \texttt{9°C, rain}};
+  \node[card] at (11.2,0) {};
+  \node[ico] at (11.2,1.5) {\faDice};
+  \node[hd] at (11.2,0.6) {本身就是随机的};
+  \node[ex] at (11.2,-0.85) {\texttt{fortune\_telling("Leo")}\\[4pt] 第 1 次 $\rightarrow$ \texttt{"great luck"}\\ 第 2 次 $\rightarrow$ \texttt{"beware Tuesday"}};
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 7. Replay Simulator 三层
+\begin{tikzpicture}[
+    card/.style={rounded corners=8pt, minimum width=5cm, minimum height=4.6cm},
+    hd/.style={font=\large\bfseries},
+    keys/.style={font=\small, minimum height=1.7cm},
+    res/.style={font=\small, text width=4.6cm, align=center, anchor=north}]
+  \newcommand{\ok}{{\color{barpos}\faCheck}}
+  \newcommand{\no}{{\color{barneg}\faTimes}}
+  \node[font=\small] at (5.6,3.1) {探索阶段缓存的调用：\texttt{search(query="hotels", num=5, format="csv")}};
+  \node[card, fill=barpos!15] at (0,0) {};
+  \node[hd, barpos] at (0,1.8) {Exact Match};
+  \node[keys] at (0,0.45) {\begin{tabular}{@{}l@{\hspace{22pt}}c@{}}
+      \texttt{query="hotels"} & \ok \\[3pt] \texttt{num=5} & \ok \\[3pt] \texttt{format="csv"} & \ok \end{tabular}};
+  \node[res] at (0,-0.75) {直接返回缓存的\\\textbf{真实}响应};
+  \node[card, fill=rsnbg] at (5.6,0) {};
+  \node[hd, rsnfg] at (5.6,1.8) {Fuzzy Match};
+  \node[keys] at (5.6,0.45) {\begin{tabular}{@{}l@{\hspace{22pt}}c@{}}
+      \texttt{query="hotels"} & \ok \\[3pt] \texttt{num=5} & \ok \\[3pt] \texttt{format="json"} & \no \end{tabular}};
+  \node[res] at (5.6,-0.75) {LLM 基于缓存结果\textbf{模拟}：\\把它改写成 JSON};
+  \node[card, fill=barneg!15] at (11.2,0) {};
+  \node[hd, barneg] at (11.2,1.8) {No Data};
+  \node[keys, text width=4.4cm, align=center] at (11.2,0.45) {探索阶段\\从未调用过该工具};
+  \node[res] at (11.2,-0.75) {返回\textbf{错误}};
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 8. 为什么回放就够了
+\begin{tikzpicture}[
+    cn/.style={circle, fill=barpos, minimum size=0.65cm, inner sep=0},
+    on/.style={circle, draw=barbase, dashed, line width=1pt, fill=white, minimum size=0.65cm, inner sep=0},
+    he/.style={-{Stealth[length=6pt]}, barpos, line width=1.8pt},
+    oe/.style={-{Stealth[length=6pt]}, barbase, dashed, line width=1.3pt},
+    txt/.style={text width=8.4cm, align=left, anchor=west}]
+  \node[font=\bfseries] (s) at (0,0) {任务};
+  \node[cn] (c1) at (1.7,0) {};
+  \node[cn] (c2) at (3.4,0) {};
+  \node[fill=actbg, text=actfg, rounded corners=4pt, font=\bfseries, inner sep=6pt] (gt) at (5.4,0) {ground truth};
+  \draw[he] (s) -- (c1);
+  \draw[he] (c1) -- (c2);
+  \draw[he] (c2) -- (gt);
+  \node[barpos] at (2.55,0.8) {已缓存的路径};
+  \node[on] (o1) at (2.55,-1.7) {};
+  \node[on] (o2) at (4.25,-1.7) {};
+  \draw[oe] (c1) -- (o1);
+  \draw[oe] (o1) -- (o2);
+  \node[anchor=north] at (3.4,-2.15) {偏离路径：可能没有缓存};
+  \node[txt] at (7.3,0.7) {{\color{barpos}\faCheck}~\textbf{做对的 Agent}：始终在路径上，每次调用都命中缓存，拿到真实响应，走到 ground truth。};
+  \node[txt] at (7.3,-1.3) {{\color{barneg}\faTimes}~\textbf{做错的 Agent}：偏离路径，可能拿不到数据。但它本来就错了，reward 反正是 0。};
+\end{tikzpicture}
+
+% ---------------------------------------------------------------- 9. 主结果
+\begin{tikzpicture}[x=0.16cm,y=1cm]
+  \foreach \y/\v/\c/\n in {4/28.1/barbase/Qwen3-4B（RL 前）, 3/30.0/barsft/Claude Haiku 4.5, 2/42.2/barsft/Claude Sonnet 4.6, 1/44.5/barsft/Claude Opus 4.7, 0/41.5/barpos/Qwen3-4B + Firefly RL}{
+    \draw[\c,line width=11pt,line cap=round] (0,\y) -- (\v,\y);
+    \node[\c,anchor=west,font=\bfseries] at (\v+2,\y) {\v};
+    \node[anchor=east] at (-2,\y) {\n};
+  }
+  \node[font=\small] at (22,-1) {Firefly 测试集 pass@1（\%），每题 16 次 rollout};
+\end{tikzpicture}
+
+\end{document}
